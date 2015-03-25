@@ -14,7 +14,7 @@ public class Product
      * @param cost
      * @param soldBy
      */
-    public Product(String name, double price, String description, int quantity, int totalNumberSold, double cost, Seller soldBy)
+    public Product(String name, double price, String description, int quantity, int totalNumberSold, double cost, String soldBy)
     {
         this.name = name;
         this.price = price;
@@ -76,7 +76,7 @@ public class Product
      * Accessor for soldBy, returns the Seller object that sells this product
      * @return soldBy
      */
-    public Seller getSoldBy()
+    public String getSoldBy()
     {
         return this.soldBy;
     }
@@ -129,5 +129,5 @@ public class Product
     private int quantity;
     private int totalNumberSold;
     private double cost;
-    private final Seller soldBy;
+    private String soldBy;
 }
