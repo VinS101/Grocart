@@ -41,7 +41,7 @@ public class Product
         return this.description;
     }
     /**
-     * accessor for price
+     * Accessor for price
      * @return price
      */
     public double getPrice()
@@ -105,7 +105,7 @@ public class Product
         this.price = price;
     }
     /**
-     * mutator for changing product quantity
+     * Mutator for changing product quantity
      * @param quantity 
      */
     public void setQuantity (int quantity)
