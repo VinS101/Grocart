@@ -7,10 +7,10 @@ import java.awt.*;
 
 public class LoginPage 
 {
-    public static void main(String[] args){
-        LoginPage login = new LoginPage();
-        login.display();
-    }
+public static void main(String[] args){
+    LoginPage login = new LoginPage();
+    login.display();
+}
     
     /**
      * This method displays the login page on the GUI.
@@ -54,11 +54,6 @@ public class LoginPage
     
     inputPanel.add(dropMenu);
     inputPanel.add(login);
-   
-  
-    loginPanel.add(userNamePanel);
-    loginPanel.add(Box.createRigidArea(new Dimension(0,5)));
-    loginPanel.add(passwordPanel);
     
     loginPanel.add(Box.createRigidArea(new Dimension(0,25)));
     loginPanel.add(userNamePanel);
