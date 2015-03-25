@@ -60,12 +60,8 @@ public class LoginPage
     loginPanel.add(Box.createRigidArea(new Dimension(0,5)));
     loginPanel.add(passwordPanel);
     
-    JPanel emptyPanel = new JPanel();
-    emptyPanel.setSize(100, 50);
-    
-    loginPanel.add(emptyPanel);
+    loginPanel.add(Box.createRigidArea(new Dimension(0,25)));
     loginPanel.add(userNamePanel);
-    loginPanel.add(Box.createRigidArea(new Dimension(0,5)));
     loginPanel.add(passwordPanel);
     loginPanel.add(inputPanel);
     
