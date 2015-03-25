@@ -2,6 +2,7 @@
 package shoppingcartapplication_main;
 
 
-public class FinancialSummaryPage {
+public class FinancialSummaryPage 
+{
     
 }

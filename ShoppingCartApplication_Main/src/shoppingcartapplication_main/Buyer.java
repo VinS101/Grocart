@@ -2,6 +2,7 @@
 package shoppingcartapplication_main;
 
 
-public class Buyer {
+public class Buyer 
+{
     
 }

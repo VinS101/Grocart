@@ -2,6 +2,7 @@
 package shoppingcartapplication_main;
 
 
-public class Account {
+public class Account 
+{
     
 }
