@@ -11,7 +11,7 @@ public class DescriptionPage
     }
     
     public static void main(String[] args){
-        Product milk = new Product("Milk", 2.99, "It's Fucking Milk...", 10, 0, 1.50, "Shervin");
+        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 0, 1.50, "Shervin");
         DescriptionPage description = new DescriptionPage(milk);
         description.display();
     }
@@ -39,6 +39,8 @@ public class DescriptionPage
         topPanel.add(Box.createRigidArea(new Dimension(1150,0)));
         topPanel.add(back);
         topPanel.add(logout);
+        
+        JPanel mainPanel = new JPanel();
 
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(topPanel, BorderLayout.NORTH);

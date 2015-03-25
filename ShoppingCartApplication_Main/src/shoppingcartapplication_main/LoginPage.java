@@ -44,20 +44,24 @@ public static void main(String[] args){
     password.setPreferredSize( new Dimension( 100,20) );
     passwordPanel.add(password);
     
-    JPanel inputPanel = new JPanel();
+    JPanel textFieldsPanel = new JPanel();
+    textFieldsPanel.setLayout(new BoxLayout(textFieldsPanel, BoxLayout.Y_AXIS));
+    textFieldsPanel.add(userNamePanel);
+    textFieldsPanel.add(passwordPanel);
     
     String[] menuOptions = {"Buyer", "Seller"};
     JComboBox dropMenu = new JComboBox(menuOptions);
-    
-    
+
     JButton login = new JButton("Login");
+    
+    JPanel inputPanel = new JPanel();
     
     inputPanel.add(dropMenu);
     inputPanel.add(login);
     
+    
     loginPanel.add(Box.createRigidArea(new Dimension(0,25)));
-    loginPanel.add(userNamePanel);
-    loginPanel.add(passwordPanel);
+    loginPanel.add(textFieldsPanel);
     loginPanel.add(inputPanel);
     
    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
