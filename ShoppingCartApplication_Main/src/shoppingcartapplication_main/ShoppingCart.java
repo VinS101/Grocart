@@ -6,28 +6,28 @@ import java.util.Iterator;
 
 
 
-public class ShoppingCart implements Iterable
+public class ShoppingCart
 {
     public ShoppingCart(){
-        cart = new ArrayList<Product>();
+        cart = new ArrayList<>();
     }
     
     //Example from the book
-    public Iterator<LineItem> getItems()
+    public Iterator<Product> getAllProducts()
    {
       return new
-         Iterator<LineItem>()
+         Iterator<Product>()
          {
             @Override
             public boolean hasNext()
             {
-               return current < items.size();
+               return current < cart.size();
             }
 
             @Override
-            public LineItem next()
+            public Product next()
             {
-               return items.get(current++);
+               return cart.get(current++);
             }
 
             @Override
@@ -40,6 +40,30 @@ public class ShoppingCart implements Iterable
          };
    }
     
+    public Product getOneProduct(String name){
+        Iterator iter = this.getAllProducts();
+         Product product = (Product) iter.next();
+         
+        while(iter.hasNext()){
+         
+         if(product.getName().equals(name)){
+            break;
+         }
+         
+         product = (Product) iter.next();
+         
+        }
+         return product;
+    }
+    
+    public void addToCart(Product aProduct){
+        cart.add(aProduct);
+    }
+    
+    
+    
     ArrayList<Product> cart;
+
+  
     
 }
