@@ -7,11 +7,23 @@ import java.util.Iterator;
 
 public class Inventory
 {
+    /**
+     * Constructor for the inventory class. it initializes the inventory ArrayList
+     */
     public Inventory()
     {
         inventory = new ArrayList<>();
     }
-    
+       
+    /**
+     * testing
+     * @param args 
+     */
+//    public static void main(String[] args)
+//    {
+//        
+//        
+//    }
     //Example from the book
     public Iterator<Product> getAllProducts()
    {
@@ -39,24 +51,29 @@ public class Inventory
             private int current = 0;
          };
    }
-    
-    public Product getproduct(String name)
+    /**
+     * Find the product from the list
+     * @param aName
+     * @return 
+     */
+    public Product getProduct(String aName)
     {
         Iterator iter = this.getAllProducts();
-         Product product = (Product) iter.next();
+        Product product = (Product) iter.next();
          
         while(iter.hasNext()){
          
-         if(product.getName().equals(name)){
+         if(product.getName().equals(aName)){
             break;
          }
-         
          product = (Product) iter.next();
-         
         }
          return product;
     }
-    
+    /**
+     * Add the product to array list inventory
+     * @param aProduct 
+     */
     public void addToInventory(Product aProduct)
     {
         inventory.add(aProduct);
@@ -66,7 +83,46 @@ public class Inventory
     {
         inventory.remove(aProduct);
     }
+    /**
+     * not implemented yet
+     */
+    public void overWriteInventoryFile()
+    {}
     
+    public boolean checkStock(Product product)
+    {
+       Product tempInventoryProduct = getProduct(product.getName());
+        return tempInventoryProduct.getinventoryQuantity() > product.getCartQuantity();
+    }
+    /**
+     * Not impelemented yet
+     */
+    public void updateInventory()
+    {
+    
+    }
+    
+    public String getFinancialSummary()
+    {
+        String result;
+        
+        double totalProfit;
+        double totalCost = 0;
+        double totalRevenue = 0;
+        int totalProductsSold = 0;
+        
+        Iterator iter = this.getAllProducts();
+        while(iter.hasNext())
+        {
+            Product p = (Product) iter.next();
+            totalRevenue += (p.getPrice() * p.getTotalNumberSold());
+            totalCost += p.getCost();
+        }
+        
+        totalProfit = totalRevenue - totalCost;
+        result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: " + totalProfit + "\nRevenue: " + totalRevenue; 
+        return result;
+    }
     
     private ArrayList<Product> inventory;;
     
