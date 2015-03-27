@@ -57,9 +57,14 @@ public class Inventory
          return product;
     }
     
-    public Product removeProduct()
+    public void addToInventory(Product aProduct)
     {
-        
+        inventory.add(aProduct);
+    }
+    
+    public void removeProduct(Product aProduct)
+    {
+        inventory.remove(aProduct);
     }
     
     
