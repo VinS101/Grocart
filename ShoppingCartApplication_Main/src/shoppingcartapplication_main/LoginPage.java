@@ -33,7 +33,7 @@ public static void main(String[] args){
     
     userNamePanel.add(new JLabel("Username: "));
     JTextField username = new JTextField();
-    username.setPreferredSize( new Dimension( 100,20) );
+    username.setPreferredSize( new Dimension( 50,20) );
     userNamePanel.add(username);
     
     JPanel passwordPanel = new JPanel();

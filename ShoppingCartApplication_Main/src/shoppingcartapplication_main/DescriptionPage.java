@@ -29,14 +29,14 @@ public class DescriptionPage
         productTitle.setFont(productTitle.getFont().deriveFont(40.0f));
         
         JButton logout = new JButton("Logout");
-        logout.setPreferredSize(new Dimension(150,50));
-        logout.setFont(logout.getFont().deriveFont(16.0f));
+        logout.setPreferredSize(new Dimension(100,30));
+        logout.setFont(logout.getFont().deriveFont(12.0f));
         JButton back = new JButton("Back to Homepage");
-        back.setPreferredSize(new Dimension(250,50));
-        back.setFont(back.getFont().deriveFont(16.0f));
+        back.setPreferredSize(new Dimension(150,30));
+        back.setFont(back.getFont().deriveFont(12.0f));
         
         topPanel.add(productTitle);
-        topPanel.add(Box.createRigidArea(new Dimension(200,0)));
+        topPanel.add(Box.createRigidArea(new Dimension(350,0)));
         topPanel.add(back);
         topPanel.add(logout);
         
