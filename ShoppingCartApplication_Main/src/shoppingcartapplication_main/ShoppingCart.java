@@ -48,7 +48,7 @@ public class ShoppingCart
          
          if(product.getName().equals(name)){
             break;
-         }
+        }
          
          product = (Product) iter.next();
          
@@ -56,13 +56,28 @@ public class ShoppingCart
          return product;
     }
     
-    public void addToCart(Product aProduct){
+    public void addToCart(Product aProduct, int quantity){
+        aProduct.setCartQuantity(quantity);
         cart.add(aProduct);
+    }
+    
+    public void removeProduct(Product aProduct){
+        cart.remove(aProduct);
+    }
+    
+    public double getTotalPrice(){
+        double price = 0.0;
+        
+        for (int i = 0; i < cart.size()-1; i++){
+            price = price + cart.get(i).getPrice();
+        }
+        
+        return price;
     }
     
     
     
-    ArrayList<Product> cart;
+    private ArrayList<Product> cart;
 
   
     
