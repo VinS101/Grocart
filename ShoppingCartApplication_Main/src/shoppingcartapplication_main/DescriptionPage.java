@@ -20,7 +20,7 @@ public class DescriptionPage
     public void display(){
         
         JFrame frame = new JFrame("Product Description:");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        frame.setSize(1500,800); 
         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
@@ -36,7 +36,7 @@ public class DescriptionPage
         back.setFont(back.getFont().deriveFont(16.0f));
         
         topPanel.add(productTitle);
-        topPanel.add(Box.createRigidArea(new Dimension(1150,0)));
+        topPanel.add(Box.createRigidArea(new Dimension(600,0)));
         topPanel.add(back);
         topPanel.add(logout);
         
