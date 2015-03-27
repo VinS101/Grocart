@@ -20,7 +20,7 @@ public class DescriptionPage
     public void display(){
         
         JFrame frame = new JFrame("Product Description:");
-        frame.setSize(1500,800); 
+        frame.setSize(1000,700); 
         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
@@ -29,14 +29,14 @@ public class DescriptionPage
         productTitle.setFont(productTitle.getFont().deriveFont(40.0f));
         
         JButton logout = new JButton("Logout");
-        logout.setPreferredSize(new Dimension(150,75));
+        logout.setPreferredSize(new Dimension(150,50));
         logout.setFont(logout.getFont().deriveFont(16.0f));
         JButton back = new JButton("Back to Homepage");
-        back.setPreferredSize(new Dimension(250,75));
+        back.setPreferredSize(new Dimension(250,50));
         back.setFont(back.getFont().deriveFont(16.0f));
         
         topPanel.add(productTitle);
-        topPanel.add(Box.createRigidArea(new Dimension(600,0)));
+        topPanel.add(Box.createRigidArea(new Dimension(200,0)));
         topPanel.add(back);
         topPanel.add(logout);
         
