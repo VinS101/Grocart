@@ -23,7 +23,7 @@ public class Product
         this.totalNumberSold = totalNumberSold;
         this.cost = cost;
         this.soldBy = soldBy;
-        this.shoppingCartQuantity = 0;
+        this.cartQuantity = 0;
     }
     /**
      * Accessor for name
@@ -50,12 +50,20 @@ public class Product
         return this.price;
     }
     /**
-     * Accessor for quantity
+     * Accessor for inventory Quantity
      * @return quantity
      */
-    public int getQuantity()
+    public int getinventoryQuantity()
     {
-        return this.quantity;
+        return this.inventoryQuantity;
+    }
+    /**
+     * Accessor for inventory Quantity
+     * @return quantity
+     */
+    public int getCartQuantity()
+    {
+        return this.cartQuantity;
     }
     /**
      * Accessor for totalNumberSold
@@ -119,7 +127,7 @@ public class Product
      */
     public void setCartQuantity (int quantity)
     {
-        this.shoppingCartQuantity = quantity;
+        this.cartQuantity = quantity;
     }
     /**
      * Mutator for changing product cost
@@ -136,7 +144,7 @@ public class Product
     private String description;
     private double price;
     private int inventoryQuantity;
-    private int shoppingCartQuantity;
+    private int cartQuantity;
     private int totalNumberSold;
     private double cost;
     private String soldBy;
