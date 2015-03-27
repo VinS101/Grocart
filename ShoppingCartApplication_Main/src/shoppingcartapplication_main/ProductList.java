@@ -37,6 +37,7 @@ public class ProductList
             private int current = 0;
          };
    }
+    
     public Product getOneProduct(String name){
         Iterator iter = this.getAllProducts();
          Product product = (Product) iter.next();
