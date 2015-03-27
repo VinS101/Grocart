@@ -19,10 +19,11 @@ public class Product
         this.name = name;
         this.price = price;
         this.description = description;
-        this.quantity = quantity;
+        this.inventoryQuantity = quantity;
         this.totalNumberSold = totalNumberSold;
         this.cost = cost;
         this.soldBy = soldBy;
+        this.shoppingCartQuantity = 0;
     }
     /**
      * Accessor for name
@@ -105,12 +106,20 @@ public class Product
         this.price = price;
     }
     /**
-     * Mutator for changing product quantity
+     * Mutator for changing seller's inventory quantity
      * @param quantity 
      */
-    public void setQuantity (int quantity)
+    public void setInventoryQuantity (int quantity)
     {
-        this.quantity = quantity;
+        this.inventoryQuantity = quantity;
+    }
+    /**
+     * Mutator for changing shopping cart's product quantity
+     * @param quantity 
+     */
+    public void setCartQuantity (int quantity)
+    {
+        this.shoppingCartQuantity = quantity;
     }
     /**
      * Mutator for changing product cost
@@ -126,7 +135,8 @@ public class Product
     private String name;
     private String description;
     private double price;
-    private int quantity;
+    private int inventoryQuantity;
+    private int shoppingCartQuantity;
     private int totalNumberSold;
     private double cost;
     private String soldBy;
