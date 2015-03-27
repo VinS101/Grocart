@@ -6,60 +6,59 @@ public class Product
 {
     /**
      * Constructor for Product, sets the products name, price, description, quantity, totalNumberSold, cost, sold by. 
-     * @param name
-     * @param price
-     * @param description
-     * @param quantity
-     * @param totalNumberSold
-     * @param cost
-     * @param soldBy
+     * @param name  Name of product.
+     * @param price Price of product.
+     * @param description Description of product.
+     * @param quantity Quantity of items in the inventories stock. 
+     * @param cost Cost of item to the seller.
+     * @param soldBy Sellers name.
      */
-    public Product(String name, double price, String description, int quantity, int totalNumberSold, double cost, String soldBy)
+    public Product(String name, double price, String description, int quantity, double cost, String soldBy)
     {
         this.name = name;
         this.price = price;
         this.description = description;
         this.inventoryQuantity = quantity;
-        this.totalNumberSold = totalNumberSold;
         this.cost = cost;
         this.soldBy = soldBy;
         this.cartQuantity = 0;
+        this.totalNumberSold = 0;
     }
     /**
-     * Accessor for name
-     * @return name
+     * Accessor for name.
+     * @return name Name of Product.
      */
     public String getName()
     {
         return this.name;
     }
     /**
-     * Accessor for description
-     * @return description
+     * Accessor for description.
+     * @return description Description of the product.
      */
     public String getDescription()
     {
         return this.description;
     }
     /**
-     * Accessor for price
-     * @return price
+     * Accessor for price.
+     * @return price Price of the item.
      */
     public double getPrice()
     {
         return this.price;
     }
     /**
-     * Accessor for inventory Quantity
-     * @return quantity
+     * Accessor for inventory Quantity.
+     * @return inventoryQuantity Quantity of product in sellers inventory.
      */
     public int getinventoryQuantity()
     {
         return this.inventoryQuantity;
     }
     /**
-     * Accessor for inventory Quantity
-     * @return quantity
+     * Accessor for inventory Quantity.
+     * @return cartQuantity Quantity of product in buyers shopping cart.
      */
     public int getCartQuantity()
     {
@@ -67,7 +66,7 @@ public class Product
     }
     /**
      * Accessor for totalNumberSold
-     * @return totalNumberSold
+     * @return totalNumberSold Number of products of this type sold.
      */
     public int getTotalNumberSold()
     {
@@ -75,7 +74,7 @@ public class Product
     }
     /**
      * Accessor for Cost
-     * @return cost
+     * @return cost Cost of item for the seller.
      */
     public double getCost()
     {
@@ -83,7 +82,7 @@ public class Product
     }
     /**
      * Accessor for soldBy, returns the Seller object that sells this product
-     * @return soldBy
+     * @return soldBy Name of the seller.
      */
     public String getSoldBy()
     {
@@ -91,51 +90,51 @@ public class Product
     }
     /**
      * Mutator for changing the product name
-     * @param name 
+     * @param aName The name that the attribute will be changed to.
      */
-    public void setName(String name)
+    public void setName(String aName)
     {
-        this.name = name;
+        this.name = aName;
     }
     /**
      * Mutator for changing product description
-     * @param description 
+     * @param aDescription The description that the attribute will be changed to.
      */
-    public void setDescription(String description)
+    public void setDescription(String aDescription)
     {
-        this.description = description;
+        this.description = aDescription;
     }
     /**
      * Mutator for changing product price
-     * @param price 
+     * @param aPrice The price that the attribute will be changed to.
      */
-    public void setPrice(double price)
+    public void setPrice(double aPrice)
     {
-        this.price = price;
+        this.price = aPrice;
     }
     /**
      * Mutator for changing seller's inventory quantity
-     * @param quantity 
+     * @param aQuantity The quantity that the attribute will be changed to.
      */
-    public void setInventoryQuantity (int quantity)
+    public void setInventoryQuantity (int aQuantity)
     {
-        this.inventoryQuantity = quantity;
+        this.inventoryQuantity = aQuantity;
     }
     /**
      * Mutator for changing shopping cart's product quantity
-     * @param quantity 
+     * @param aQuantity The quantity that the attribute will be changed to.
      */
-    public void setCartQuantity (int quantity)
+    public void setCartQuantity (int aQuantity)
     {
-        this.cartQuantity = quantity;
+        this.cartQuantity = aQuantity;
     }
     /**
      * Mutator for changing product cost
-     * @param cost 
+     * @param aCost The cost that the attribute will be changed to.
      */
-    public void setCost (double cost)
+    public void setCost (double aCost)
     {
-        this.cost = cost;
+        this.cost = aCost;
     }
     
    

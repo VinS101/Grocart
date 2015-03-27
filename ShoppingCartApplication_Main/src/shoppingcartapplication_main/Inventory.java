@@ -87,7 +87,8 @@ public class Inventory
      * not implemented yet
      */
     public void overWriteInventoryFile()
-    {}
+    {
+    }
     
     public boolean checkStock(Product product)
     {
@@ -106,7 +107,7 @@ public class Inventory
     {
         String result;
         
-        double totalProfit;
+        double totalProfit = 0;
         double totalCost = 0;
         double totalRevenue = 0;
         int totalProductsSold = 0;
@@ -116,7 +117,8 @@ public class Inventory
         {
             Product p = (Product) iter.next();
             totalRevenue += (p.getPrice() * p.getTotalNumberSold());
-            totalCost += p.getCost();
+            totalCost += p.getCost()*(p.getTotalNumberSold()+p.getinventoryQuantity());
+            totalProductsSold += p.getTotalNumberSold();
         }
         
         totalProfit = totalRevenue - totalCost;

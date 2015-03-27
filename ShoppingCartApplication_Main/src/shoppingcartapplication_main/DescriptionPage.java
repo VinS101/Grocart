@@ -11,11 +11,14 @@ public class DescriptionPage
     }
     
     public static void main(String[] args){
-        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 0, 1.50, "Shervin");
+        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 1.50, "Shervin");
         DescriptionPage description = new DescriptionPage(milk);
         description.display();
     }
     
+    /**
+    * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.
+    */
     
     public void display(){
         
@@ -25,7 +28,7 @@ public class DescriptionPage
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
         
-        JLabel productTitle = new JLabel("Product:   " +product.getName());
+        JLabel productTitle = new JLabel("Product:   " + product.getName());
         productTitle.setFont(productTitle.getFont().deriveFont(40.0f));
         
         JButton logout = new JButton("Logout");

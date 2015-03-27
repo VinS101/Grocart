@@ -11,6 +11,10 @@ public class ProductList
         productList = new ArrayList<>();
     }
     
+    /**
+     * Returns an iterator used to cycle through all the products in the list.
+     * @return An anonymous iterator class for the product list.
+     */
     public Iterator<Product> getAllProducts()
    {
       return new
@@ -38,13 +42,20 @@ public class ProductList
          };
    }
     
-    public Product getOneProduct(String name){
+    /**
+     * Finds a product by the given name and seller strings in the product list and returns it.
+     * @param name Name of the product.
+     * @param soldBy Seller of the product's name.
+     * @return The product being searched for.
+     */
+    
+    public Product getOneProduct(String name, String soldBy){
         Iterator iter = this.getAllProducts();
          Product product = (Product) iter.next();
          
         while(iter.hasNext()){
          
-         if(product.getName().equals(name)){
+         if(product.getName().equals(name) && product.getSoldBy().equals(soldBy)){
             break;
         }
          
