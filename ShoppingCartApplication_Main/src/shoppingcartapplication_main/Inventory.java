@@ -126,7 +126,6 @@ public class Inventory
         return result;
     }
     
-    private ArrayList<Product> inventory;;
-    
+    private ArrayList<Product> inventory;
 }
     
