@@ -5,9 +5,9 @@ package shoppingcartapplication_main;
 public class Buyer extends Account
 {
 
-    public Buyer(String aUsername, String aPassword, ShoppingCart aCart) {
+    public Buyer(String aUsername, String aPassword) {
         super(aUsername, aPassword);
-        cart = aCart;
+        cart = new ShoppingCart();
     }
     
     private ShoppingCart cart;
