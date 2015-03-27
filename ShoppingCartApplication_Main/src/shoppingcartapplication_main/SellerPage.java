@@ -1,7 +1,6 @@
 
 package shoppingcartapplication_main;
 import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 public class SellerPage 
