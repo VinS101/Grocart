@@ -12,7 +12,7 @@ public class ShoppingCart
         cart = new ArrayList<>();
     }
     
-    //Example from the book
+   
     public Iterator<Product> getAllProducts()
    {
       return new
@@ -75,6 +75,18 @@ public class ShoppingCart
         return price;
     }
     
+    public String generateSummary(){
+
+        Iterator iter = this.getAllProducts();
+         Product product = (Product) iter.next();
+         String summary = "| " + product.getName() + " | " + product.getPrice() + " | " + product.getDescription()  + " | " + product.getCartQuantity()  + " | " + product.getSoldBy() + " | \n"; 
+        while(iter.hasNext()){
+         product = (Product) iter.next();
+         summary = summary + "| " + product.getName() + " | " + product.getPrice() + " | " + product.getDescription()  + " | " + product.getCartQuantity()  + " | " + product.getSoldBy() + " | \n";
+        }
+        
+        return summary;
+    }
     
     
     private ArrayList<Product> cart;
