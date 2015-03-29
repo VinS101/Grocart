@@ -1,6 +1,10 @@
 
 package shoppingcartapplication_main;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,7 +25,7 @@ public class Inventory
      */
 //    public static void main(String[] args)
 //    {
-//        
+//        overWriteInventoryFile();
 //        
 //    }
     //Example from the book
@@ -84,10 +88,23 @@ public class Inventory
         inventory.remove(aProduct);
     }
     /**
-     * not implemented yet
+     * File output Functionality in progress (Experimental)
      */
     public void overWriteInventoryFile()
     {
+        try
+        {
+        File fout = new File("inventoryFile.txt");    //Create file
+        FileOutputStream fos = new FileOutputStream(fout);  //create output steam
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));    //create writer
+        
+        //Loop goes here to save Data line by line
+        writer.write("1 line goes here");
+        writer.newLine();
+        writer.write("new line goes here");
+        writer.close();
+        }
+        catch(Exception e){}
     }
     
     public boolean checkStock(Product product)
@@ -100,7 +117,7 @@ public class Inventory
      */
     public void updateInventory()
     {
-    
+        
     }
     
     public String getFinancialSummary()
