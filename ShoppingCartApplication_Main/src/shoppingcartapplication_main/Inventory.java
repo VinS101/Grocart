@@ -23,11 +23,18 @@ public class Inventory
      * testing
      * @param args 
      */
-//    public static void main(String[] args)
-//    {
-//        overWriteInventoryFile();
-//        
-//    }
+    public static void main(String[] args)
+    {
+        Product milk = new Product("milk", 7.99, "good milk", 72, 4.99, "Jimmy");
+        Product cream = new Product("cream", 7.99, "good yogurt", 72, 4.99, "Jimmy");
+        Product yogurt = new Product("yogurt", 7.99, "good yogurt", 72, 4.99, "Jimmy");
+        Inventory inventory = new Inventory();
+        inventory.inventory.add(milk);
+        inventory.inventory.add(cream);
+        inventory.inventory.add(yogurt);
+        inventory.overWriteInventoryFile();
+        
+    }
     //Example from the book
     public Iterator<Product> getAllProducts()
    {
@@ -92,6 +99,7 @@ public class Inventory
      */
     public void overWriteInventoryFile()
     {
+        String result = "";
         try
         {
         File fout = new File("inventoryFile.txt");    //Create file
@@ -99,9 +107,22 @@ public class Inventory
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));    //create writer
         
         //Loop goes here to save Data line by line
-        writer.write("1 line goes here");
-        writer.newLine();
-        writer.write("new line goes here");
+        for(int i=0; i < inventory.size(); i++)
+        {
+            result += inventory.get(i).getName() + " ";
+            result += inventory.get(i).getPrice() + " ";
+            result += inventory.get(i).getCost() + " ";
+            result += inventory.get(i).getDescription() + " ";
+            result += inventory.get(i).getSoldBy() + " ";
+            result += inventory.get(i).getinventoryQuantity() + " ";
+            result += inventory.get(i).getTotalNumberSold() + " ";
+            writer.write(result);   //write one line
+            writer.newLine();   //next line
+            result = null;  //clear
+        }
+//        writer.write("1 line goes here");
+//        writer.newLine();
+//        writer.write("new line goes here");
         writer.close();
         }
         catch(Exception e){}
