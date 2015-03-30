@@ -133,13 +133,7 @@ public class Inventory
        Product tempInventoryProduct = getProduct(product.getName());
         return tempInventoryProduct.getinventoryQuantity() > product.getCartQuantity();
     }
-    /**
-     * Not impelemented yet
-     */
-    public void updateInventory()
-    {
-        
-    }
+   
     
     public String getFinancialSummary()
     {

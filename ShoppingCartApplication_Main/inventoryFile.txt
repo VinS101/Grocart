@@ -1,0 +1,3 @@
+milk 7.99 4.99 good milk Jimmy 72 0 
+nullcream 7.99 4.99 good yogurt Jimmy 72 0 
+nullyogurt 7.99 4.99 good yogurt Jimmy 72 0 
