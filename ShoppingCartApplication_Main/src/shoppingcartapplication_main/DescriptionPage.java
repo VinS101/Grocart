@@ -49,7 +49,7 @@ public class DescriptionPage
        frame.add(topPanel, BorderLayout.NORTH);
     //   frame.add(loginPanel, BorderLayout.CENTER);
 
-       
+       frame.setLocationRelativeTo(null);  //set position
        frame.setVisible(true);
    
    } 
