@@ -10,11 +10,11 @@ public class DescriptionPage
         product = aProduct;
     }
     
-    public static void main(String[] args){
-        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 1.50, "Shervin");
-        DescriptionPage description = new DescriptionPage(milk);
-        description.display();
-    }
+//    public static void main(String[] args){
+//        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 1.50, "Shervin");
+//        DescriptionPage description = new DescriptionPage(milk);
+//        description.display();
+//    }
     
     /**
     * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.

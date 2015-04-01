@@ -15,7 +15,7 @@ public class ProductList
      * Returns an iterator used to cycle through all the products in the list.
      * @return An anonymous iterator class for the product list.
      */
-    static public Iterator<Product> getAllProducts()
+    public static Iterator<Product> getAllProducts()
    {
       return new
          Iterator<Product>()
@@ -65,5 +65,10 @@ public class ProductList
          return product;
     }
     
-    static ArrayList<Product> productList;
+    public static void addToProductList(Product product)
+    {
+        productList.add(product);
+    }
+    
+    private static ArrayList<Product> productList;
 }

@@ -5,6 +5,7 @@ package shoppingcartapplication_main;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -13,6 +14,11 @@ public class ShoppingCartSystem
 {
      public static void main(String[] args)
      {
+         buyerList = new ArrayList();
+         sellerList = new ArrayList();
+         
+         ProductList p = new ProductList();
+         
          //Make some Buyers
          Buyer Jack = new Buyer("jack", "123");
          Buyer Hendrix = new Buyer("hendrix", "123");
@@ -21,7 +27,33 @@ public class ShoppingCartSystem
          Seller Joe = new Seller("joe", "234");
          Seller natasha = new Seller("natasha", "634");
          
+         //Add to sellerList and buyerList
+         sellerList.add(Joe);
+         sellerList.add(natasha);
+         buyerList.add(Jack);
+         buyerList.add(Hendrix);
+         
+         //Read from files
          readFromFile(natasha, "natashaInventory.txt");
+         readFromFile(Joe, "joeInventory.txt");
+         
+         //Populate the ProductList class
+         //Readfiles tester block
+//         Iterator iter = natasha.getInventory().getAllProducts();
+//         while(iter.hasNext())
+//         {
+//             Product tempProduct = (Product) iter.next();
+//             System.out.println(tempProduct.getName());
+//         }
+         
+         updateProductList(sellerList);
+         //test productLIst
+         Iterator<Product> iter = ProductList.getAllProducts();
+         while(iter.hasNext())
+         {
+             Product tempProduct = (Product) iter.next();
+             System.out.println(tempProduct.getName());
+         }
      }
      
      public static void readFromFile(Seller seller, String fileName)
@@ -42,9 +74,9 @@ public class ShoppingCartSystem
             }   
             //1 line
             Product tempProduct = new Product(tokens.get(0), Double.parseDouble(tokens.get(1)), tokens.get(2), Integer.parseInt(tokens.get(3)),
-                    Double.parseDouble(tokens.get(4)), tokens.get(5), Integer.parseInt(tokens.get(i)));
+                    Double.parseDouble(tokens.get(4)), tokens.get(5), Integer.parseInt(tokens.get(6)));
             seller.getInventory().addToInventory(tempProduct);
-            
+            tokens.clear();
         }
         
         
@@ -54,6 +86,19 @@ public class ShoppingCartSystem
         catch(Exception e){}
        
     }
+     
+     public static void updateProductList(ArrayList<Seller> sellerList)
+     {
+         for (int i = 0; i < sellerList.size(); i++)
+         {
+             Iterator<Product> iter = sellerList.get(i).getInventory().getAllProducts();
+             while(iter.hasNext())
+             {
+                 Product tempProduct = iter.next();
+                 ProductList.addToProductList(tempProduct);
+             }
+         }
+     }
      
      public static boolean authenticate(String username, String password, boolean isBuyer)
      {

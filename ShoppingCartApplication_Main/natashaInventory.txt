@@ -1,0 +1,4 @@
+milk 7.99 good 10 4.99 natasha 0 
+sugar 6.99 good 10 4.99 natasha 0  
+eggs 3.99 good 10 2.99 natasha 0 
+cream 10.99 good 10 4.99 natasha 0 
