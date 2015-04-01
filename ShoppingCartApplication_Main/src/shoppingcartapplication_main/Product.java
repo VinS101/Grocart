@@ -12,8 +12,9 @@ public class Product
      * @param quantity Quantity of items in the inventories stock. 
      * @param cost Cost of item to the seller.
      * @param soldBy Sellers name.
+     * @param totalNumberSold total number sold 
      */
-    public Product(String name, double price, String description, int quantity, double cost, String soldBy)
+    public Product(String name, double price, String description, int quantity, double cost, String soldBy, int totalNumberSold)
     {
         this.name = name;
         this.price = price;
@@ -22,7 +23,7 @@ public class Product
         this.cost = cost;
         this.soldBy = soldBy;
         this.cartQuantity = 0;
-        this.totalNumberSold = 0;
+        this.totalNumberSold = totalNumberSold;
     }
     /**
      * Accessor for name.

@@ -15,5 +15,9 @@ public class Seller extends Account
         inventory = new Inventory();
     }
     
-    Inventory inventory;
+    public Inventory getInventory()
+    {
+        return this.inventory;
+    }
+    private Inventory inventory;
 }

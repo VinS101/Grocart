@@ -3,15 +3,27 @@ package shoppingcartapplication_main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 
 public class BuyerPage 
@@ -22,8 +34,8 @@ public class BuyerPage
      */
     public static void main(String[] args)
     {
-        SellerPage sellerPage = new SellerPage();
-        sellerPage.display();
+       BuyerPage page  = new BuyerPage();
+        page.display();
         
     }
     
@@ -81,6 +93,20 @@ public class BuyerPage
         //Add scrollbar
         scrollBarPanel.add(verticalBar);
         
+        //Create default table model
+        DefaultTableModel dm = new DefaultTableModel();
+        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quntity", "Sold by"});
+        
+        
+        
+        //Create the Table
+        JTable table = new JTable(dm);
+        table.getColumn("Button").setCellRenderer(new shoppingcartapplication_main.ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new shoppingcartapplication_main.ButtonEditor(new JCheckBox()));
+        
+        //Create the scrollpane
+        JScrollPane scroll = new JScrollPane(table);
+        
         //Populate MainPanel
         mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
         mainPanel.add(scrollBarPanel, BorderLayout.EAST);
@@ -90,14 +116,14 @@ public class BuyerPage
         southPanel.add(Box.createRigidArea(new Dimension(100,100)));
         
         //Make JFrame
-        JFrame frame = new JFrame("Seller Page");    //Create the main frame    
+        JFrame frame = new JFrame("Buyer Page");    //Create the main frame    
         frame.getContentPane().setBackground(Color.green);  //set background color
         frame.setLayout(new BorderLayout());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //close
-        
+        frame.add(scroll, BorderLayout.CENTER );
         frame.add(northPanel, BorderLayout.NORTH);
-        frame.add(mainPanel, BorderLayout.CENTER);   //Add main panel
+        //frame.add(mainPanel, BorderLayout.CENTER);   //Add main panel
         frame.add(southPanel, BorderLayout.SOUTH);
         frame.setSize(1000,700);
         frame.pack();       //pack
@@ -105,9 +131,87 @@ public class BuyerPage
         frame.setVisible(true); //set visible
     }
     
-    public void generateTableData()
+    public void generateTable()
     {
-    
+        Iterator iter = ProductList.getAllProducts();
+        iter.next();
     }
     
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+
+  public ButtonRenderer() {
+    setOpaque(true);
+  }
+
+  public Component getTableCellRendererComponent(JTable table, Object value,
+      boolean isSelected, boolean hasFocus, int row, int column) {
+    if (isSelected) {
+      setForeground(table.getSelectionForeground());
+      setBackground(table.getSelectionBackground());
+    } else {
+      setForeground(table.getForeground());
+      setBackground(UIManager.getColor("Button.background"));
+    }
+    setText((value == null) ? "" : value.toString());
+    return this;
+  }
+}
+
+/**
+ * @version 1.0 11/09/98
+ */
+
+class ButtonEditor extends DefaultCellEditor {
+  protected JButton button;
+
+  private String label;
+
+  private boolean isPushed;
+
+  public ButtonEditor(JCheckBox checkBox) {
+    super(checkBox);
+    button = new JButton();
+    button.setOpaque(true);
+    button.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        fireEditingStopped();
+      }
+    });
+  }
+
+  public Component getTableCellEditorComponent(JTable table, Object value,
+      boolean isSelected, int row, int column) {
+    if (isSelected) {
+      button.setForeground(table.getSelectionForeground());
+      button.setBackground(table.getSelectionBackground());
+    } else {
+      button.setForeground(table.getForeground());
+      button.setBackground(table.getBackground());
+    }
+    label = (value == null) ? "" : value.toString();
+    button.setText(label);
+    isPushed = true;
+    return button;
+  }
+
+  public Object getCellEditorValue() {
+    if (isPushed) {
+      // 
+      // 
+      JOptionPane.showMessageDialog(button, label + ": Ouch!");
+      // System.out.println(label + ": Ouch!");
+    }
+    isPushed = false;
+    return new String(label);
+  }
+
+  public boolean stopCellEditing() {
+    isPushed = false;
+    return super.stopCellEditing();
+  }
+
+  protected void fireEditingStopped() {
+    super.fireEditingStopped();
+  }
+    }
 }
