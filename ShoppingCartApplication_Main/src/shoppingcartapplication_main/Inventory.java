@@ -25,15 +25,15 @@ public class Inventory
      */
     public static void main(String[] args)
     {
-        Product milk = new Product("milk", 7.99, "good milk", 72, 4.99, "Jimmy");
-        Product cream = new Product("cream", 7.99, "good yogurt", 72, 4.99, "Jimmy");
-        Product yogurt = new Product("yogurt", 7.99, "good yogurt", 72, 4.99, "Jimmy");
-        Inventory inventory = new Inventory();
-        inventory.inventory.add(milk);
-        inventory.inventory.add(cream);
-        inventory.inventory.add(yogurt);
-        inventory.overWriteInventoryFile();
-        
+//        Product milk = new Product("milk", 7.99, "good milk", 72, 4.99, "Jimmy");
+//        Product cream = new Product("cream", 7.99, "good yogurt", 72, 4.99, "Jimmy");
+//        Product yogurt = new Product("yogurt", 7.99, "good yogurt", 72, 4.99, "Jimmy");
+//        Inventory inventory = new Inventory();
+//        inventory.inventory.add(milk);
+//        inventory.inventory.add(cream);
+//        inventory.inventory.add(yogurt);
+//        inventory.overWriteInventoryFile();
+//        
     }
     //Example from the book
     public Iterator<Product> getAllProducts()
