@@ -106,6 +106,7 @@ public class BuyerPage
         
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
+  
         
         //Populate MainPanel
         mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
@@ -131,10 +132,11 @@ public class BuyerPage
         frame.setVisible(true); //set visible
     }
     
-    public void generateTable()
+    public Object[] generateRow(Iterator it)
     {
-        Iterator iter = ProductList.getAllProducts();
-        iter.next();
+        Product tempProduct = (Product) it.next();
+        Object[] row = new Object[] {"Remove", tempProduct.getName()};
+        
     }
     
     class ButtonRenderer extends JButton implements TableCellRenderer {
