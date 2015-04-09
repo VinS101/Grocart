@@ -3,6 +3,8 @@ package shoppingcartapplication_main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class LoginPage 
@@ -49,10 +51,13 @@ public static void main(String[] args){
     textFieldsPanel.add(userNamePanel);
     textFieldsPanel.add(passwordPanel);
     
+   
+    
     String[] menuOptions = {"Buyer", "Seller"};
     JComboBox dropMenu = new JComboBox(menuOptions);
 
     JButton login = new JButton("Login");
+    
     
     JPanel inputPanel = new JPanel();
     
@@ -71,7 +76,30 @@ public static void main(String[] args){
    frame.setSize(500,300);
    frame.setVisible(true);
    
+   login.addActionListener(new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+           String user = username.getText();
+           String pass = password.getText();
+           boolean isBuyer;
+           if(dropMenu.getSelectedItem().equals("Buyer"))
+           {
+              isBuyer = true;
+           }
+           else
+           {
+               isBuyer = false;
+           }
+           
+           if(ShoppingCartSystem.authenticate(user, pass, isBuyer))
+           {
+               frame.setVisible(false);
+               ShoppingCartSystem.buyerPage.display();
+           }
+        }
+    } );
     }
-   
     
 }

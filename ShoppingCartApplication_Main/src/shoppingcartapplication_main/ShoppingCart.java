@@ -59,6 +59,7 @@ public class ShoppingCart
     public void addToCart(Product aProduct, int quantity){
         aProduct.setCartQuantity(quantity);
         cart.add(aProduct);
+        System.out.println(aProduct.getName() + "was added");   //debugging
     }
     
     public void removeProduct(Product aProduct){

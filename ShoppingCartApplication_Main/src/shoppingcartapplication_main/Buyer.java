@@ -15,6 +15,10 @@ public class Buyer extends Account
         cart = new ShoppingCart();
     }
     
+    public ShoppingCart getCart()
+     {
+        return cart;
+     }
     private ShoppingCart cart;
     
 }

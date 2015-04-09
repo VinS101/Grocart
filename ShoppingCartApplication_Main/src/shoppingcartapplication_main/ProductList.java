@@ -49,8 +49,8 @@ public class ProductList
      * @return The product being searched for.
      */
     
-    public Product getOneProduct(String name, String soldBy){
-        Iterator iter = this.getAllProducts();
+    public static Product getOneProduct(String name, String soldBy){
+        Iterator iter = ProductList.getAllProducts();
          Product product = (Product) iter.next();
          
         while(iter.hasNext()){

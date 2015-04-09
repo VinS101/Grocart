@@ -18,6 +18,8 @@ public class ShoppingCartSystem
          sellerList = new ArrayList();
          
          ProductList p = new ProductList();
+         //make view pages
+         initializeViewPages();
          
          //Make some Buyers
          Buyer Jack = new Buyer("jack", "123");
@@ -54,6 +56,9 @@ public class ShoppingCartSystem
              Product tempProduct = (Product) iter.next();
              System.out.println(tempProduct.getName());
          }
+         
+         loginPage.display();
+         
      }
      
      public static void readFromFile(Seller seller, String fileName)
@@ -105,12 +110,33 @@ public class ShoppingCartSystem
          if (isBuyer)
          {
              Buyer tempBuyer = findBuyer(username);
-             return tempBuyer.isPasswordMatch(password);
+             
+             boolean isUser = tempBuyer.isPasswordMatch(password);
+             if(isUser)
+             {
+                 activeBuyer = tempBuyer;
+                 return isUser;
+             }
+             else
+             {
+                 return isUser; //false
+             }
+             
          }
          else
          {
              Seller tempSeller = findSeller(username);
-             return tempSeller.isPasswordMatch(password);
+             boolean isUser = tempSeller.isPasswordMatch(password);
+             if(isUser)
+             {
+                 activeSeller = tempSeller;
+                 return isUser;
+             }
+             else
+             {
+                 return isUser; //false
+             }
+             
          }
      }
      
@@ -146,8 +172,39 @@ public class ShoppingCartSystem
          return null;
      }
      
+     public static Buyer getActiveBuyer()
+     {
+         return activeBuyer;
+     }
+     
+     public static Seller getActiveSeller()
+     {
+         return activeSeller;
+     }
+     
+     private static void initializeViewPages()
+     {
+         buyerPage = new BuyerPage();
+         sellerPage = new SellerPage();
+         loginPage = new LoginPage();
+         invoicepage = new InvoicePage();
+         cartpage = new CartPage();
+         checkOutPage = new CheckOutPage();
+         finanSummaryPage = new FinancialSummaryPage();
+         
+     }
      
      private static ArrayList<Buyer> buyerList;
      private static ArrayList<Seller> sellerList;
+     private static Buyer activeBuyer;
+     private static Seller activeSeller;
      
+     public static BuyerPage buyerPage;
+     public static SellerPage sellerPage;
+     public static LoginPage loginPage;
+     public static InvoicePage invoicepage;
+     public static CartPage cartpage;
+     public static CheckOutPage checkOutPage;
+  
+     public static FinancialSummaryPage finanSummaryPage;
 }

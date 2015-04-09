@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -21,9 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 
 public class BuyerPage 
@@ -94,15 +98,16 @@ public class BuyerPage
         scrollBarPanel.add(verticalBar);
         
         //Create default table model
-        DefaultTableModel dm = new DefaultTableModel();
-        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quntity", "Sold by"});
+        DefaultTableModel dm = generateTable();
         
+       
         
         
         //Create the Table
         JTable table = new JTable(dm);
-        table.getColumn("Button").setCellRenderer(new shoppingcartapplication_main.ButtonRenderer());
-        table.getColumn("Button").setCellEditor(new shoppingcartapplication_main.ButtonEditor(new JCheckBox()));
+        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        
         
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
@@ -132,88 +137,114 @@ public class BuyerPage
         frame.setVisible(true); //set visible
     }
     
-    public Object[] generateRow(Iterator it)
+    public DefaultTableModel generateTable()
     {
-        Product tempProduct = (Product) it.next();
-        Object[] row = new Object[] {"Remove", tempProduct.getName()};
-        
+        DefaultTableModel dm = new DefaultTableModel();
+        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
+        Iterator iter = ProductList.getAllProducts();
+        while(iter.hasNext())
+        {
+            Product tempProduct = (Product) iter.next();
+            Object[] row = new Object[] {"Add", "0", tempProduct.getName(), tempProduct.getPrice(), tempProduct.getDescription(), tempProduct.getinventoryQuantity(), tempProduct.getSoldBy()};
+            dm.addRow(row);
+            iter.next();
+        }
+        return dm;
     }
     
-    class ButtonRenderer extends JButton implements TableCellRenderer {
+    class ButtonRenderer extends JButton implements TableCellRenderer 
+    {
 
-  public ButtonRenderer() {
-    setOpaque(true);
-  }
+        public ButtonRenderer() 
+        {
+          setOpaque(true);
+        }
 
-  public Component getTableCellRendererComponent(JTable table, Object value,
-      boolean isSelected, boolean hasFocus, int row, int column) {
-    if (isSelected) {
-      setForeground(table.getSelectionForeground());
-      setBackground(table.getSelectionBackground());
-    } else {
-      setForeground(table.getForeground());
-      setBackground(UIManager.getColor("Button.background"));
-    }
-    setText((value == null) ? "" : value.toString());
-    return this;
-  }
+        public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column)
+        {
+          if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            setBackground(table.getSelectionBackground());
+          } else {
+            setForeground(table.getForeground());
+            setBackground(UIManager.getColor("Button.background"));
+          }
+          setText((value == null) ? "" : value.toString());
+          return this;
+        }
 }
 
 /**
  * @version 1.0 11/09/98
  */
 
-class ButtonEditor extends DefaultCellEditor {
-  protected JButton button;
+class ButtonEditor extends DefaultCellEditor 
+{
+    protected JButton button;
 
-  private String label;
+    private String label;
 
-  private boolean isPushed;
+    private boolean isPushed;
 
-  public ButtonEditor(JCheckBox checkBox) {
-    super(checkBox);
-    button = new JButton();
-    button.setOpaque(true);
-    button.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        fireEditingStopped();
+    public ButtonEditor(JCheckBox checkBox) {
+      super(checkBox);
+      button = new JButton();
+      button.setOpaque(true);
+      button.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          fireEditingStopped();
+        }
+      });
+    }
+
+    public Component getTableCellEditorComponent(JTable table, Object value,
+        boolean isSelected, int row, int column) {
+      if (isSelected) {
+        button.setForeground(table.getSelectionForeground());
+        button.setBackground(table.getSelectionBackground());
+      } else {
+        button.setForeground(table.getForeground());
+        button.setBackground(table.getBackground());
       }
-    });
-  }
-
-  public Component getTableCellEditorComponent(JTable table, Object value,
-      boolean isSelected, int row, int column) {
-    if (isSelected) {
-      button.setForeground(table.getSelectionForeground());
-      button.setBackground(table.getSelectionBackground());
-    } else {
-      button.setForeground(table.getForeground());
-      button.setBackground(table.getBackground());
+      label = (value == null) ? "" : value.toString();
+      System.out.println(table.getValueAt(row, column + 1).toString());
+      
+      //ADD TO SHOPPING CART
+      String name = table.getValueAt(row, column + 2).toString();  
+      String seller = table.getValueAt(row, column + 6).toString();  
+      String quantity = table.getValueAt(row, column + 1).toString();
+      Product temp = ProductList.getOneProduct(name, seller);
+      ShoppingCartSystem.getActiveBuyer().getCart().addToCart(temp, Integer.parseInt(quantity));
+      
+      button.setText(label);
+      isPushed = true;
+      System.out.println(row);
+      System.out.println(column);
+      return button;
     }
-    label = (value == null) ? "" : value.toString();
-    button.setText(label);
-    isPushed = true;
-    return button;
-  }
 
-  public Object getCellEditorValue() {
-    if (isPushed) {
-      // 
-      // 
-      JOptionPane.showMessageDialog(button, label + ": Ouch!");
-      // System.out.println(label + ": Ouch!");
+    public Object getCellEditorValue() 
+    {
+      if (isPushed) {
+        // 
+        // 
+        JOptionPane.showMessageDialog(button, "Product Added to Shopping Cart");
+        // System.out.println(label + ": Ouch!");
+      }
+      isPushed = false;
+      return new String(label);
     }
-    isPushed = false;
-    return new String(label);
-  }
 
-  public boolean stopCellEditing() {
-    isPushed = false;
-    return super.stopCellEditing();
-  }
-
-  protected void fireEditingStopped() {
-    super.fireEditingStopped();
-  }
+    public boolean stopCellEditing() {
+      isPushed = false;
+      return super.stopCellEditing();
     }
+
+    protected void fireEditingStopped() {
+      super.fireEditingStopped();
+    }
+   }
+
+
 }
