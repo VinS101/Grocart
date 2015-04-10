@@ -18,27 +18,16 @@ public class ShoppingCartSystem
          sellerList = new ArrayList();
          
          ProductList p = new ProductList();
+          
          //make view pages
          initializeViewPages();
          
-         //Make some Buyers
-         Buyer Jack = new Buyer("jack", "123");
-         Buyer Hendrix = new Buyer("hendrix", "123");
+         initializeBuyers();
          
-         //Make some Sellers
-         Seller Joe = new Seller("joe", "234");
-         Seller natasha = new Seller("natasha", "634");
+         initializeSellers();
          
-         //Add to sellerList and buyerList
-         sellerList.add(Joe);
-         sellerList.add(natasha);
-         buyerList.add(Jack);
-         buyerList.add(Hendrix);
          
-         //Read from files
-         readFromFile(natasha, "natashaInventory.txt");
-         readFromFile(Joe, "joeInventory.txt");
-         
+      
          //Populate the ProductList class
          //Readfiles tester block
 //         Iterator iter = natasha.getInventory().getAllProducts();
@@ -119,6 +108,7 @@ public class ShoppingCartSystem
              }
              else
              {
+                 
                  return isUser; //false
              }
              
@@ -177,9 +167,17 @@ public class ShoppingCartSystem
          return activeBuyer;
      }
      
+     public static void clearActiveBuyer(){
+         activeBuyer = null;
+     }
+     
      public static Seller getActiveSeller()
      {
          return activeSeller;
+     }
+     
+      public static void clearActiveSeller(){
+         activeSeller = null;
      }
      
      private static void initializeViewPages()
@@ -192,6 +190,32 @@ public class ShoppingCartSystem
          checkOutPage = new CheckOutPage();
          finanSummaryPage = new FinancialSummaryPage();
          
+     }
+     
+     private static void initializeBuyers()
+     {
+        //Make some Buyers
+         Buyer Jack = new Buyer("jack", "123");
+         Buyer Hendrix = new Buyer("hendrix", "123");
+         Buyer harold = new Buyer("harold", "harold");
+         buyerList.add(Jack);
+         buyerList.add(Hendrix);
+         buyerList.add(harold);
+     }
+     
+     private static void initializeSellers()
+     {
+         //Make some Sellers
+         Seller Joe = new Seller("joe", "234");
+         Seller natasha = new Seller("natasha", "634");
+         
+         //Add to sellerList and buyerList
+         sellerList.add(Joe);
+         sellerList.add(natasha);
+         
+         //Read from files
+         readFromFile(natasha, "natashaInventory.txt");
+         readFromFile(Joe, "joeInventory.txt");
      }
      
      private static ArrayList<Buyer> buyerList;

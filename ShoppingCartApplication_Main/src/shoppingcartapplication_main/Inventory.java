@@ -158,6 +158,13 @@ public class Inventory
         return result;
     }
     
+    public int getSize()
+    {
+        return inventory.size();
+    }
+    
+ 
+    
     private ArrayList<Product> inventory;
 }
     

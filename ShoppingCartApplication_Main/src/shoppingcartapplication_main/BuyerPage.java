@@ -23,8 +23,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -81,12 +83,13 @@ public class BuyerPage
         
         //Make buttons
         JButton logout = new JButton("Logout");
-        JButton financialSummary = new JButton("Financial Summary");
+        JButton shoppingCart = new JButton("Shopping Cart");
         logout.setPreferredSize(new Dimension(150,75));
-        financialSummary.setPreferredSize(new Dimension(150,75));
+        shoppingCart.setPreferredSize(new Dimension(150,75));
+        
         
         //Populate buttons
-        buttonPanel.add(financialSummary);
+        buttonPanel.add(shoppingCart);
         buttonPanel.add(logout);
         
         //Populate northPanel
@@ -99,19 +102,33 @@ public class BuyerPage
         
         //Create default table model
         DefaultTableModel dm = generateTable();
+      
         
        
         
         
         //Create the Table
-        JTable table = new JTable(dm);
+        JTable table = new JTable();
+        
+        
+        
+        
+        table.setModel(dm);
+        
         table.getColumn("Button").setCellRenderer(new ButtonRenderer());
         table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
         
-        
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
-  
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+       //table.setDefaultRenderer(String.class, centerRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
         
         //Populate MainPanel
         mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
@@ -135,6 +152,19 @@ public class BuyerPage
         frame.pack();       //pack
         frame.setLocationRelativeTo(null);  //set position
         frame.setVisible(true); //set visible
+        
+        // Logout Button Controller (Annonymous)
+        logout.addActionListener(new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+          frame.setVisible(false); 
+          ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+          ShoppingCartSystem.clearActiveBuyer();
+          ShoppingCartSystem.loginPage.display();
+        }
+    } );
     }
     
     public DefaultTableModel generateTable()
@@ -142,13 +172,18 @@ public class BuyerPage
         DefaultTableModel dm = new DefaultTableModel();
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
         Iterator iter = ProductList.getAllProducts();
+        
+        
         while(iter.hasNext())
         {
+            
             Product tempProduct = (Product) iter.next();
-            Object[] row = new Object[] {"Add", "0", tempProduct.getName(), tempProduct.getPrice(), tempProduct.getDescription(), tempProduct.getinventoryQuantity(), tempProduct.getSoldBy()};
+            
+            Object[] row = new Object[] {"Add", "1", tempProduct.getName(), tempProduct.getPrice(), tempProduct.getDescription(), tempProduct.getinventoryQuantity(), tempProduct.getSoldBy()};
             dm.addRow(row);
-            iter.next();
+           
         }
+        
         return dm;
     }
     

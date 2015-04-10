@@ -1,7 +1,17 @@
 cream 10.99 good 10 4.99 joe 0 
 eggs 3.99 good 10 2.99 joe 0 
 sugar 6.99 good 10 4.99 joe 0
-milk 7.99 good 10 4.99 joe 0 
-  
+milk 7.99 good 10 4.99 joe 0
+cheese 2.99 good 10 1.99 joe 0 
+icecream 3.99 good 10 1.99 joe 0
+whey 3.99 good 10 1.99 joe 0 
+chicken 7.99 good 10 1.99 joe 0 
+ham 8.99 good 10 1.99 joe 0 
+bacon 5.99 good 10 1.99 joe 0 
+beef 9.99 good 10 1.99 joe 0 
+steak 10.99 good 10 1.99 joe 0
+tomatoes 1.99 good 10 .99 joe 0
+onions 2.99 good 10 .99 joe 0
+cocacola 2.99 good 10 .99 joe 0
 
 

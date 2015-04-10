@@ -57,13 +57,28 @@ public class ShoppingCart
     }
     
     public void addToCart(Product aProduct, int quantity){
+        if(cart.contains(aProduct)){
+            aProduct.setCartQuantity(aProduct.getCartQuantity() + quantity);
+            System.out.println(quantity + " more" + aProduct.getName() + "products were added");
+            return;
+        }
+        
         aProduct.setCartQuantity(quantity);
         cart.add(aProduct);
-        System.out.println(aProduct.getName() + "was added");   //debugging
+        System.out.println(aProduct.getName() + " was added");   //debugging
     }
     
     public void removeProduct(Product aProduct){
         cart.remove(aProduct);
+    }
+    
+    public void clearCart(){
+        Iterator iter = getAllProducts();
+        
+        while (iter.hasNext()){
+            removeProduct((Product) iter.next());
+        }
+        System.out.println(cart.size());
     }
     
     public double getTotalPrice(){

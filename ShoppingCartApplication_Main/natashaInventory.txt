@@ -2,3 +2,17 @@ milk 7.99 good 10 4.99 natasha 0
 sugar 6.99 good 10 4.99 natasha 0  
 eggs 3.99 good 10 2.99 natasha 0 
 cream 10.99 good 10 4.99 natasha 0 
+banana 2.99 good 10 .99 natasha 0
+cucumber 4.99 good 10 .99 natasha 0
+lettuce 4.99 good 10 .99 natasha 0
+steak 10.99 good 10 1.99 natasha 0 
+jello 10.99 good 10 4.99 natasha 0 
+beer 10.99 good 10 4.99 natasha 0
+chips 10.99 good 10 4.99 natasha 0
+jalepenos 2.99 good 10 .99 natasha 0
+pepper 2.99 good 10 .99 natasha 0
+wine 11.99 good 10 .99 natasha 0
+beer 3.99 good 10 .99 natasha 0
+jackdaniels 1.99 good 10 .99 natasha 0
+sprite 1.99 good 10 .99 natasha 0
+broccoli 1.99 good 10 .99 natasha 0

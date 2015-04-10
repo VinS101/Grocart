@@ -93,11 +93,20 @@ public static void main(String[] args){
                isBuyer = false;
            }
            
-           if(ShoppingCartSystem.authenticate(user, pass, isBuyer))
+           if(ShoppingCartSystem.authenticate(user, pass, isBuyer) && isBuyer)
            {
                frame.setVisible(false);
                ShoppingCartSystem.buyerPage.display();
            }
+            if(ShoppingCartSystem.authenticate(user, pass, isBuyer) && !isBuyer)
+           {
+               frame.setVisible(false);
+               ShoppingCartSystem.sellerPage.display();
+           }
+           else
+            {
+               JOptionPane.showMessageDialog(frame, "Wrong Username or Password.");
+            }
         }
     } );
     }
