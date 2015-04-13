@@ -154,7 +154,7 @@ public class Inventory
         }
         
         totalProfit = totalRevenue - totalCost;
-        result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: " + totalProfit + "\nRevenue: " + totalRevenue; 
+        result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: $" + totalProfit + "\nRevenue: $" + totalRevenue; 
         return result;
     }
     
