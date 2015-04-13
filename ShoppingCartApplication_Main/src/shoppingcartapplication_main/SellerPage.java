@@ -40,6 +40,7 @@ public class SellerPage
     JTable table;
     DefaultTableCellRenderer centerRenderer;
     ArrayList<String> productNames = new ArrayList();
+    DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
     
     SellerPage()
     {
@@ -140,13 +141,12 @@ public class SellerPage
         centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         
-        DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
-        descriptionRenderer.setBackground(Color.yellow);
-        descriptionRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
+        
        //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( descriptionRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         
@@ -203,7 +203,7 @@ public class SellerPage
             
             
             
-            Object[] row = new Object[] {"Update", tempProduct.getName(), tempProduct.getPrice(), "Description", tempProduct.getinventoryQuantity(), tempProduct.getTotalNumberSold()};
+            Object[] row = new Object[] {"Update", tempProduct.getName(), tempProduct.getPrice(), "Click for Description", tempProduct.getinventoryQuantity(), tempProduct.getTotalNumberSold()};
             dm.addRow(row);
            
         }
@@ -269,77 +269,117 @@ class ButtonEditor extends DefaultCellEditor
       label = (value == null) ? "" : value.toString();
       System.out.println(table.getValueAt(row, column + 1).toString());
       
-      if(column == 0)
+      if(column == 0)   // Update Button
       {
-      if(table.getValueAt(row, column + 4).equals("0"))
-      {
-         String name = table.getValueAt(row, column + 1).toString();  
-         Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
-         ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
-         ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
-         
-        
-      }
-      else
-      {
-          String name = table.getValueAt(row, column + 1).toString();
-          //Get new Price
-          double price = (double) table.getValueAt(row, column + 2);
-          int stock = (int) table.getValueAt(row, column + 4);
-         
-          Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
-          temp.setName(name);
-          temp.setPrice(price);
-          temp.setInventoryQuantity(stock);
-          
-          
+        if(table.getValueAt(row, column + 4).equals("0"))
+        {
+           String name = table.getValueAt(row, column + 1).toString();  
+           Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
+           ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
+           ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+        }
+        else
+        {
+            String name = table.getValueAt(row, column + 1).toString();
+            //Get new Price
+            double price = (double) table.getValueAt(row, column + 2);
+            int stock = (int) table.getValueAt(row, column + 4);
 
-           
-      }
+            Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
+            temp.setName(name);
+            temp.setPrice(price);
+            temp.setInventoryQuantity(stock);
+            ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+        }
          
   
-      if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0){
+      if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
+      {
             productNames.clear();
             dm = generateTable();
             table.setModel(dm);
 
             table.getColumn("Button").setCellRenderer(new ButtonRenderer());
             table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            
+            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+                    
+   
             //table.setDefaultRenderer(String.class, centerRenderer);
-        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         
             table.repaint();
       }
       
-      else{
-          productNames.clear();
-           dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
-           table.setModel(dm);
-            //table.setDefaultRenderer(String.class, centerRenderer);
+      else
+      {
+        productNames.clear();
+         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+         table.setModel(dm);
+          //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( descriptionRenderer );
         table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.repaint();
+        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.repaint();
       }
       
       button.setText(label);
       isPushed = true;
-      System.out.println(row);
-      System.out.println(column);
       
       }
       
-      else{
-          System.out.println("Description");
+      else  //Anything else
+      {
+          
+          if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
+          {
+            productNames.clear();
+            dm = generateTable();
+            table.setModel(dm);
+
+            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        
+            //table.setDefaultRenderer(String.class, centerRenderer);
+            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+        
+            table.repaint();
+      }
+      
+      else
+          {
+            productNames.clear();
+             dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+             table.setModel(dm);
+            //table.setDefaultRenderer(String.class, centerRenderer);
+            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+            
+            table.repaint();
+      }
       }
       return button;
     }

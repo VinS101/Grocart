@@ -102,23 +102,23 @@ public class Inventory
         String result = "";
         try
         {
-        File fout = new File("inventoryFile.txt");    //Create file
+        File fout = new File(ShoppingCartSystem.getActiveSeller().getUsername() + "Inventory.txt");    //Create file
         FileOutputStream fos = new FileOutputStream(fout);  //create output steam
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));    //create writer
         
         //Loop goes here to save Data line by line
         for(int i=0; i < inventory.size(); i++)
         {
-            result += inventory.get(i).getName() + " ";
-            result += inventory.get(i).getPrice() + " ";
-            result += inventory.get(i).getCost() + " ";
-            result += inventory.get(i).getDescription() + " ";
-            result += inventory.get(i).getSoldBy() + " ";
-            result += inventory.get(i).getinventoryQuantity() + " ";
-            result += inventory.get(i).getTotalNumberSold() + " ";
+            result += inventory.get(i).getName() + "\t";
+            result += inventory.get(i).getPrice() + "\t";
+            result += inventory.get(i).getDescription() + "\t";
+            result += inventory.get(i).getinventoryQuantity() + "\t";
+            result += inventory.get(i).getCost() + "\t";
+            result += inventory.get(i).getSoldBy() + "\t";
+            result += inventory.get(i).getTotalNumberSold();
             writer.write(result);   //write one line
             writer.newLine();   //next line
-            result = null;  //clear
+            result = "";  //clear
         }
 //        writer.write("1 line goes here");
 //        writer.newLine();

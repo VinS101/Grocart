@@ -1,18 +1,18 @@
-milk 7.99 good 10 4.99 natasha 0 
-sugar 6.99 good 10 4.99 natasha 0  
-eggs 3.99 good 10 2.99 natasha 0 
-cream 10.99 good 10 4.99 natasha 0 
-banana 2.99 good 10 .99 natasha 0
-cucumber 4.99 good 10 .99 natasha 0
-lettuce 4.99 good 10 .99 natasha 0
-steak 10.99 good 10 1.99 natasha 0 
-jello 10.99 good 10 4.99 natasha 0 
-beer 10.99 good 10 4.99 natasha 0
-chips 10.99 good 10 4.99 natasha 0
-jalepenos 2.99 good 10 .99 natasha 0
-pepper 2.99 good 10 .99 natasha 0
-wine 11.99 good 10 .99 natasha 0
-beer 3.99 good 10 .99 natasha 0
-jackdaniels 1.99 good 10 .99 natasha 0
-sprite 1.99 good 10 .99 natasha 0
-broccoli 1.99 good 10 .99 natasha 0
+Milk	7.99	good milk	10	4.99	natasha	0
+sugar	6.99	good sugar	10	4.99	natasha	0
+eggs	3.99	good eggs	10	2.99	natasha	0
+Beans	10.99	good beans	10	4.99	natasha	0
+banana	2.99	good banana	10	0.99	natasha	0
+cucumber	4.99	good cucumber	10	0.99	natasha	0
+lettuce	4.99	good lettuce	10	0.99	natasha	0
+steak	10.99	good steak	10	1.99	natasha	0
+jello	10.99	good jello	10	4.99	natasha	0
+beer	10.99	good beer	10	4.99	natasha	0
+chips	10.99	good chips	10	4.99	natasha	0
+jalepenos	2.99	good jelepeneos	10	0.99	natasha	0
+pepper	2.99	good peppers	10	0.99	natasha	0
+wine	11.99	good wine	10	0.99	natasha	0
+beer	3.99	good beer	10	0.99	natasha	0
+jackdaniels	1.99	good jack	10	0.99	natasha	0
+sprite	1.99	good sprite	10	0.99	natasha	0
+broccoli	1.99	good broccli	10	0.99	natasha	0

@@ -60,8 +60,8 @@ public class ShoppingCartSystem
         ArrayList<String> tokens = new ArrayList();
         for (int i = 0; i < lines.size(); i++)  //For every line
         {
-            //String[] result = lines.get(i).split("\\s");
-            StringTokenizer st = new StringTokenizer(lines.get(i)); //tokenize 1 line
+            //String[] st = lines.get(i).split("\\t");
+            StringTokenizer st = new StringTokenizer(lines.get(i), "\t"); //tokenize 1 line
             while(st.hasMoreTokens())
             {
                 tokens.add(st.nextToken());  
@@ -214,8 +214,8 @@ public class ShoppingCartSystem
          sellerList.add(natasha);
          
          //Read from files
-         readFromFile(natasha, "natashaInventory.txt");
          readFromFile(Joe, "joeInventory.txt");
+         readFromFile(natasha, "natashaInventory.txt");
      }
      
      private static ArrayList<Buyer> buyerList;

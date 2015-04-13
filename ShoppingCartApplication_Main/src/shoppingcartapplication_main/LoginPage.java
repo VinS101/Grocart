@@ -103,7 +103,7 @@ public static void main(String[] args){
                frame.setVisible(false);
                ShoppingCartSystem.sellerPage.display();
            }
-           else
+            else if(!isBuyer)
             {
                JOptionPane.showMessageDialog(frame, "Wrong Username or Password.");
             }

@@ -1,17 +1,15 @@
-cream 10.99 good 10 4.99 joe 0 
-eggs 3.99 good 10 2.99 joe 0 
-sugar 6.99 good 10 4.99 joe 0
-milk 7.99 good 10 4.99 joe 0
-cheese 2.99 good 10 1.99 joe 0 
-icecream 3.99 good 10 1.99 joe 0
-whey 3.99 good 10 1.99 joe 0 
-chicken 7.99 good 10 1.99 joe 0 
-ham 8.99 good 10 1.99 joe 0 
-bacon 5.99 good 10 1.99 joe 0 
-beef 9.99 good 10 1.99 joe 0 
-steak 10.99 good 10 1.99 joe 0
-tomatoes 1.99 good 10 .99 joe 0
-onions 2.99 good 10 .99 joe 0
-cocacola 2.99 good 10 .99 joe 0
-
-
+Apple	7.99	good creams very good	10	4.99	joe	0
+beans	3.99	good beans	10	4.99	joe	0
+Almond	3.99	good Almond	10	2.99	joe	0
+sugar	10.99	good sugar	10	4.99	joe	0
+milk	2.99	good milk	10	0.99	joe	0
+cheese	4.99	good cheese	10	0.99	joe	0
+icecream	4.99	good ice cream	10	0.99	joe	0
+whey	10.99	good whey	10	1.99	joe	0
+chicken	10.99	good chicken	10	4.99	joe	0
+ham	10.99	good ham	10	4.99	joe	0
+beef	10.99	good beef	10	4.99	joe	0
+steak	2.99	good steak	10	0.99	joe	0
+tomatoes	2.99	good tomatos	10	0.99	joe	0
+onions	11.99	good onions	10	0.99	joe	0
+cocacola	3.99	good coke	10	0.99	joe	0
