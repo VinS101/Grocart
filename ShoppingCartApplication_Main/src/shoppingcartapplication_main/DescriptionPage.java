@@ -3,24 +3,31 @@ package shoppingcartapplication_main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class DescriptionPage 
 {
-    public DescriptionPage(Product aProduct){
-        product = aProduct;
-    }
+ 
     
-//    public static void main(String[] args){
-//        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious.", 10, 1.50, "Shervin");
-//        DescriptionPage description = new DescriptionPage(milk);
-//        description.display();
-//    }
+    public static void main(String[] args) throws IOException{
+        DescriptionPage page = new DescriptionPage();
+        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious. Best milk you will ever have or your money back!", 10, 1.50, "Shervin", 0);
+
+        page.display(milk);
+    }
     
     /**
     * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.
     */
     
-    public void display(){
+    public void display(Product aProduct) throws IOException{
+        
+        this.product = aProduct;
         
         JFrame frame = new JFrame("Product Description:");
         frame.setSize(1000,700); 
@@ -42,17 +49,125 @@ public class DescriptionPage
         topPanel.add(Box.createRigidArea(new Dimension(350,0)));
         topPanel.add(back);
         topPanel.add(logout);
+        topPanel.setBackground(new Color(70, 179, 43)); //set color
         
         JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout());
+        mainPanel.setBackground(new Color(70, 179, 43)); //set color
+        
+        JPanel leftMainPanel = new JPanel();
+        leftMainPanel.setLayout(new BoxLayout(leftMainPanel, BoxLayout.Y_AXIS));
+        
+        try{
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\ASUS\\Desktop\\School\\Object Oriented Programming\\Shopping Cart\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\" + product.getName()+ ".jpg"));
+        Image tmp = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(300, 300, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        
+        JLabel picLabel = new JLabel(new ImageIcon(dimg));
+        leftMainPanel.add(picLabel);
+        }
+        catch(IOException EX){
+           System.out.println("File not found...");
+        }
+        
+        JLabel price = new JLabel("Price:   " + product.getPrice());
+        price.setFont(price.getFont().deriveFont(25.0f));
+        
+        JLabel stock = new JLabel("In Stock:   " + product.getinventoryQuantity());
+        stock.setFont(stock.getFont().deriveFont(25.0f));
+        
+        JLabel seller = new JLabel("Seller:   " + product.getSoldBy());
+        seller.setFont(seller.getFont().deriveFont(25.0f));
+        
+        leftMainPanel.add(Box.createRigidArea(new Dimension(0,50)));
+        leftMainPanel.add(price);
+        leftMainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        leftMainPanel.add(stock);
+        leftMainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        leftMainPanel.add(seller);
+        leftMainPanel.setBackground(new Color(70, 179, 43)); //set color
+        
+        JPanel rightMainPanel = new JPanel();
+        rightMainPanel.setLayout(new BoxLayout(rightMainPanel, BoxLayout.Y_AXIS));
+        
+        description = new JTextArea(product.getDescription());
+        description.setFont(description.getFont().deriveFont(16.0f));
+        description.setPreferredSize(new Dimension(450,400));
+        description.setBackground(new Color(70, 179, 43));
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
+        
+        if(ShoppingCartSystem.getActiveBuyer().equals(null)){
+            description.setEditable(true);
+        }
+        else{
+            description.setEditable(false);
+        }
+        
+        JLabel title = new JLabel("Description: ");
+        title.setFont(title.getFont().deriveFont(24.0f));
+        
+        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        titlePanel.add(title);
+        titlePanel.setBackground(new Color(70, 179, 43)); //set color
+
+        
+        rightMainPanel.add(titlePanel);
+        rightMainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        rightMainPanel.add(description);
+        rightMainPanel.setBackground(new Color(70, 179, 43)); //set color
+        
+        if(ShoppingCartSystem.getActiveBuyer().equals(null)){
+            JPanel updateButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            JButton update = new JButton("Update");
+            
+            update.addActionListener(new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+          product.setDescription(description.getText());
+          description.repaint();
+        }
+    } );
+        }
+      
+        
+        mainPanel.add(leftMainPanel);
+        mainPanel.add(Box.createRigidArea(new Dimension(80,0)));
+        mainPanel.add(rightMainPanel);
+        
 
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(topPanel, BorderLayout.NORTH);
+       frame.add(mainPanel, BorderLayout.CENTER);
     //   frame.add(loginPanel, BorderLayout.CENTER);
 
        frame.setLocationRelativeTo(null);  //set position
        frame.setVisible(true);
+       
+    logout.addActionListener(new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+          frame.setVisible(false); 
+          ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+          ShoppingCartSystem.clearActiveBuyer();
+          ShoppingCartSystem.loginPage.display();
+        }
+    } );
    
    } 
     
     private Product product;
+    private JTextArea description;
+    
 }
+
+ 
+
