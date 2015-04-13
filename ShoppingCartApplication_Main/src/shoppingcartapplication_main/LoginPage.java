@@ -75,7 +75,7 @@ public static void main(String[] args){
    
    frame.setSize(500,300);
    frame.setVisible(true);
-   
+   frame.setLocationRelativeTo(null);  //set position
    login.addActionListener(new ActionListener()
     {
         @Override

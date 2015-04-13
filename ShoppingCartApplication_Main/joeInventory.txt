@@ -1,4 +1,4 @@
-Apple	7.99	good creams very good	10	4.99	joe	0
+Apples	7.99	good creams very good	10	4.99	joe	0
 beans	3.99	good beans	10	4.99	joe	0
 Almond	3.99	good Almond	10	2.99	joe	0
 sugar	10.99	good sugar	10	4.99	joe	0
