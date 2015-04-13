@@ -38,6 +38,7 @@ public class SellerPage
     static JFrame frame;
     DefaultTableModel dm; 
     JTable table;
+    JTable addTable;
     DefaultTableCellRenderer centerRenderer;
     ArrayList<String> productNames = new ArrayList();
     DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
@@ -94,13 +95,15 @@ public class SellerPage
         logoPanel.setBackground(new Color(70, 179, 43)); //set color
         
         //Make and add logo
-        JLabel logo = new JLabel("Hello, " + ShoppingCartSystem.getActiveSeller().getUsername());
+        String name = ShoppingCartSystem.getActiveSeller().getUsername().substring(0, 1).toUpperCase() + ShoppingCartSystem.getActiveSeller().getUsername().substring(1);
+        JLabel logo = new JLabel("Hello, " + name);
         logo.setFont(logo.getFont().deriveFont(33.0f));
         logoPanel.add(logo);
         
         //Make buttons
         JButton logout = new JButton("Logout");
         JButton financialSummary = new JButton("Financial Summary");
+        JButton AddProduct = new JButton("Add Product");
         logout.setPreferredSize(new Dimension(150,75));
         financialSummary.setPreferredSize(new Dimension(150,75));
         
@@ -120,22 +123,23 @@ public class SellerPage
         //Create default table model
         DefaultTableModel dm = generateTable();
       
-        
-       
-        
-        
         //Create the Table
        table = new JTable();
+       table.getTableHeader().setReorderingAllowed(false);
+       
+       //Create the bottom table
+       addTable = new JTable();
+       addTable.getTableHeader().setReorderingAllowed(false);
+       DefaultTableModel addTableModel = generateAddTable();   //generate model
+       
+       addTable.setModel(addTableModel);    //add table model
+     
+       table.setModel(dm);
+       table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+       table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+       table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+       table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
         
-        
-        
-        
-        table.setModel(dm);
-        
-        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
         centerRenderer = new DefaultTableCellRenderer();
@@ -152,19 +156,20 @@ public class SellerPage
         
         
         //Populate MainPanel
-        mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
+       // mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
         mainPanel.add(scrollBarPanel, BorderLayout.EAST);
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         
         //Populate SouthPanel
-        southPanel.add(Box.createRigidArea(new Dimension(100,100)));
+        southPanel.add(AddProduct);
+        southPanel.add(addTable);
         
         //Make JFrame
         
         
         frame.getContentPane().setBackground(Color.green);  //set background color
         frame.setLayout(new BorderLayout());
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //close
         frame.add(scroll, BorderLayout.CENTER );
         frame.add(northPanel, BorderLayout.NORTH);
@@ -188,13 +193,31 @@ public class SellerPage
     } );
     }
     
-    public DefaultTableModel generateTable()
+    public  DefaultTableModel generateAddTable()
     {
         dm = new DefaultTableModel();
+        dm.setDataVector(new Object[][]  { }, new Object[] { "Product", "Price", "Description", "Stock", "Total Sold"});
+        Object[] row = {" ", " "," ", " ", " "};
+        dm.addRow(row);
+        return dm;
+    }
+    public DefaultTableModel generateTable()
+    {
+        dm = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                if(column == 5) return false;
+                else return true;
+                 
+            }
+        };   
+        
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
         Iterator iter = ShoppingCartSystem.getActiveSeller().getInventory().getAllProducts();
         
-        
+       
         while(iter.hasNext())
         {
             

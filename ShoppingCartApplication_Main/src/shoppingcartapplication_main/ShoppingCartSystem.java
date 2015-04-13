@@ -99,7 +99,10 @@ public class ShoppingCartSystem
          if (isBuyer)
          {
              Buyer tempBuyer = findBuyer(username);
-             
+             if(tempBuyer == null)
+             {
+                 return false;
+             }
              boolean isUser = tempBuyer.isPasswordMatch(password);
              if(isUser)
              {
@@ -116,6 +119,10 @@ public class ShoppingCartSystem
          else
          {
              Seller tempSeller = findSeller(username);
+             if(tempSeller == null)
+             {
+                 return false;
+             }
              boolean isUser = tempSeller.isPasswordMatch(password);
              if(isUser)
              {

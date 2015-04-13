@@ -39,10 +39,11 @@ public static void main(String[] args){
     userNamePanel.add(username);
     
     JPanel passwordPanel = new JPanel();
+    
     passwordPanel.setLayout(new FlowLayout());
     
     passwordPanel.add(new JLabel("Password: "));
-    JTextField password = new JTextField();
+    JPasswordField password = new JPasswordField();
     password.setPreferredSize( new Dimension( 100,20) );
     passwordPanel.add(password);
     
@@ -76,39 +77,54 @@ public static void main(String[] args){
    frame.setSize(500,300);
    frame.setVisible(true);
    frame.setLocationRelativeTo(null);  //set position
-   login.addActionListener(new ActionListener()
+   
+   
+   login.addActionListener(new ActionListener() //controller
     {
         @Override
         public void actionPerformed(ActionEvent ae)
         {
            String user = username.getText();
            String pass = password.getText();
-           boolean isBuyer;
+           boolean isBuyer = false;
+           boolean isSeller = false;
            if(dropMenu.getSelectedItem().equals("Buyer"))
            {
               isBuyer = true;
            }
            else
            {
-               isBuyer = false;
+               isSeller = true;
            }
            
-           if(ShoppingCartSystem.authenticate(user, pass, isBuyer) && isBuyer)
-           {
-               frame.setVisible(false);
-               ShoppingCartSystem.buyerPage.display();
-           }
-            if(ShoppingCartSystem.authenticate(user, pass, isBuyer) && !isBuyer)
-           {
-               frame.setVisible(false);
-               ShoppingCartSystem.sellerPage.display();
-           }
-            else if(!isBuyer)
-            {
-               JOptionPane.showMessageDialog(frame, "Wrong Username or Password.");
-            }
+            boolean isUser = ShoppingCartSystem.authenticate(user, pass, isBuyer);
+                //if buyer is authenticated
+                if(isUser)  //If authenticate works
+                {
+                    if(isBuyer) //if the user is a buyer
+                    {
+                        frame.setVisible(false);
+                        ShoppingCartSystem.buyerPage.display();
+                        
+                    }
+                    else if(isSeller)   //if the user is a seller
+                    {
+                        frame.setVisible(false);
+                        ShoppingCartSystem.sellerPage.display();
+                        
+                    }
+                    else    
+                    {
+                        JOptionPane.showMessageDialog(frame, "Wrong Username or Password.");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Wrong Username or Password.");
+                }
         }
     } );
+   
     }
     
 }

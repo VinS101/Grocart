@@ -77,7 +77,8 @@ public class BuyerPage
         logoPanel.setBackground(new Color(70, 179, 43)); //set color
         
         //Make and add logo
-        JLabel logo = new JLabel("Buyer Page");
+        String name = ShoppingCartSystem.getActiveBuyer().getUsername().substring(0, 1).toUpperCase() + ShoppingCartSystem.getActiveBuyer().getUsername().substring(1);
+        JLabel logo = new JLabel("Hello, " + name );
         logo.setFont(logo.getFont().deriveFont(40.0f));
         logoPanel.add(logo);
         
@@ -169,7 +170,15 @@ public class BuyerPage
     
     public DefaultTableModel generateTable()
     {
-        DefaultTableModel dm = new DefaultTableModel();
+        DefaultTableModel dm = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                if(column == 1) return true;
+                else return false;    
+            }
+        }; 
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
         Iterator iter = ProductList.getAllProducts();
         
