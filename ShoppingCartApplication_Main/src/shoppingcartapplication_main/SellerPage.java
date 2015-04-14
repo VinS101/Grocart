@@ -10,8 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
@@ -24,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -126,6 +132,8 @@ public class SellerPage
         //Create the Table
        table = new JTable();
        table.getTableHeader().setReorderingAllowed(false);
+       table.setOpaque(false);
+       
        
        //Create the bottom table
        addTable = new JTable();
@@ -135,6 +143,7 @@ public class SellerPage
        addTable.setModel(addTableModel);    //add table model
      
        table.setModel(dm);
+       
        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
@@ -142,6 +151,9 @@ public class SellerPage
         
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
+        scroll.getViewport().setBackground(new Color(70, 179, 43));
+        scroll.getViewport().setOpaque(true);
+        scroll.setBorder(BorderFactory.createEmptyBorder());
         centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         
@@ -156,14 +168,16 @@ public class SellerPage
         
         
         //Populate MainPanel
-       // mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
-        mainPanel.add(scrollBarPanel, BorderLayout.EAST);
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
+        mainPanel.add(scroll, BorderLayout.CENTER);
+        
         
         //Populate SouthPanel
+        
         southPanel.add(AddProduct);
         southPanel.add(addTable);
         
+        mainPanel.add(southPanel,BorderLayout.SOUTH );
         //Make JFrame
         
         
@@ -171,10 +185,10 @@ public class SellerPage
         frame.setLayout(new BorderLayout());
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //close
-        frame.add(scroll, BorderLayout.CENTER );
+        //frame.add(scroll, BorderLayout.CENTER );
         frame.add(northPanel, BorderLayout.NORTH);
-        //frame.add(mainPanel, BorderLayout.CENTER);   //Add main panel
-        frame.add(southPanel, BorderLayout.SOUTH);
+        frame.add(mainPanel);   //Add main panel
+        //frame.add(southPanel, BorderLayout.SOUTH);
         frame.setSize(1000,700);
         frame.pack();       //pack
         frame.setLocationRelativeTo(null);  //set position
@@ -191,6 +205,25 @@ public class SellerPage
           ShoppingCartSystem.loginPage.display();
         }
     } );
+        
+        financialSummary.addActionListener(new ActionListener()
+       {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+          frame.setVisible(false); 
+          
+            try
+            {
+                ShoppingCartSystem.finanSummaryPage.display(ShoppingCartSystem.getActiveSeller());
+            } catch (IOException ex)
+            {
+                Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    } );
+        
+        
     }
     
     public  DefaultTableModel generateAddTable()
@@ -223,7 +256,6 @@ public class SellerPage
             
             Product tempProduct = (Product) iter.next();
             productNames.add(tempProduct.getName());
-            
             
             
             Object[] row = new Object[] {"Update", tempProduct.getName(), tempProduct.getPrice(), "Click for Description", tempProduct.getinventoryQuantity(), tempProduct.getTotalNumberSold()};
@@ -269,7 +301,8 @@ class ButtonEditor extends DefaultCellEditor
 
     private boolean isPushed;
 
-    public ButtonEditor(JCheckBox checkBox) {
+    public ButtonEditor(JCheckBox checkBox) 
+    {
       super(checkBox);
       button = new JButton();
       button.setOpaque(true);
@@ -281,11 +314,15 @@ class ButtonEditor extends DefaultCellEditor
     }
 
     public Component getTableCellEditorComponent(JTable table, Object value,
-        boolean isSelected, int row, int column) {
-      if (isSelected) {
+        boolean isSelected, int row, int column) 
+    {
+      if (isSelected) 
+      {
         button.setForeground(table.getSelectionForeground());
         button.setBackground(table.getSelectionBackground());
-      } else {
+      } 
+      else 
+      {
         button.setForeground(table.getForeground());
         button.setBackground(table.getBackground());
       }
@@ -360,6 +397,19 @@ class ButtonEditor extends DefaultCellEditor
       isPushed = true;
       
       }
+      else if(column == 3)  //Description Button
+      {
+          String name = table.getValueAt(row, column - 2).toString();
+          Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
+          frame.setVisible(false);
+          try
+          {
+              ShoppingCartSystem.descriptionPage.display(temp);
+          } catch (IOException ex)
+          {
+              Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
       
       else  //Anything else
       {
@@ -407,6 +457,8 @@ class ButtonEditor extends DefaultCellEditor
       return button;
     }
     
+    
+    
    
 
     public Object getCellEditorValue() 
@@ -430,8 +482,10 @@ class ButtonEditor extends DefaultCellEditor
       super.fireEditingStopped();
     }
    }
-    
-   
+
+
+  
+ 
    
    
 }

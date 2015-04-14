@@ -59,7 +59,7 @@ public class DescriptionPage
         leftMainPanel.setLayout(new BoxLayout(leftMainPanel, BoxLayout.Y_AXIS));
         
         try{
-        BufferedImage img = ImageIO.read(new File("C:\\Users\\ASUS\\Desktop\\School\\Object Oriented Programming\\Shopping Cart\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\" + product.getName()+ ".jpg"));
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\Vin\\OneDrive\\Documents\\Spring 2015\\COP 4331\\Main Project\\ShoppingCartApplication_Main\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\" + product.getName()+ ".jpg"));
         Image tmp = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(300, 300, BufferedImage.TYPE_INT_ARGB);
 
@@ -80,7 +80,8 @@ public class DescriptionPage
         JLabel stock = new JLabel("In Stock:   " + product.getinventoryQuantity());
         stock.setFont(stock.getFont().deriveFont(25.0f));
         
-        JLabel seller = new JLabel("Seller:   " + product.getSoldBy());
+        String name = product.getSoldBy().substring(0, 1).toUpperCase() + product.getSoldBy().substring(1);
+        JLabel seller = new JLabel("Seller: " +name );
         seller.setFont(seller.getFont().deriveFont(25.0f));
         
         leftMainPanel.add(Box.createRigidArea(new Dimension(0,50)));
@@ -101,10 +102,12 @@ public class DescriptionPage
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
         
-        if(ShoppingCartSystem.getActiveBuyer().equals(null)){
+        if(ShoppingCartSystem.getActiveBuyer() == null)
+        {
             description.setEditable(true);
         }
-        else{
+        else
+        {
             description.setEditable(false);
         }
         
@@ -121,19 +124,53 @@ public class DescriptionPage
         rightMainPanel.add(description);
         rightMainPanel.setBackground(new Color(70, 179, 43)); //set color
         
-        if(ShoppingCartSystem.getActiveBuyer().equals(null)){
-            JPanel updateButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-            JButton update = new JButton("Update");
-            
-            update.addActionListener(new ActionListener()
-    {
-        @Override
-        public void actionPerformed(ActionEvent ae)
+        if(ShoppingCartSystem.getActiveBuyer() == null)
         {
-          product.setDescription(description.getText());
-          description.repaint();
+            JPanel updateButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            updateButtonPanel.setBackground(new Color(70, 179, 43));
+            JButton update = new JButton("Update Description");
+            updateButtonPanel.add(update);
+            rightMainPanel.add(updateButtonPanel);
+            update.addActionListener(new ActionListener()
+             {
+                @Override
+                public void actionPerformed(ActionEvent ae)
+                {
+                  String temp = product.getDescription();
+                  if(!temp.equals(description.getText()))
+                  {
+                    product.setDescription(description.getText());
+                    ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+                    description.repaint();
+                    JOptionPane.showMessageDialog(frame, "The Description has been updated");
+                  }
+
+                }
+             } );
+            
+            back.addActionListener(new ActionListener() //listener for "Back To Homepage button"
+            {
+
+                @Override
+                public void actionPerformed(ActionEvent ae)
+                {
+                    frame.setVisible(false);
+                    ShoppingCartSystem.sellerPage.display();
+                }
+            });
         }
-    } );
+        else
+        {
+            back.addActionListener(new ActionListener() //listener for "Back To Homepage button"
+            {
+
+                @Override
+                public void actionPerformed(ActionEvent ae)
+                {
+                    frame.setVisible(false);
+                    ShoppingCartSystem.buyerPage.display();
+                }
+            });
         }
       
         
@@ -155,10 +192,18 @@ public class DescriptionPage
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-          frame.setVisible(false); 
-          ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
-          ShoppingCartSystem.clearActiveBuyer();
-          ShoppingCartSystem.loginPage.display();
+          frame.setVisible(false);
+          if(ShoppingCartSystem.getActiveBuyer() != null)
+          {
+            ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+            ShoppingCartSystem.clearActiveBuyer();
+            ShoppingCartSystem.loginPage.display();
+          }
+          else
+          {
+              ShoppingCartSystem.clearActiveSeller();
+              ShoppingCartSystem.loginPage.display();
+          }
         }
     } );
    

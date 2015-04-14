@@ -2,7 +2,7 @@ Apples	7.99	good creams very good	10	4.99	joe	0
 beans	3.99	good beans	10	4.99	joe	0
 Almond	3.99	good Almond	10	2.99	joe	0
 sugar	10.99	good sugar	10	4.99	joe	0
-Milk	2.99	good milk	10	0.99	joe	0
+Milk	2.99	good milk very good milk. It tastes good. Great!	10	0.99	joe	0
 cheese	4.99	good cheese	10	0.99	joe	0
 icecream	4.99	good ice cream	10	0.99	joe	0
 whey	10.99	good whey	10	1.99	joe	0

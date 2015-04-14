@@ -79,11 +79,11 @@ public class FinancialSummaryPage
         
         mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
         mainPanel.add(financialSummary);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
+        mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
         
         
         try{
-        BufferedImage img = ImageIO.read(new File("C:\\Users\\ASUS\\Desktop\\School\\Object Oriented Programming\\Shopping Cart\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\dollarsign.png"));
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\Vin\\OneDrive\\Documents\\Spring 2015\\COP 4331\\Main Project\\ShoppingCartApplication_Main\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\dollarsign.png"));
         Image tmp = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(300, 300, BufferedImage.TYPE_INT_ARGB);
 
@@ -123,6 +123,18 @@ public class FinancialSummaryPage
         }
     } );
    
+    back.addActionListener(new ActionListener() //listener for "Back To Homepage button"
+            {
+
+                @Override
+                public void actionPerformed(ActionEvent ae)
+                {
+                    frame.setVisible(false);
+                    ShoppingCartSystem.sellerPage.display();
+                }
+            });
+    
+    
    } 
     
     private Seller seller;

@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
@@ -30,6 +33,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import static shoppingcartapplication_main.SellerPage.frame;
 
 
 public class BuyerPage 
@@ -77,8 +81,7 @@ public class BuyerPage
         logoPanel.setBackground(new Color(70, 179, 43)); //set color
         
         //Make and add logo
-        String name = ShoppingCartSystem.getActiveBuyer().getUsername().substring(0, 1).toUpperCase() + ShoppingCartSystem.getActiveBuyer().getUsername().substring(1);
-        JLabel logo = new JLabel("Hello, " + name );
+        JLabel logo = new JLabel("Buyer Page");
         logo.setFont(logo.getFont().deriveFont(40.0f));
         logoPanel.add(logo);
         
@@ -118,7 +121,8 @@ public class BuyerPage
         
         table.getColumn("Button").setCellRenderer(new ButtonRenderer());
         table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-        
+        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -140,10 +144,10 @@ public class BuyerPage
         southPanel.add(Box.createRigidArea(new Dimension(100,100)));
         
         //Make JFrame
-        JFrame frame = new JFrame("Buyer Page");    //Create the main frame    
+           //Create the main frame    
         frame.getContentPane().setBackground(Color.green);  //set background color
         frame.setLayout(new BorderLayout());
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //fullscreen
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //close
         frame.add(scroll, BorderLayout.CENTER );
         frame.add(northPanel, BorderLayout.NORTH);
@@ -170,15 +174,7 @@ public class BuyerPage
     
     public DefaultTableModel generateTable()
     {
-        DefaultTableModel dm = new DefaultTableModel()
-        {
-            @Override
-            public boolean isCellEditable(int row, int column)
-            {
-                if(column == 1) return true;
-                else return false;    
-            }
-        }; 
+        DefaultTableModel dm = new DefaultTableModel();
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
         Iterator iter = ProductList.getAllProducts();
         
@@ -188,7 +184,7 @@ public class BuyerPage
             
             Product tempProduct = (Product) iter.next();
             
-            Object[] row = new Object[] {"Add", "1", tempProduct.getName(), tempProduct.getPrice(), tempProduct.getDescription(), tempProduct.getinventoryQuantity(), tempProduct.getSoldBy()};
+            Object[] row = new Object[] {"Add", "1", tempProduct.getName(), tempProduct.getPrice(),"Click for Description", tempProduct.getinventoryQuantity(), tempProduct.getSoldBy()};
             dm.addRow(row);
            
         }
@@ -230,6 +226,7 @@ class ButtonEditor extends DefaultCellEditor
     private String label;
 
     private boolean isPushed;
+    private boolean add;
 
     public ButtonEditor(JCheckBox checkBox) {
       super(checkBox);
@@ -244,22 +241,43 @@ class ButtonEditor extends DefaultCellEditor
 
     public Component getTableCellEditorComponent(JTable table, Object value,
         boolean isSelected, int row, int column) {
-      if (isSelected) {
+      if (isSelected) 
+      {
+          
         button.setForeground(table.getSelectionForeground());
         button.setBackground(table.getSelectionBackground());
-      } else {
+      } else 
+      {
         button.setForeground(table.getForeground());
         button.setBackground(table.getBackground());
       }
       label = (value == null) ? "" : value.toString();
       System.out.println(table.getValueAt(row, column + 1).toString());
-      
-      //ADD TO SHOPPING CART
-      String name = table.getValueAt(row, column + 2).toString();  
-      String seller = table.getValueAt(row, column + 6).toString();  
-      String quantity = table.getValueAt(row, column + 1).toString();
-      Product temp = ProductList.getOneProduct(name, seller);
-      ShoppingCartSystem.getActiveBuyer().getCart().addToCart(temp, Integer.parseInt(quantity));
+      if(column == 0)
+      {
+          //ADD TO SHOPPING CART
+        String name = table.getValueAt(row, column + 2).toString();  
+        String seller = table.getValueAt(row, column + 6).toString();  
+        String quantity = table.getValueAt(row, column + 1).toString();
+        Product temp = ProductList.getOneProduct(name, seller);
+        ShoppingCartSystem.getActiveBuyer().getCart().addToCart(temp, Integer.parseInt(quantity));
+        add = true;
+      }
+      if(column == 4)
+      {
+          String name = table.getValueAt(row, column - 2).toString();
+          String soldBy =  table.getValueAt(row, column + 2).toString();
+          Product temp = ProductList.getOneProduct(name, soldBy);
+          frame.setVisible(false);
+          try
+          {
+              ShoppingCartSystem.descriptionPage.display(temp);
+          } catch (IOException ex)
+          {
+              Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          add = false;
+      }
       
       button.setText(label);
       isPushed = true;
@@ -270,25 +288,28 @@ class ButtonEditor extends DefaultCellEditor
 
     public Object getCellEditorValue() 
     {
-      if (isPushed) {
-        // 
-        // 
+      if (isPushed) 
+      {
+        
         JOptionPane.showMessageDialog(button, "Product Added to Shopping Cart");
+        
         // System.out.println(label + ": Ouch!");
       }
       isPushed = false;
       return new String(label);
     }
 
-    public boolean stopCellEditing() {
+    public boolean stopCellEditing() 
+    {
       isPushed = false;
       return super.stopCellEditing();
     }
 
-    protected void fireEditingStopped() {
+    protected void fireEditingStopped() 
+    {
       super.fireEditingStopped();
     }
    }
 
-
+     JFrame frame = new JFrame("Buyer Page");
 }
