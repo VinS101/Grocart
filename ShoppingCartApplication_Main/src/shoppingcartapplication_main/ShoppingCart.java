@@ -40,6 +40,10 @@ public class ShoppingCart
          };
    }
     
+    public int getSize(){
+        return cart.size();
+    }
+    
     public Product getOneProduct(String name){
         Iterator iter = this.getAllProducts();
          Product product = (Product) iter.next();

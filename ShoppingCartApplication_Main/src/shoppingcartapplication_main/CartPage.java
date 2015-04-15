@@ -201,14 +201,6 @@ public class CartPage
      
     
     
-    public  DefaultTableModel generateAddTable()
-    {
-        dm = new DefaultTableModel();
-        dm.setDataVector(new Object[][]  { }, new Object[] { "Product", "Price", "Description", "Quantity", "Sold By"});
-        Object[] row = {" ", " "," ", " ", " "};
-        dm.addRow(row);
-        return dm;
-    }
     public DefaultTableModel generateTable()
     {
         dm = new DefaultTableModel()
@@ -223,7 +215,7 @@ public class CartPage
         };   
         
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Total Sold"});
-        Iterator iter = ShoppingCartSystem.getActiveBuyer().getCart().getAllProducts();
+        Iterator iter = cart.getAllProducts();
         
        
         while(iter.hasNext())

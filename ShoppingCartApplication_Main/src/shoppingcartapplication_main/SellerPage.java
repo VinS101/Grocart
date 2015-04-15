@@ -360,12 +360,12 @@ class ButtonEditor extends DefaultCellEditor
             String name = table.getValueAt(row, column + 1).toString();
             //Get new Price
             double price = (double) table.getValueAt(row, column + 2);
-            int stock = (int) table.getValueAt(row, column + 4);
+            int quantity = (int) table.getValueAt(row, column + 4);
 
             Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
             temp.setName(name);
             temp.setPrice(price);
-            temp.setInventoryQuantity(stock);
+            temp.setInventoryQuantity(quantity);
             ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
         }
          
