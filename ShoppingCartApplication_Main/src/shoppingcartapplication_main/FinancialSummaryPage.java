@@ -32,7 +32,7 @@ public class FinancialSummaryPage
 
         page.display(seller);
     }
-    
+    //.....
     /**
     * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.
     */
