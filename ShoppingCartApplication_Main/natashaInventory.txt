@@ -1,6 +1,6 @@
 Milk	7.99	good milk	10	4.99	natasha	0
 sugar	6.99	good sugar	10	4.99	natasha	0
-eggs	3.99	good eggs	10	2.99	natasha	0
+eggs	3.99	good eggs	-10	2.99	natasha	20
 Beans	10.99	good beans	10	4.99	natasha	0
 banana	2.99	good banana	10	0.99	natasha	0
 cucumber	4.99	good cucumber	10	0.99	natasha	0

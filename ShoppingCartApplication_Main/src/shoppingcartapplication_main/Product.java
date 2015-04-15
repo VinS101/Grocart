@@ -138,6 +138,11 @@ public class Product
         this.cost = aCost;
     }
     
+    public void setTotalNumberSold(int s)
+    {
+        this.totalNumberSold = s;
+    }
+    
    
     
     private String name;

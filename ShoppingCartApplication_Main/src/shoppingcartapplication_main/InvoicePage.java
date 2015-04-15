@@ -3,6 +3,8 @@ package shoppingcartapplication_main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,9 +69,29 @@ public class InvoicePage
        
        frame.setVisible(true);
    
+       back.addActionListener(new ActionListener() 
+       {
+
+            @Override
+            public void actionPerformed(ActionEvent ae)
+            {
+                frame.setVisible(false);
+               ShoppingCartSystem.buyerPage.repaintTable();
+            }
+        });
        
+       logout.addActionListener(new ActionListener() 
+       {
+            @Override
+            public void actionPerformed(ActionEvent ae)
+            {
+                frame.setVisible(false);
+                ShoppingCartSystem.loginPage.display();
+            }
+        });
        
    } 
+        
       
          private ShoppingCart cart;
 }

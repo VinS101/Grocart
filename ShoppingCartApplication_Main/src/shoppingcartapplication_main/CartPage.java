@@ -262,7 +262,7 @@ public class CartPage
             @Override
             public boolean isCellEditable(int row, int column)
             {
-                if(column !=4 && column !=3 ) return false;
+                if(column !=4 && column !=3 && column != 0 ) return false;
                 else return true;
                  
             }
@@ -356,10 +356,11 @@ class ButtonEditor extends DefaultCellEditor
             String name = table.getValueAt(row, column + 1).toString();
             
             //Get new quantity
-            int quantity = (int) table.getValueAt(row, column + 4);
+            String quantity = (String) (table.getValueAt(row, column + 4));
+            int q = Integer.parseInt(quantity);
 
             Product temp = ShoppingCartSystem.getActiveBuyer().getCart().getOneProduct(name);  //changed
-            temp.setCartQuantity(quantity);
+            temp.setCartQuantity(q);
         }
          
   

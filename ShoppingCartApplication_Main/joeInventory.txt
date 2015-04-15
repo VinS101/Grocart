@@ -1,15 +1,15 @@
-Apples	7.99	good creams very good	10	4.99	joe	0
-beans	3.99	good beans	10	4.99	joe	0
-Almond	3.99	good Almond	10	2.99	joe	0
-sugar	10.99	good sugar	10	4.99	joe	0
-Milk	2.99	good milk very good milk. It tastes good. Great!	10	0.99	joe	0
-cheese	4.99	good cheese	10	0.99	joe	0
-icecream	4.99	good ice cream	10	0.99	joe	0
-whey	10.99	good whey	10	1.99	joe	0
-chicken	10.99	good chicken	10	4.99	joe	0
-ham	10.99	good ham	10	4.99	joe	0
-beef	10.99	good beef	10	4.99	joe	0
-steak	2.99	good steak	10	0.99	joe	0
-tomatoes	2.99	good tomatos	10	0.99	joe	0
-onions	11.99	good onions	10	0.99	joe	0
-cocacola	3.99	good coke	10	0.99	joe	0
+Apples	7.99	good creams very good	200	4.99	joe	85
+beans	3.99	good beans	40	4.99	joe	65
+Almond	3.99	good Almond	30	2.99	joe	25
+sugar	10.99	good sugar	50	4.99	joe	5
+Milk	2.99	good milk very good milk. It tastes good. Great!	5	0.99	joe	5
+cheese	4.99	good cheese	50	0.99	joe	5
+icecream	4.99	good ice cream	50	0.99	joe	5
+whey	10.99	good whey	50	1.99	joe	5
+chicken	10.99	good chicken	50	4.99	joe	5
+ham	10.99	good ham	50	4.99	joe	5
+beef	10.99	good beef	50	4.99	joe	5
+steak	2.99	good steak	50	0.99	joe	5
+tomatoes	2.99	good tomatos	55	0.99	joe	5
+onions	11.99	good onions	50	0.99	joe	5
+cocacola	3.99	good coke	50	0.99	joe	5

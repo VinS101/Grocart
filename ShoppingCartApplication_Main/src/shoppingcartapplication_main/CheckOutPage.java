@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -207,8 +208,40 @@ public class CheckOutPage
             @Override
             public void actionPerformed(ActionEvent ae)
             {
-                frame.setVisible(false);
-                ShoppingCartSystem.invoicepage.display(cart);
+                Iterator iter = cart.getAllProducts();
+                Product tempProduct;
+                while(iter.hasNext())
+                {
+                    tempProduct = (Product) iter.next();
+                    Seller s = ShoppingCartSystem.findSeller(tempProduct.getSoldBy());
+                    Iterator iter2 = s.getInventory().getAllProducts();
+                    int count = 0;
+                    while(iter2.hasNext())
+                    {
+                        Product temp2 = (Product) iter2.next();
+                        
+                        if(tempProduct.getName().equals(temp2.getName()))
+                        {
+                            if(tempProduct.getCartQuantity() < temp2.getinventoryQuantity())
+                            {
+                                ShoppingCartSystem.makePurchases(cart);
+                                count++;
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(frame, "There is not enough stock to purchase "+ temp2.getCartQuantity()  +" of this itemin inventory");
+                                break;
+                            }
+                        }
+                    }
+                    if(count == cart.getSize())
+                    {
+                        frame.setVisible(false);
+                        ShoppingCartSystem.invoicepage.display(cart);
+                    }
+                    
+                }
+                
             }
         });
         

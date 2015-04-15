@@ -140,7 +140,7 @@ public class DescriptionPage
                   if(!temp.equals(description.getText()))
                   {
                     product.setDescription(description.getText());
-                    ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+                    ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
                     description.repaint();
                     JOptionPane.showMessageDialog(frame, "The Description has been updated");
                   }

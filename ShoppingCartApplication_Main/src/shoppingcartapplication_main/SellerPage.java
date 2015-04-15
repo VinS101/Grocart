@@ -353,20 +353,21 @@ class ButtonEditor extends DefaultCellEditor
            String name = table.getValueAt(row, column + 1).toString();  
            Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
            ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
-           ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+           ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
         }
         else
         {
             String name = table.getValueAt(row, column + 1).toString();
             //Get new Price
             double price = (double) table.getValueAt(row, column + 2);
-            int quantity = (int) table.getValueAt(row, column + 4);
-
+            String quantity = (String) table.getValueAt(row, column + 4);
+            int q = Integer.parseInt(quantity);
+            
             Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
             temp.setName(name);
             temp.setPrice(price);
-            temp.setInventoryQuantity(quantity);
-            ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile();
+            temp.setInventoryQuantity(q);
+            ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
         }
          
   

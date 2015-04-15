@@ -38,6 +38,9 @@ import static shoppingcartapplication_main.SellerPage.frame;
 
 public class BuyerPage 
 {
+    JTable table;
+    DefaultTableModel dm;
+    DefaultTableCellRenderer centerRenderer;
     /**
      * For debugging purposes
      * @param args 
@@ -117,13 +120,13 @@ public class BuyerPage
         
         
         //Create the Table
-        JTable table = new JTable();
+        table = new JTable();
        
         
         
         
         table.setModel(dm);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
        //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
@@ -205,9 +208,27 @@ public class BuyerPage
     } );
     }
     
+     public void repaintTable()
+    {
+        frame.setVisible(true);
+        dm = generateTable();
+        table.setModel(dm);
+        
+        table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        //table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );  
+        table.repaint();
+    }
+    
     public DefaultTableModel generateTable()
     {
-        DefaultTableModel dm = new DefaultTableModel();
+        dm = new DefaultTableModel();
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
         Iterator iter = ProductList.getAllProducts();
         

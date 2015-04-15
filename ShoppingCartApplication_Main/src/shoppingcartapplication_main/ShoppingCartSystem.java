@@ -226,6 +226,40 @@ public class ShoppingCartSystem
          readFromFile(natasha, "natashaInventory.txt");
      }
      
+     public static void makePurchases(ShoppingCart acart)
+     {
+         ShoppingCart cart = acart;
+         Iterator iter = cart.getAllProducts();
+          Product tempProduct;
+         while(iter.hasNext())
+         {
+            tempProduct = (Product) iter.next();
+             Seller s = findSeller(tempProduct.getSoldBy());
+             Iterator iter2 = s.getInventory().getAllProducts();
+             
+             while(iter2.hasNext())
+             {
+                
+                Product temp = (Product) iter2.next();
+                if(temp.getName().equals(tempProduct.getName()))
+                {
+                    temp.setInventoryQuantity(temp.getinventoryQuantity() - tempProduct.getCartQuantity());
+                    temp.setTotalNumberSold(temp.getTotalNumberSold() + tempProduct.getCartQuantity());
+                    s.getInventory().overWriteInventoryFile(s);
+                    updateInventory(s);
+                    updateProductList(sellerList);
+                }
+             }
+         }
+     }
+     
+     public static void updateInventory(Seller s)
+     {
+         s.getInventory().clearInventory();
+         readFromFile(s, s.getUsername() +"Inventory.txt");
+         
+     }
+     
      private static ArrayList<Buyer> buyerList;
      private static ArrayList<Seller> sellerList;
      private static Buyer activeBuyer;

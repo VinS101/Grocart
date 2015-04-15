@@ -97,12 +97,12 @@ public class Inventory
     /**
      * File output Functionality in progress (Experimental)
      */
-    public void overWriteInventoryFile()
+    public void overWriteInventoryFile(Seller s)
     {
         String result = "";
         try
         {
-        File fout = new File(ShoppingCartSystem.getActiveSeller().getUsername() + "Inventory.txt");    //Create file
+        File fout = new File(s.getUsername() + "Inventory.txt");    //Create file
         FileOutputStream fos = new FileOutputStream(fout);  //create output steam
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));    //create writer
         
@@ -161,6 +161,11 @@ public class Inventory
     public int getSize()
     {
         return inventory.size();
+    }
+    
+    public void clearInventory()
+    {
+        inventory.clear();
     }
     
  
