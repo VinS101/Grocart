@@ -122,10 +122,10 @@ public class CartPage
 
        table.setModel(dm);
        
-       table.getColumn("Button").setCellRenderer(new CartPage.ButtonRenderer());
-       table.getColumn("Button").setCellEditor(new CartPage.ButtonEditor(new JCheckBox()));
-       table.getColumn("Description").setCellRenderer(new CartPage.ButtonRenderer());
-       table.getColumn("Description").setCellEditor(new CartPage.ButtonEditor(new JCheckBox()));
+       table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+       table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+       table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+       table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
         
         //Create the scrollpane
         JScrollPane scroll = new JScrollPane(table);
@@ -178,7 +178,8 @@ public class CartPage
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-          frame.setVisible(false); 
+          frame.setVisible(false);
+          ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
           ShoppingCartSystem.clearActiveBuyer();
           ShoppingCartSystem.loginPage.display();
         }
@@ -215,13 +216,13 @@ public class CartPage
             @Override
             public boolean isCellEditable(int row, int column)
             {
-                if(column == 5) return false;
+                if(column !=4 && column !=3 ) return false;
                 else return true;
                  
             }
         };   
         
-        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Total Sold"});
         Iterator iter = ShoppingCartSystem.getActiveBuyer().getCart().getAllProducts();
         
        
@@ -316,7 +317,7 @@ class ButtonEditor extends DefaultCellEditor
         }
          
   
-      if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
+      if (ShoppingCartSystem.getActiveBuyer().getCart().getSize() > 0)
       {
             dm = generateTable();
             table.setModel(dm);
@@ -339,7 +340,7 @@ class ButtonEditor extends DefaultCellEditor
       
       else
       {
-         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Total Sold"});
          table.setModel(dm);
           //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
@@ -357,6 +358,23 @@ class ButtonEditor extends DefaultCellEditor
       button.setText(label);
       isPushed = true;
       
+      }
+      
+      else if(column == 3)  //Description Button
+      {
+          System.out.println("Description");
+          String name = table.getValueAt(row, column - 2).toString();
+          Product temp = ShoppingCartSystem.getActiveBuyer().getCart().getOneProduct(name);
+          frame.setVisible(false);
+          try
+          {
+              ShoppingCartSystem.descriptionPage.display(temp);
+          } 
+          
+          catch (IOException ex)
+          {
+              Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
       }
       
       else  //Anything else
@@ -384,7 +402,7 @@ class ButtonEditor extends DefaultCellEditor
       
       else
           {
-             dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+             dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Total Sold"});
              table.setModel(dm);
             //table.setDefaultRenderer(String.class, centerRenderer);
             table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
