@@ -97,17 +97,20 @@ public class ShoppingCart
     
     public String generateSummary(){
 
-        Iterator iter = this.getAllProducts();
-         Product product = (Product) iter.next();
-         String summary = "| " + product.getName() + " | " + product.getPrice() + " | " + product.getDescription()  + " | " + product.getCartQuantity()  + " | " + product.getSoldBy() + " | \n"; 
-        while(iter.hasNext()){
-         product = (Product) iter.next();
-         summary = summary + "| " + product.getName() + " | " + product.getPrice() + " | " + product.getDescription()  + " | " + product.getCartQuantity()  + " | " + product.getSoldBy() + " | \n";
+       Iterator iter = getAllProducts();
+        String invoice = "";
+       
+        while(iter.hasNext())
+        {
+            
+            Product tempProduct = (Product) iter.next();
+
+            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: " + tempProduct.getPrice()*tempProduct.getCartQuantity() + "\n";
+     
         }
         
-        return summary;
+        return invoice;
     }
-    
     
     private ArrayList<Product> cart;
 
