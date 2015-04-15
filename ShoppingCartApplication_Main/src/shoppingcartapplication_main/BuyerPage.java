@@ -42,6 +42,11 @@ public class BuyerPage
      * For debugging purposes
      * @param args 
      */
+    
+    public BuyerPage(){
+       viewedShoppingCart = false; 
+    }
+    
     public static void main(String[] args)
     {
        BuyerPage page  = new BuyerPage();
@@ -343,5 +348,5 @@ class ButtonEditor extends DefaultCellEditor
    }
 
      JFrame frame = new JFrame("Buyer Page");
-     boolean viewedShoppingCart = false;
+     boolean viewedShoppingCart;
 }
