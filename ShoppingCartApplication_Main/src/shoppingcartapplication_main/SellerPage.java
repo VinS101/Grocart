@@ -131,6 +131,23 @@ public class SellerPage
       
         //Create the Table
        table = new JTable();
+//       {
+//           public Component prepareRenderer(TableCellRenderer renderer, int row, int column)
+//           {
+//               Component c = super.prepareRenderer(renderer, row, column);
+//               if(column == 3 && row == 0)
+//               {
+//                   c.setForeground(Color.RED);
+//               }
+//               
+//               return c;
+//           }
+//            
+//            
+//            
+//        };
+       
+               
        table.getTableHeader().setReorderingAllowed(false);
        table.setOpaque(false);
        
