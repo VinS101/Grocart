@@ -201,6 +201,17 @@ public class CheckOutPage
         }
     } ); 
         
+        checkout.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent ae)
+            {
+                frame.setVisible(false);
+                ShoppingCartSystem.invoicepage.display(cart);
+            }
+        });
+        
     }
      
      public DefaultTableModel generateTable()
