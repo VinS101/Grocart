@@ -34,7 +34,8 @@ public class CheckOutPage
     JTable addTable;
     DefaultTableCellRenderer centerRenderer;
     DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
-    
+    double total;
+    JLabel totalText;
      CheckOutPage()
     { 
        frame = new JFrame();    //Create the main frame  
@@ -99,8 +100,8 @@ public class CheckOutPage
         field.setSize(50,200);
         
         //Get total
-        double total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
-        JTextArea totalText = new JTextArea("Total: " + Double.toString(total));
+        total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
+        totalText = new JLabel("Total: " + Double.toString(total));
         
         
         //Populate buttons
@@ -152,8 +153,8 @@ public class CheckOutPage
         
         
         //Populate SouthPanel
-        southPanel.add(field);
         southPanel.add(totalText);
+        southPanel.add(field);
         southPanel.add(checkout);
 
         
@@ -195,7 +196,7 @@ public class CheckOutPage
           frame.setVisible(false);
           
 
-          ShoppingCartSystem.cartpage.display(cart);
+          ShoppingCartSystem.cartpage.repaintTable(cart);
            
         }
     } ); 
@@ -228,6 +229,27 @@ public class CheckOutPage
         }
         
         return dm;
+    }
+     
+     public void repaintTable(ShoppingCart newCart)
+    {
+        frame.setVisible(true);
+        cart = newCart;
+        dm = generateTable();
+        table.setModel(dm);
+        
+        table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        //table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+        total = 0;
+        total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
+        totalText.setText(null);
+        totalText.setText(Double.toString(total));
+        totalText.repaint();
+          
+        table.repaint();
     }
 }
 

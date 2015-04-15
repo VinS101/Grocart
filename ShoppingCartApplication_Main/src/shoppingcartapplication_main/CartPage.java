@@ -44,11 +44,13 @@ public class CartPage
     JTable table;
     JTable addTable;
      DefaultTableCellRenderer centerRenderer;
+     boolean viewedCartPage;
     
      CartPage()
     { 
-       frame = new JFrame();    //Create the main frame  
+     frame = new JFrame();    //Create the main frame  
      centerRenderer = new DefaultTableCellRenderer();
+     viewedCartPage = false;
     }
      
      public void display(ShoppingCart aCart)
@@ -206,10 +208,22 @@ public class CartPage
             @Override
             public void actionPerformed(ActionEvent ae)
             {
+                
                 if (ShoppingCartSystem.getActiveBuyer().getCart().getSize() != 0)
                 {
-                frame.setVisible(false);
-                ShoppingCartSystem.checkOutPage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+                    if(viewedCartPage == false)
+                    {
+                        viewedCartPage = true;
+                        frame.setVisible(false);
+                        ShoppingCartSystem.checkOutPage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+                    }
+                    else
+                    {
+                        
+                        frame.setVisible(false);
+                        ShoppingCartSystem.checkOutPage.repaintTable(ShoppingCartSystem.getActiveBuyer().getCart());
+                    }
+                    
                 }
                 else
                 {
