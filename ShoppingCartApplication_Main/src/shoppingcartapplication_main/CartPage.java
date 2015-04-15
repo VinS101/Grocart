@@ -56,6 +56,7 @@ public class CartPage
     {
         cart = aCart;
         
+        System.out.println(cart.getSize());
         //Make panels
         JPanel mainPanel = new JPanel();    //panel for table
         JPanel northPanel = new JPanel();   //Big panel for north, containing the logo panel and buttonPanel
@@ -190,7 +191,8 @@ public class CartPage
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-          frame.setVisible(false); 
+          frame.setVisible(false);
+          
 
           ShoppingCartSystem.buyerPage.display();
            
@@ -199,7 +201,24 @@ public class CartPage
         
     }
      
-    
+    public void repaintTable(ShoppingCart newCart){
+        frame.setVisible(true);
+        cart = newCart;
+        dm = generateTable();
+        table.setModel(dm);
+        
+         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        
+        table.repaint();
+    }
     
     public DefaultTableModel generateTable()
     {

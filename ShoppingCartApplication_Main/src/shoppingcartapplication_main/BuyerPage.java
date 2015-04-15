@@ -176,8 +176,16 @@ public class BuyerPage
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-          frame.setVisible(false); 
-          ShoppingCartSystem.cartpage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+          if(viewedShoppingCart == false){
+            viewedShoppingCart = true;
+            frame.setVisible(false); 
+            ShoppingCartSystem.cartpage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+          }
+          else
+          {
+              frame.setVisible(false);
+              ShoppingCartSystem.cartpage.repaintTable(ShoppingCartSystem.getActiveBuyer().getCart());
+          }
         }
     } );
     }
@@ -322,4 +330,5 @@ class ButtonEditor extends DefaultCellEditor
    }
 
      JFrame frame = new JFrame("Buyer Page");
+     boolean viewedShoppingCart = false;
 }
