@@ -170,6 +170,16 @@ public class BuyerPage
           ShoppingCartSystem.loginPage.display();
         }
     } );
+        
+        shoppingCart.addActionListener(new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+          frame.setVisible(false); 
+          ShoppingCartSystem.cartpage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+        }
+    } );
     }
     
     public DefaultTableModel generateTable()
