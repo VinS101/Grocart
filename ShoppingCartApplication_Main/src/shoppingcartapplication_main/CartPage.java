@@ -43,13 +43,12 @@ public class CartPage
     DefaultTableModel dm; 
     JTable table;
     JTable addTable;
-    DefaultTableCellRenderer centerRenderer;
-    DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
+     DefaultTableCellRenderer centerRenderer;
     
      CartPage()
     { 
        frame = new JFrame();    //Create the main frame  
-      
+     centerRenderer = new DefaultTableCellRenderer();
     }
      
      public void display(ShoppingCart aCart)
@@ -123,6 +122,14 @@ public class CartPage
 
        table.setModel(dm);
        
+        
+        //table.setDefaultRenderer(String.class, centerRenderer);
+       table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+       table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+       table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+       table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+       table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+       
        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
@@ -138,12 +145,7 @@ public class CartPage
         
         
         
-       //table.setDefaultRenderer(String.class, centerRenderer);
-        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+      
         
         
         //Populate MainPanel
@@ -197,25 +199,44 @@ public class CartPage
           ShoppingCartSystem.buyerPage.display();
            
         }
-    } ); 
+    } );
+        
+        checkout.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ae)
+            {
+                if (ShoppingCartSystem.getActiveBuyer().getCart().getSize() != 0)
+                {
+                frame.setVisible(false);
+                ShoppingCartSystem.checkOutPage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "You have no items in your shopping cart.");
+                }
+            }
+            
+        });
         
     }
      
-    public void repaintTable(ShoppingCart newCart){
+    public void repaintTable(ShoppingCart newCart)
+    {
         frame.setVisible(true);
         cart = newCart;
         dm = generateTable();
         table.setModel(dm);
         
-         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+        table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
         
         table.repaint();
     }
@@ -233,7 +254,7 @@ public class CartPage
             }
         };   
         
-        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Total Sold"});
+        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Quantity", "Sold By"});
         Iterator iter = cart.getAllProducts();
         
        
@@ -356,7 +377,7 @@ class ButtonEditor extends DefaultCellEditor
           //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( descriptionRenderer );
+        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         table.getColumn("Button").setCellRenderer(new ButtonRenderer());

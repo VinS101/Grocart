@@ -113,18 +113,11 @@ public class BuyerPage
         
         //Create the Table
         JTable table = new JTable();
-        
+       
         
         
         
         table.setModel(dm);
-        
-        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
-        //Create the scrollpane
-        JScrollPane scroll = new JScrollPane(table);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
        //table.setDefaultRenderer(String.class, centerRenderer);
@@ -134,6 +127,14 @@ public class BuyerPage
         table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
+        
+        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+        //Create the scrollpane
+        JScrollPane scroll = new JScrollPane(table);
+        
         
         //Populate MainPanel
         mainPanel.add(Box.createRigidArea(new Dimension(400,400)));
@@ -176,16 +177,25 @@ public class BuyerPage
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-          if(viewedShoppingCart == false){
-            viewedShoppingCart = true;
-            frame.setVisible(false); 
-            ShoppingCartSystem.cartpage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+          if (ShoppingCartSystem.getActiveBuyer().getCart().getSize() != 0)
+          {
+            if(viewedShoppingCart == false)
+            {
+              viewedShoppingCart = true;
+              frame.setVisible(false); 
+              ShoppingCartSystem.cartpage.display(ShoppingCartSystem.getActiveBuyer().getCart());
+            }
+            else
+            {
+                frame.setVisible(false);
+                ShoppingCartSystem.cartpage.repaintTable(ShoppingCartSystem.getActiveBuyer().getCart());
+            }
           }
           else
           {
-              frame.setVisible(false);
-              ShoppingCartSystem.cartpage.repaintTable(ShoppingCartSystem.getActiveBuyer().getCart());
+              JOptionPane.showMessageDialog(frame, "You have no items in your shopping cart.");
           }
+          
         }
     } );
     }
@@ -221,10 +231,12 @@ public class BuyerPage
         public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column)
         {
-          if (isSelected) {
+          if (isSelected) 
+          {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
-          } else {
+          } else 
+          {
             setForeground(table.getForeground());
             setBackground(UIManager.getColor("Button.background"));
           }
@@ -240,7 +252,7 @@ public class BuyerPage
 class ButtonEditor extends DefaultCellEditor 
 {
     protected JButton button;
-
+    
     private String label;
 
     private boolean isPushed;
@@ -250,6 +262,7 @@ class ButtonEditor extends DefaultCellEditor
       super(checkBox);
       button = new JButton();
       button.setOpaque(true);
+      
       button.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           fireEditingStopped();
