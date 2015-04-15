@@ -8,7 +8,8 @@ import java.util.Iterator;
 
 public class ShoppingCart
 {
-    public ShoppingCart(){
+    public ShoppingCart()
+    {
         cart = new ArrayList<>();
     }
     
@@ -85,15 +86,16 @@ public class ShoppingCart
         System.out.println(cart.size());
     }
     
-    public double getTotalPrice(){
-        double price = 0.0;
+    public double getTotalPrice()
+    {
+        totalPrice = 0;
         
         for (int i = 0; i < cart.size(); i++)
         {
-            price += (price + cart.get(i).getPrice()) * cart.get(i).getCartQuantity();
+            totalPrice = totalPrice + (cart.get(i).getPrice() * cart.get(i).getCartQuantity());
         }
         
-        return price;
+        return totalPrice;
     }
     
     public String generateSummary(){
@@ -114,6 +116,7 @@ public class ShoppingCart
     }
     
     private ArrayList<Product> cart;
+    private double totalPrice;
 
   
     

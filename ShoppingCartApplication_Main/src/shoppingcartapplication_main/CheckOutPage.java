@@ -243,10 +243,10 @@ public class CheckOutPage
         table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
         //table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-        total = 0;
-        total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
+        double newTotal = 0;
+        newTotal = newCart.getTotalPrice();
         totalText.setText(null);
-        totalText.setText(Double.toString(total));
+        totalText.setText(Double.toString(newTotal));
         totalText.repaint();
           
         table.repaint();
