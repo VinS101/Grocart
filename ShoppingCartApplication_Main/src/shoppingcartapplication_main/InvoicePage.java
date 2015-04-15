@@ -45,7 +45,7 @@ public class InvoicePage
         JScrollPane scroll = new JScrollPane();
         
         JTextArea invoice = new JTextArea(cart.generateSummary());
-        
+        invoice.setFont(invoice.getFont().deriveFont(20.0f));
         scroll.add(invoice);
         
         JPanel totalPanel = new JPanel();
@@ -55,7 +55,7 @@ public class InvoicePage
         
         totalPanel.add(total);
         
-        mainPanel.add(scroll);
+        mainPanel.add(invoice);
         mainPanel.add(totalPanel);
                 
 
@@ -67,6 +67,8 @@ public class InvoicePage
        
        frame.setVisible(true);
    
+       
+       
    } 
       
          private ShoppingCart cart;
