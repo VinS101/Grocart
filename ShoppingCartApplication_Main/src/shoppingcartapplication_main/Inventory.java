@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -157,7 +158,10 @@ public class Inventory
         if(totalProfit < 0){
             totalProfit = 0;
         }
-        result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: $" + totalProfit + "\nRevenue: $" + totalRevenue; 
+        
+        String totalProfitText = new DecimalFormat("#.##").format(totalProfit);
+        String totalRevenueText = new DecimalFormat("#.##").format(totalRevenue);
+        result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: $" + totalProfitText + "\nRevenue: $" + totalRevenueText; 
         return result;
     }
     
