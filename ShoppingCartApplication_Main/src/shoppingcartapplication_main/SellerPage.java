@@ -264,7 +264,7 @@ public class SellerPage
             }
         };   
         
-        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Description", "Stock", "Total Sold"});
+        dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price", "Cost", "Description", "Stock", "Total Sold"});
         Iterator iter = ShoppingCartSystem.getActiveSeller().getInventory().getAllProducts();
         
        
@@ -275,7 +275,7 @@ public class SellerPage
             productNames.add(tempProduct.getName());
             
             
-            Object[] row = new Object[] {"Update", tempProduct.getName(), tempProduct.getPrice(), "Click for Description", tempProduct.getinventoryQuantity(), tempProduct.getTotalNumberSold()};
+            Object[] row = new Object[] {"Update", tempProduct.getName(), tempProduct.getPrice(), tempProduct.getCost(), "Click for Description", tempProduct.getinventoryQuantity(), tempProduct.getTotalNumberSold()};
             dm.addRow(row);
            
         }
@@ -360,7 +360,7 @@ class ButtonEditor extends DefaultCellEditor
             String name = table.getValueAt(row, column + 1).toString();
             //Get new Price
             double price = (double) table.getValueAt(row, column + 2);
-            String quantity = (String) table.getValueAt(row, column + 4);
+            String quantity = table.getValueAt(row, column + 4).toString();
             int q = Integer.parseInt(quantity);
             
             Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
@@ -412,7 +412,7 @@ class ButtonEditor extends DefaultCellEditor
       }
       
       button.setText(label);
-      isPushed = true;
+      
       
       }
       else if(column == 3)  //Description Button

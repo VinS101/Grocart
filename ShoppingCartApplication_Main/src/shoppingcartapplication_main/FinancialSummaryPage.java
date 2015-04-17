@@ -117,8 +117,8 @@ public class FinancialSummaryPage
         public void actionPerformed(ActionEvent ae)
         {
           frame.setVisible(false); 
-          ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
-          ShoppingCartSystem.clearActiveBuyer();
+          //ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+          //ShoppingCartSystem.clearActiveBuyer();
           ShoppingCartSystem.loginPage.display();
         }
     } );
