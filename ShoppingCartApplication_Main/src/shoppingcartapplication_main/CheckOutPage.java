@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -36,7 +37,7 @@ public class CheckOutPage
     DefaultTableCellRenderer centerRenderer;
     DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
     double total;
-    JLabel totalText;
+    JLabel totalTextLabel;
      CheckOutPage()
     { 
        frame = new JFrame();    //Create the main frame  
@@ -102,7 +103,8 @@ public class CheckOutPage
         
         //Get total
         total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
-        totalText = new JLabel("Total: " + Double.toString(total));
+        String totalText = new DecimalFormat("#.##").format(total);
+        totalTextLabel = new JLabel("Total: " + totalText);
         
         
         //Populate buttons
@@ -154,7 +156,7 @@ public class CheckOutPage
         
         
         //Populate SouthPanel
-        southPanel.add(totalText);
+        southPanel.add(totalTextLabel);
         southPanel.add(field);
         southPanel.add(checkout);
 
@@ -289,9 +291,10 @@ public class CheckOutPage
         //table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         double newTotal = 0;
         newTotal = newCart.getTotalPrice();
-        totalText.setText(null);
-        totalText.setText(Double.toString(newTotal));
-        totalText.repaint();
+        String newTotalText = new DecimalFormat("#.##").format(newTotal);
+        totalTextLabel.setText(null);
+        totalTextLabel.setText("Total: " + newTotalText);
+        totalTextLabel.repaint();
           
         table.repaint();
     }
