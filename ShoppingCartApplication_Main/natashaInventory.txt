@@ -1,17 +1,13 @@
 Milk	3.59	Got milk?	30	1.99	natasha	7
 Sugar	3.05	Sweetness in a pouch!	50	0.79	natasha	3
 Eggs	1.29	good Best thing to ever come out of a chicken!	48	2.99	natasha	20
-Beans	1.55	Beans, beans, they're good for your heart!	35	0.39	natasha	5
+Beans	1.55	Beans, beans, they're good for your heart!	23	0.39	natasha	17
 Banana	0.79	You will go bananas over these bananas!	80	0.15	natasha	30
-Cucumber	0.40	Very healthy and great in salads!	55	0.05	natasha	7
-Lettuce	0.50	good Freshly grown lettuce great for salad or hamburger toppings.	35	0.07	natasha	10
-Steak	10.99	Nothing is better than a juicy steak, try ours now!	50	5.50	natasha	2
+Cucumber	0.4	Very healthy and great in salads!	55	0.05	natasha	7
+Lettuce	0.5	good Freshly grown lettuce great for salad or hamburger toppings.	35	0.07	natasha	10
+Steak	10.99	Nothing is better than a juicy steak, try ours now!	38	5.5	natasha	14
 Jello	10.99	Deliciously sweet and jiggly!	10	4.99	natasha	0
 Beer	12.99	Drink enough and you will get drunk or we will give you your money back guaranteed! (Comes in a 12 pack)	20	4.99	natasha	1
-Chips	3.50	Salty snack that comes complete with 50% air in the bag!	15	1.99	natasha	0
-Jalepenos	0.10	These jalepenos are hot, hot, HOT!	10	0.02	natasha	0
+Chips	3.5	Salty snack that comes complete with 50% air in the bag!	15	1.99	natasha	0
+Jalepenos	0.1	These jalepenos are hot, hot, HOT!	10	0.02	natasha	0
 Pepper	2.99	Salts best friend!	10	0.99	natasha	2
-Wine	11.99	Wine from the best vineyards in France!	10	5.00 natasha	1
-Tequila	20.99	Will make you forget your last name or your money back!	10	15.00	natasha	0
-Sprite	1.99	This is the best lemon-lime flavored soda on the market!	10	0.99	natasha	2
-Broccoli	0.20	Extremely healthy and is best served steamed.	10	0.10	natasha	0
