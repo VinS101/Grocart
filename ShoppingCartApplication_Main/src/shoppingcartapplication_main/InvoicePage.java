@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
@@ -53,9 +54,13 @@ public class InvoicePage
         JPanel totalPanel = new JPanel();
         totalPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
-        JLabel total =  new JLabel(Double.toString(cart.getTotalPrice()));
+        double total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
+        String totalText = new DecimalFormat("#.##").format(total);
+        JLabel totalTextLabel = new JLabel("Total: " + totalText);
         
-        totalPanel.add(total);
+
+        
+        totalPanel.add(totalTextLabel);
         
         mainPanel.add(invoice);
         mainPanel.add(totalPanel);
