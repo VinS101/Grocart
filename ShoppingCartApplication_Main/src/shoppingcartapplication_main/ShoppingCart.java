@@ -1,6 +1,7 @@
 
 package shoppingcartapplication_main;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -107,8 +108,11 @@ public class ShoppingCart
         {
             
             Product tempProduct = (Product) iter.next();
+            String tempPriceText = new DecimalFormat("#.##").format(tempProduct.getPrice()*tempProduct.getCartQuantity());
+            
+            
 
-            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: " + tempProduct.getPrice()*tempProduct.getCartQuantity() + "\n";
+            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: " + tempPriceText + "\n";
      
         }
         
