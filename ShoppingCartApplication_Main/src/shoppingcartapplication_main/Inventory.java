@@ -154,6 +154,9 @@ public class Inventory
         }
         
         totalProfit = totalRevenue - totalCost;
+        if(totalProfit < 0){
+            totalProfit = 0;
+        }
         result = "Total Products Sold: " + totalProductsSold + "\nTotal Profit: $" + totalProfit + "\nRevenue: $" + totalRevenue; 
         return result;
     }
