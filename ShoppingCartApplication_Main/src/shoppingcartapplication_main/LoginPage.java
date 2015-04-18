@@ -19,11 +19,11 @@ public static void main(String[] args){
      */
     public void display(){
         
-    JFrame frame = new JFrame("Login Page:");
+    JFrame frame = new JFrame("GroCart Login Page:");
     
     
     JPanel logoPanel = new JPanel();
-    JLabel logo = new JLabel("Login Page");
+    JLabel logo = new JLabel("GroCart Login Page");
     logo.setFont(logo.getFont().deriveFont(24.0f));
     logoPanel.add(logo);
     

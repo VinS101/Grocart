@@ -55,7 +55,8 @@ public class FinancialSummaryPage
         logout.setPreferredSize(new Dimension(100,30));
         logout.setFont(logout.getFont().deriveFont(12.0f));
         JButton back = new JButton("Back to Homepage");
-        back.setPreferredSize(new Dimension(150,30));
+        logout.setPreferredSize(new Dimension(150,75));
+        back.setPreferredSize(new Dimension(150,75));
         back.setFont(back.getFont().deriveFont(12.0f));
         
         topPanel.add(pageTitle);
@@ -73,7 +74,7 @@ public class FinancialSummaryPage
         
         JTextArea financialSummary = new JTextArea(seller.getInventory().getFinancialSummary());
         financialSummary.setFont(financialSummary.getFont().deriveFont(30.0f));
-        financialSummary.setPreferredSize(new Dimension(450,400));
+        financialSummary.setPreferredSize(new Dimension(150,150));
         financialSummary.setBackground(new Color(70, 179, 43));
         financialSummary.setEditable(false);
         

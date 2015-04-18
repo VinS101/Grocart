@@ -89,7 +89,8 @@ public class BuyerPage
         logoPanel.setBackground(new Color(70, 179, 43)); //set color
         
         //Make and add logo
-        JLabel logo = new JLabel("Buyer Page");
+        String name = ShoppingCartSystem.getActiveBuyer().getUsername();
+        JLabel logo = new JLabel("Hello, " + name + "!");
         logo.setFont(logo.getFont().deriveFont(40.0f));
         logoPanel.add(logo);
         

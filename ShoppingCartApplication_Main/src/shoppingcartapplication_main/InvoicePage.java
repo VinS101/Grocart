@@ -26,15 +26,15 @@ public class InvoicePage
         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
-        
+        String name = ShoppingCartSystem.getActiveBuyer().getUsername();
         JLabel productTitle = new JLabel("\t\tThank you for shopping!");
         productTitle.setFont(productTitle.getFont().deriveFont(40.0f));
         
         JButton logout = new JButton("Logout");
-        logout.setPreferredSize(new Dimension(100,30));
+        logout.setPreferredSize(new Dimension(150,75));
         logout.setFont(logout.getFont().deriveFont(12.0f));
         JButton back = new JButton("Back to Homepage");
-        back.setPreferredSize(new Dimension(150,30));
+        back.setPreferredSize(new Dimension(150,75));
         back.setFont(back.getFont().deriveFont(12.0f));
         
         topPanel.add(productTitle);
@@ -47,20 +47,20 @@ public class InvoicePage
         
         JScrollPane scroll = new JScrollPane();
         
-        JTextArea invoice = new JTextArea(cart.generateSummary());
-        invoice.setFont(invoice.getFont().deriveFont(20.0f));
-        scroll.add(invoice);
+        
         
         JPanel totalPanel = new JPanel();
-        totalPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        totalPanel.setLayout(new FlowLayout());
         
         double total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
         String totalText = new DecimalFormat("#.##").format(total);
-        JLabel totalTextLabel = new JLabel("Total: " + totalText);
+        JLabel totalTextLabel = new JLabel();
+        String line = "-------------------------------------------";
+        JTextArea invoice = new JTextArea(cart.generateSummary() + "\n"+line +"\nTotal: $ " + totalText );
+        invoice.setFont(invoice.getFont().deriveFont(20.0f));
+        scroll.add(invoice);
         
-
-        
-        totalPanel.add(totalTextLabel);
+        //totalPanel.add(totalTextLabel);
         
         mainPanel.add(invoice);
         mainPanel.add(totalPanel);

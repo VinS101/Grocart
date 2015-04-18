@@ -238,7 +238,7 @@ public class CheckOutPage
                             }
                             else
                             {
-                                JOptionPane.showMessageDialog(frame, "There is not enough stock to purchase "+ temp2.getCartQuantity()  +" of this itemin inventory");
+                                JOptionPane.showMessageDialog(frame, "There is not enough stock to purchase "+ temp2.getCartQuantity()  +" of this item inventory");
                                 break;
                             }
                         }

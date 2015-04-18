@@ -112,7 +112,7 @@ public class ShoppingCart
             
             
 
-            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: " + tempPriceText + "\n";
+            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: $ " + tempPriceText + "\n";
      
         }
         
