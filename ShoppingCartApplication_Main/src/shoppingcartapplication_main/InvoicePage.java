@@ -70,7 +70,7 @@ public class InvoicePage
        frame.add(topPanel, BorderLayout.NORTH);
        frame.add(mainPanel,BorderLayout.CENTER);
     //   frame.add(loginPanel, BorderLayout.CENTER);
-
+       frame.setLocationRelativeTo(null);
        
        frame.setVisible(true);
    
