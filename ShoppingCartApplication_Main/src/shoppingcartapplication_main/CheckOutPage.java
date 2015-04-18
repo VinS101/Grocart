@@ -212,12 +212,13 @@ public class CheckOutPage
             {
                 Iterator iter = cart.getAllProducts();
                 Product tempProduct;
+                int count = 0;
                 while(iter.hasNext())
                 {
                     tempProduct = (Product) iter.next();
                     Seller s = ShoppingCartSystem.findSeller(tempProduct.getSoldBy());
                     Iterator iter2 = s.getInventory().getAllProducts();
-                    int count = 0;
+                    
                     while(iter2.hasNext())
                     {
                         Product temp2 = (Product) iter2.next();
@@ -226,7 +227,6 @@ public class CheckOutPage
                         {
                             if(tempProduct.getCartQuantity() < temp2.getinventoryQuantity())
                             {
-                                ShoppingCartSystem.makePurchases(cart);
                                 count++;
                             }
                             else
@@ -236,13 +236,37 @@ public class CheckOutPage
                             }
                         }
                     }
+                    }
+                
                     if(count == cart.getSize())
                     {
+                        Iterator iter3 = cart.getAllProducts();
+                        Product tempProduct2;
+                        while(iter3.hasNext())
+                        {
+                        
+                            tempProduct2 = (Product) iter3.next();
+                            Seller s2 = ShoppingCartSystem.findSeller(tempProduct2.getSoldBy());
+                            Iterator iter4 = s2.getInventory().getAllProducts();
+
+                            while(iter4.hasNext())
+                            {
+                                Product temp2 = (Product) iter4.next();
+
+                                if(tempProduct2.getName().equals(temp2.getName()))
+                                {
+                                        ShoppingCartSystem.makePurchases(cart);
+
+                                }
+                            }
+                        } 
+                        
                         frame.setVisible(false);
                         ShoppingCartSystem.invoicepage.display(cart);
+                        
                     }
                     
-                }
+                
                 
             }
         });
