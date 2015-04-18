@@ -97,14 +97,18 @@ public class CheckOutPage
         back.setPreferredSize(new Dimension(150,75));
         checkout.setPreferredSize(new Dimension(150,75));
         
+        JLabel creditCard = new JLabel("Credit Card Number: ");
+        creditCard.setFont(logo.getFont().deriveFont(24.0f));
+        
         //Make credit cart texfiled
-        JTextField field = new JTextField("Enter your credit cart number");
+        JTextField field = new JTextField("Please Enter your Credit Card Number");
         field.setSize(50,200);
         
         //Get total
         total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
         String totalText = new DecimalFormat("#.##").format(total);
         totalTextLabel = new JLabel("Total: " + totalText);
+        totalTextLabel.setFont(logo.getFont().deriveFont(33.0f));
         
         
         //Populate buttons
@@ -157,7 +161,10 @@ public class CheckOutPage
         
         //Populate SouthPanel
         southPanel.add(totalTextLabel);
+        southPanel.add(Box.createRigidArea(new Dimension(300,0)));
+        southPanel.add(creditCard);
         southPanel.add(field);
+        southPanel.add(Box.createRigidArea(new Dimension(100,0)));
         southPanel.add(checkout);
 
         

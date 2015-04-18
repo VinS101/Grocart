@@ -174,9 +174,7 @@ public class Inventory
     {
         inventory.clear();
     }
-    
  
-    
     private ArrayList<Product> inventory;
 }
     

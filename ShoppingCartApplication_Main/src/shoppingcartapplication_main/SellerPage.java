@@ -282,7 +282,6 @@ public class SellerPage
         dm = new DefaultTableModel();
         dm.setDataVector(new Object[][]  { }, new Object[] {"Product", "Price","Description","Stock", "Cost",});
         JTextField tf7 = new JTextField(10);
-        TextPrompt tp7 = new TextPrompt("First Name", tf7);
         Object[] row = {"Product", "Price","Description","Stock", "Cost"};
         dm.addRow(row);
         return dm;

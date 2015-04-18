@@ -272,6 +272,5 @@ public class ShoppingCartSystem
      public static CartPage cartpage;
      public static CheckOutPage checkOutPage;
      public static DescriptionPage descriptionPage;
-  
      public static FinancialSummaryPage finanSummaryPage;
 }

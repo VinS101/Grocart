@@ -73,6 +73,7 @@ public class InvoicePage
        frame.setLocationRelativeTo(null);
        
        frame.setVisible(true);
+       ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
    
        back.addActionListener(new ActionListener() 
        {
