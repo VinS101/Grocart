@@ -175,7 +175,6 @@ public class SellerPage
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         
         
-        
        //table.setDefaultRenderer(String.class, centerRenderer);
         table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
         table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
@@ -240,14 +239,51 @@ public class SellerPage
         }
     } );
         
+        AddProduct.addActionListener(new ActionListener()   //action listener for add button
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+               
+               String name = (String) addTable.getValueAt(0,0);
+               String price =  (String) addTable.getValueAt(0,1);
+               String description = (String) addTable.getValueAt(0, 2);
+               String Stock = (String) addTable.getValueAt(0, 3);
+               String cost = (String) addTable.getValueAt(0, 4);
+               
+               Product product = new Product(name, Double.parseDouble(price), description, Integer.parseInt(Stock),Double.parseDouble(cost) , ShoppingCartSystem.getActiveSeller().getUsername() ,0);
+               ShoppingCartSystem.getActiveSeller().getInventory().addToInventory(product);
+               ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
+               //ShoppingCartSystem.updateProductList(Sho);
+                DefaultTableModel dm = generateTable();
+                table.setModel(dm);
+
+                table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+                table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+
+
+                //table.setDefaultRenderer(String.class, centerRenderer);
+                table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
+
+                table.repaint();
+            }
+        });
         
     }
     
     public  DefaultTableModel generateAddTable()
     {
         dm = new DefaultTableModel();
-        dm.setDataVector(new Object[][]  { }, new Object[] { "Button", "Product", "Price","Description", "Stock", "Cost",  "Total Sold"});
-        Object[] row = {" ", " "," ", " ", " "};
+        dm.setDataVector(new Object[][]  { }, new Object[] {"Product", "Price","Description","Stock", "Cost",});
+        JTextField tf7 = new JTextField(10);
+        TextPrompt tp7 = new TextPrompt("First Name", tf7);
+        Object[] row = {"Product", "Price","Description","Stock", "Cost"};
         dm.addRow(row);
         return dm;
     }

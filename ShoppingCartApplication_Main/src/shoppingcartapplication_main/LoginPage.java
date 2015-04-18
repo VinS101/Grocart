@@ -35,7 +35,7 @@ public static void main(String[] args){
     
     userNamePanel.add(new JLabel("Username: "));
     JTextField username = new JTextField();
-    username.setPreferredSize( new Dimension( 50,20) );
+    username.setPreferredSize( new Dimension( 100,20) );
     userNamePanel.add(username);
     
     JPanel passwordPanel = new JPanel();
@@ -73,7 +73,7 @@ public static void main(String[] args){
    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    frame.add(logoPanel, BorderLayout.NORTH);
    frame.add(loginPanel, BorderLayout.CENTER);
-   
+   frame.getContentPane().setBackground(Color.red);
    frame.setSize(500,300);
    frame.setVisible(true);
    frame.setLocationRelativeTo(null);  //set position

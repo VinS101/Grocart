@@ -121,7 +121,6 @@ public class BuyerPage
         
         //Create the Table
         table = new JTable();
-       
         
         
         
