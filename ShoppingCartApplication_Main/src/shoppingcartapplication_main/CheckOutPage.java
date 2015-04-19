@@ -205,7 +205,7 @@ public class CheckOutPage
         {
           frame.setVisible(false);
           
-
+          
           ShoppingCartSystem.cartpage.repaintTable(cart);
            
         }
@@ -269,6 +269,7 @@ public class CheckOutPage
                         } 
                         
                         frame.setVisible(false);
+                        ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
                         ShoppingCartSystem.invoicepage.display(cart);
                         
                     }

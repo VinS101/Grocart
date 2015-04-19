@@ -74,6 +74,7 @@ public class InvoicePage
        
        frame.setVisible(true);
        ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+       ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
    
        back.addActionListener(new ActionListener() 
        {
@@ -82,6 +83,8 @@ public class InvoicePage
             public void actionPerformed(ActionEvent ae)
             {
                 frame.setVisible(false);
+                ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
+                ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
                ShoppingCartSystem.buyerPage.repaintTable();
             }
         });

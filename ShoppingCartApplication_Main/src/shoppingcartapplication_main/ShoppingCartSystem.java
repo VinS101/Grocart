@@ -260,6 +260,11 @@ public class ShoppingCartSystem
          
      }
      
+     public static ArrayList<Seller> getSellerList()
+     {
+         return sellerList;
+     }
+     
      private static ArrayList<Buyer> buyerList;
      private static ArrayList<Seller> sellerList;
      private static Buyer activeBuyer;

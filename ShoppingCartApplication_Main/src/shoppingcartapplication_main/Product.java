@@ -120,6 +120,10 @@ public class Product
     public void setInventoryQuantity (int aQuantity)
     {
         this.inventoryQuantity = aQuantity;
+        if(this.inventoryQuantity < 0)
+        {
+            this.inventoryQuantity = 0 - this.inventoryQuantity;
+        }
     }
     /**
      * Mutator for changing shopping cart's product quantity

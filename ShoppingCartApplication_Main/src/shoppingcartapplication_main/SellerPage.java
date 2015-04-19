@@ -37,6 +37,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 
 public class SellerPage
@@ -388,7 +389,12 @@ class ButtonEditor extends DefaultCellEditor
                String name = table.getValueAt(row, column + 1).toString();  
                Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
                ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
+                //dm.removeRow(row - dm.getRowCount());
+               
                ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
+               ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
+               //this.cancelCellEditing();
+               removeRow(row);
             }
             else    //Price and quantity change
             {
@@ -537,7 +543,10 @@ class ButtonEditor extends DefaultCellEditor
 
 
   
- 
+    public void removeRow(int row)
+    {
+        dm.removeRow(row);
+    }
    
    
 }
