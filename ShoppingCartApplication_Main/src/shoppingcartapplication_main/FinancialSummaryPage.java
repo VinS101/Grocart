@@ -74,7 +74,7 @@ public class FinancialSummaryPage
         
         JTextArea financialSummary = new JTextArea(seller.getInventory().getFinancialSummary());
         financialSummary.setFont(financialSummary.getFont().deriveFont(30.0f));
-        financialSummary.setPreferredSize(new Dimension(150,150));
+        financialSummary.setPreferredSize(new Dimension(400,150));
         financialSummary.setBackground(new Color(70, 179, 43));
         financialSummary.setEditable(false);
         
