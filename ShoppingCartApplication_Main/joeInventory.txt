@@ -1,18 +1,13 @@
-Apples	1.99	Grammy Ann's apples, best red apples this side of the Mississipi!	10	0.15	joe	391
-Beans	0.99	Beans, beans, they're good for your Heart!	20	0.39	joe	328
-Almonds	4.79	Almonds that are a great snack filled with protein!	6	2.99	joe	89
-Sugar	2.99	Sweetness in a pouch!	19	0.79	joe	33
-Milk	3.69	Got milk?	50	1.99	joe	11
+Red Apples	2.99	Grammy Ann's apples, best red apples this side of the Mississipi!	36	0.15	joe	401
+Beans	0.99	Beans, beans, they're good for your Heart!	9	0.39	joe	339
+Almonds	4.79	Almonds that are a great snack filled with protein!	1	2.99	joe	96
+Sugar	2.99	Sweetness in a pouch!	15	0.79	joe	37
+Milk	3.69	Got milk?	26	1.99	joe	95
 Cheese	4.99	Mozzerella cheese, great for pizza and sandwiches!	28	0.99	joe	30
-Icecream	4.59	The best icecream you can ask for when going through a break up!	45	2.36	joe	505
+Icecream	4.59	The best icecream you can ask for when going through a break up!	43	2.36	joe	507
 Water	0.99	The most healthy thing you can drink! Stay away from corn syrup!	41	0.2	joe	24
-Chicken	6.99	Chicken! Fry it, bake it, grill it! Either way its delicious!	46	4.99	joe	5
+Chicken	6.99	Chicken! Fry it, bake it, grill it! Either way its delicious!	44	4.99	joe	7
 Ham	7.99	Ham guaranteed to have died with an apple in its mouth!	11	4.39	joe	5
 Beef	7.99	Ground beef made from the happiest cows on earth! Also ideal for making burgers!	15	4.99	joe	500
 Steak	10.99	Nothing is better than a juicy steak, try ours now!	7	5.5	joe	6
-Tomatoes	0.79	Freshly grown tomatoes that are great for salads and salsa!	50	0.99	joe	15
 Onions	4.99	Onions that wont make you cry when you cut them!.. Ok maybe a little bit.	50	0.99	joe	55
-Cocacola	3.99	Cocacola... You've seen the commercials...	25	0.99	joe	15
-Beer	12.99	good Drink enough and you will get drunk or we will give you your money back guaranteed!(Comes in 12 pack)	20	5.0	joe	500
-Peaches	1.22	Tasty Peaches	15	0.55	joe	0
-Blu Cheese	3.99	Very Taaty!	50	1.99	joe	0

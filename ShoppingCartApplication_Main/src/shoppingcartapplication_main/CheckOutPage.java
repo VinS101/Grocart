@@ -107,7 +107,7 @@ public class CheckOutPage
         //Get total
         total = ShoppingCartSystem.getActiveBuyer().getCart().getTotalPrice();
         String totalText = new DecimalFormat("#.##").format(total);
-        totalTextLabel = new JLabel("Total: " + totalText);
+        totalTextLabel = new JLabel("Total: $" + totalText);
         totalTextLabel.setFont(logo.getFont().deriveFont(33.0f));
         
         

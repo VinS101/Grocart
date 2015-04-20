@@ -103,7 +103,7 @@ public class ShoppingCart
 
        Iterator iter = getAllProducts();
         String invoice = "";
-       
+       int count = 1;
         while(iter.hasNext())
         {
             
@@ -112,8 +112,8 @@ public class ShoppingCart
             
             
 
-            invoice = invoice + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: $ " + tempPriceText + "\n";
-     
+            invoice = invoice + count + ". " + tempProduct.getName() + "\tQuantity: " + tempProduct.getCartQuantity()+ "\tPrice: $ " + tempPriceText + "\n";
+            count++;
         }
         
         return invoice;

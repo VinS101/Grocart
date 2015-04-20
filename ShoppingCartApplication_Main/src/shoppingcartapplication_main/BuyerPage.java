@@ -228,7 +228,16 @@ public class BuyerPage
     
     public DefaultTableModel generateTable()
     {
-        dm = new DefaultTableModel();
+        dm = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                if(column == 1 || column == 0 || column == 4) return true;
+                else return false;
+                 
+            }
+        };  
         dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Quantity", "Product", "Price", "Description", "Stock", "Sold by"});
         Iterator iter = ProductList.getAllProducts();
         
@@ -319,6 +328,7 @@ class ButtonEditor extends DefaultCellEditor
         Product temp = ProductList.getOneProduct(name, seller);
         ShoppingCartSystem.getActiveBuyer().getCart().addToCart(temp, Integer.parseInt(quantity));
         add = true;
+        JOptionPane.showMessageDialog(button, "Product Added to Shopping Cart");
       }
       if(column == 4)
       {
@@ -348,7 +358,7 @@ class ButtonEditor extends DefaultCellEditor
       if (isPushed) 
       {
         
-        JOptionPane.showMessageDialog(button, "Product Added to Shopping Cart");
+        //JOptionPane.showMessageDialog(button, "Product Added to Shopping Cart");
         
         // System.out.println(label + ": Ouch!");
       }

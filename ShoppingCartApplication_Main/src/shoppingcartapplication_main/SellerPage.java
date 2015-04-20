@@ -394,7 +394,8 @@ class ButtonEditor extends DefaultCellEditor
                ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
                ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
                //this.cancelCellEditing();
-               removeRow(row);
+               //removeRow(row);
+               
             }
             else    //Price and quantity change
             {
@@ -475,8 +476,8 @@ class ButtonEditor extends DefaultCellEditor
           if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
           {
             productNames.clear();
-            dm = generateTable();
-            table.setModel(dm);
+            DefaultTableModel dm2 = generateTable();
+            table.setModel(dm2);
 
             table.getColumn("Button").setCellRenderer(new ButtonRenderer());
             table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
