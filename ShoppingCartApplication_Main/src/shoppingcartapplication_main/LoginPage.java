@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 
 public class LoginPage 
 {
-public static void main(String[] args){
-    LoginPage login = new LoginPage();
-    login.display();
-}
+//public static void main(String[] args){
+//    LoginPage login = new LoginPage();
+//    login.display();
+//}
     
     /**
      * This method displays the login page on the GUI.

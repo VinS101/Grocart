@@ -14,12 +14,12 @@ public class DescriptionPage
 {
  
     
-    public static void main(String[] args) throws IOException{
-        DescriptionPage page = new DescriptionPage();
-        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious. Best milk you will ever have or your money back!", 10, 1.50, "Shervin", 0);
-
-        page.display(milk);
-    }
+//    public static void main(String[] args) throws IOException{
+//        DescriptionPage page = new DescriptionPage();
+//        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious. Best milk you will ever have or your money back!", 10, 1.50, "Shervin", 0);
+//
+//        page.display(milk);
+//    }
     
     /**
     * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.

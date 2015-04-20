@@ -24,8 +24,8 @@ public class Inventory
      * testing
      * @param args 
      */
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
 //        Product milk = new Product("milk", 7.99, "good milk", 72, 4.99, "Jimmy");
 //        Product cream = new Product("cream", 7.99, "good yogurt", 72, 4.99, "Jimmy");
 //        Product yogurt = new Product("yogurt", 7.99, "good yogurt", 72, 4.99, "Jimmy");
@@ -35,7 +35,7 @@ public class Inventory
 //        inventory.inventory.add(yogurt);
 //        inventory.overWriteInventoryFile();
 //        
-    }
+//    }
     //Example from the book
     public Iterator<Product> getAllProducts()
    {

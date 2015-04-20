@@ -26,12 +26,12 @@ import javax.swing.JTextArea;
 public class FinancialSummaryPage 
 {
     
-        public static void main(String[] args) throws IOException{
-        FinancialSummaryPage page = new FinancialSummaryPage();
-        Seller seller = new Seller("mike","123");
-
-        page.display(seller);
-    }
+//        public static void main(String[] args) throws IOException{
+//        FinancialSummaryPage page = new FinancialSummaryPage();
+//        Seller seller = new Seller("mike","123");
+//
+//        page.display(seller);
+//    }
     //.....
     /**
     * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.

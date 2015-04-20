@@ -91,9 +91,11 @@ public class InvoicePage
        
        logout.addActionListener(new ActionListener() 
        {
+           
             @Override
             public void actionPerformed(ActionEvent ae)
             {
+                ShoppingCartSystem.getActiveBuyer().getCart().clearCart();
                 frame.setVisible(false);
                 ShoppingCartSystem.loginPage.display();
             }

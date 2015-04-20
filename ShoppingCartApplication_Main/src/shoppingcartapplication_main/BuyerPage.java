@@ -50,12 +50,12 @@ public class BuyerPage
        viewedShoppingCart = false; 
     }
     
-    public static void main(String[] args)
-    {
-       BuyerPage page  = new BuyerPage();
-        page.display();
-        
-    }
+//    public static void main(String[] args)
+//    {
+//       BuyerPage page  = new BuyerPage();
+//        page.display();
+//        
+//    }
     
     public void display()
     {
