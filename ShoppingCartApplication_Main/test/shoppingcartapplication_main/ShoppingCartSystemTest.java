@@ -226,9 +226,11 @@ public class ShoppingCartSystemTest
     public void testGetSellerList()
     {
         System.out.println("getSellerList");
-        ArrayList<Seller> expResult = null;
+        Seller s = new Seller("","");
+        ShoppingCartSystem.getSellerList().add(s);
+        String expResult = "";
         ArrayList<Seller> result = ShoppingCartSystem.getSellerList();
-        assertEquals(expResult, result);
+        assertEquals(expResult, result.get(0).getUsername());
         // TODO review the generated test code and remove the default call to fail.
         
     }

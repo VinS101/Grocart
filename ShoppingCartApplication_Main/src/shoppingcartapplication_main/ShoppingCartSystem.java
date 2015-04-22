@@ -333,6 +333,11 @@ public class ShoppingCartSystem
          return sellerList;
      }
      
+     static ArrayList getBuyerList()
+    {
+        return buyerList;
+    }
+     
      private static ArrayList<Buyer> buyerList;
      private static ArrayList<Seller> sellerList;
      private static Buyer activeBuyer;
@@ -346,4 +351,6 @@ public class ShoppingCartSystem
      public static CheckOutPage checkOutPage;
      public static DescriptionPage descriptionPage;
      public static FinancialSummaryPage finanSummaryPage;
+
+    
 }
