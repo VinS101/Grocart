@@ -9,7 +9,7 @@ public class Account
         this.username = aUsername;
         this.password = aPassword;
     }
-    
+
     /**
      * Accessor for the username
      * @return 
