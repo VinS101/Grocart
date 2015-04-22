@@ -1,4 +1,4 @@
-
+//SELLER CLASS
 package shoppingcartapplication_main;
 
 /**

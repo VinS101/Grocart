@@ -25,6 +25,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import shoppingcartapplication_main.Product;
+//CHECKOUTPAGE
+
 import shoppingcartapplication_main.Seller;
 import shoppingcartapplication_main.ShoppingCart;
 import shoppingcartapplication_main.ShoppingCartSystem;

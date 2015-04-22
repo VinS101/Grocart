@@ -1,7 +1,8 @@
-
+//SHOPPINGCARTSYSTEMCLASS
 package shoppingcartapplication_main;
 
 
+import ShoppingCartApplication_GUI.LoginPage;
 import ShoppingCartApplication_GUI.SellerPage;
 import ShoppingCartApplication_GUI.InvoicePage;
 import ShoppingCartApplication_GUI.DescriptionPage;

@@ -1,4 +1,4 @@
-
+//DESCRIPTION PAGE
 package ShoppingCartApplication_GUI;
 
 import javax.swing.*;

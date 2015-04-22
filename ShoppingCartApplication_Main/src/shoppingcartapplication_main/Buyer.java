@@ -1,4 +1,4 @@
-
+//BUYER CLASS
 package shoppingcartapplication_main;
 
 

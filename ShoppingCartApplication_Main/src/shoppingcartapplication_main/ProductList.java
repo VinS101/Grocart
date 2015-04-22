@@ -1,4 +1,4 @@
-
+//PRODUCTLIST CLASS
 package shoppingcartapplication_main;
 
 import java.util.ArrayList;

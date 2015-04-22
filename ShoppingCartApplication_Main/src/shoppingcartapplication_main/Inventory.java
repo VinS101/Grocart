@@ -1,4 +1,4 @@
-
+//INVENTORY CLASS
 package shoppingcartapplication_main;
 
 import java.io.BufferedWriter;

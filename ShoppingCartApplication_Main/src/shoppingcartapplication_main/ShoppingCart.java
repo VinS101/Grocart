@@ -1,4 +1,4 @@
-
+//SHOPPINGCART CLASS
 package shoppingcartapplication_main;
 
 import java.text.DecimalFormat;

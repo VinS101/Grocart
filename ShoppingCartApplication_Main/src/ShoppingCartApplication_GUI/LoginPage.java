@@ -1,10 +1,11 @@
-
-package shoppingcartapplication_main;
+//LOGIN CLASS
+package ShoppingCartApplication_GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import shoppingcartapplication_main.ShoppingCartSystem;
 
 /**
  * GUI class for login page.

@@ -1,4 +1,4 @@
-
+//FINANCIAL SUMMARY PAGE
 package ShoppingCartApplication_GUI;
 
 import java.awt.BorderLayout;

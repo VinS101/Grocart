@@ -1,4 +1,4 @@
-
+//ACCOUNT CLASS
 package shoppingcartapplication_main;
 
 

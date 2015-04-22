@@ -1,3 +1,4 @@
+//BUYER PAGE
 
 package ShoppingCartApplication_GUI;
 

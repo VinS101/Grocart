@@ -1,4 +1,4 @@
-
+//PRODUCT CLASS
 package shoppingcartapplication_main;
 
 /**
