@@ -26,7 +26,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import static shoppingcartapplication_main.CartPage.cart;
 
-
+/**
+ * GUI class for the checkout page.
+ */
 public class CheckOutPage 
 {
     static JFrame frame;
@@ -38,17 +40,23 @@ public class CheckOutPage
     DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
     double total;
     JLabel totalTextLabel;
+    
+    /**
+     * Constructor for checkout page.
+     */
+    
      CheckOutPage()
     { 
        frame = new JFrame();    //Create the main frame  
       
     }
-//    public static void main(String[] args)
-//    {
-//       CheckOutPage page  = new CheckOutPage();
-//        page.display(cart);
-//        
-//    }
+     
+     /**
+      * Displays the checkout page.
+      * @param aCart The active user's shopping cart.
+      * @precondition aCart.size > 0
+      */
+
      public void display(ShoppingCart aCart)
     {
         cart = aCart;
@@ -186,6 +194,7 @@ public class CheckOutPage
         frame.setVisible(true); //set visible
         
         // Logout Button Controller (Annonymous)
+        
         logout.addActionListener(new ActionListener()
     {
         @Override
@@ -211,6 +220,7 @@ public class CheckOutPage
         }
     } ); 
         
+                   
         checkout.addActionListener(new ActionListener()
         {
 
@@ -281,6 +291,11 @@ public class CheckOutPage
         
     }
      
+     /**
+      * Generates the table model using the active user's shopping cart.
+      * @return a DefaultTableModel consisting of all the products in the shopping cart along with "update" and "Click for Description" buttons for each row.
+      */
+     
      public DefaultTableModel generateTable()
     {
         dm = new DefaultTableModel()
@@ -308,6 +323,11 @@ public class CheckOutPage
         
         return dm;
     }
+     
+     /**
+      * Repaints table with updated cart if user leaves page and then comes back with updated cart info.
+      * @param newCart updated cart.
+      */
      
      public void repaintTable(ShoppingCart newCart)
     {

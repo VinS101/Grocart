@@ -22,20 +22,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * GUI class for the sellers financial summary page.
+ * @author ASUS
+ */
 
 public class FinancialSummaryPage 
 {
     
-//        public static void main(String[] args) throws IOException{
-//        FinancialSummaryPage page = new FinancialSummaryPage();
-//        Seller seller = new Seller("mike","123");
-//
-//        page.display(seller);
-//    }
-    //.....
     /**
-    * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.
-    */
+     * This method generates and displays the sellers financial summary based on inventory product values.
+     * @param aSeller The active seller.
+     * @throws IOException if decoration image file cannot be found.
+     */
     
     public void display(Seller aSeller) throws IOException{
         
@@ -84,7 +83,7 @@ public class FinancialSummaryPage
         
         
         try{
-        BufferedImage img = ImageIO.read(new File("C:\\Users\\Vin\\OneDrive\\Documents\\Spring 2015\\COP 4331\\Main Project\\ShoppingCartApplication_Main\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\dollarsign.png"));
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\ASUS\\Desktop\\School\\Object Oriented Programming\\Shopping Cart\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\pics\\dollarsign.png"));
         Image tmp = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(300, 300, BufferedImage.TYPE_INT_ARGB);
 

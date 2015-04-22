@@ -36,6 +36,10 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import static shoppingcartapplication_main.SellerPage.frame;
 
+/**
+ * A GUI class for the Shopping Cart Page.
+ * @author ASUS
+ */
 public class CartPage 
 {
     static JFrame frame;
@@ -53,6 +57,11 @@ public class CartPage
      viewedCartPage = false;
     }
      
+     /**
+      * Displays the shopping cart page pertaining to the active user's shopping cart.
+      * @param aCart The active user's shopping cart.
+      * @precondition aCart.size > 0 or message pops up.
+      */
      public void display(ShoppingCart aCart)
     {
         cart = aCart;
@@ -234,6 +243,11 @@ public class CartPage
         });
         
     }
+    
+     /**
+      * Repaints table with updated cart if user leaves page and then comes back with updated cart info.
+      * @param newCart updated cart.
+      */
      
     public void repaintTable(ShoppingCart newCart)
     {
@@ -254,6 +268,11 @@ public class CartPage
         
         table.repaint();
     }
+    
+    /**
+      * Generates the table model using the active user's shopping cart.
+      * @return a DefaultTableModel consisting of all the products in the shopping cart along with "update" and "Click for Description" buttons for each row.
+      */
     
     public DefaultTableModel generateTable()
     {
@@ -285,6 +304,10 @@ public class CartPage
         return dm;
     }
     
+    /**
+     * Decorator class for JTable buttons.
+     */
+    
     class ButtonRenderer extends JButton implements TableCellRenderer 
     {
 
@@ -309,7 +332,7 @@ public class CartPage
 }
 
 /**
- * @version 1.0 11/09/98
+ * Editor class for JTable buttons, also handles commands for button presses.
  */
 
 class ButtonEditor extends DefaultCellEditor 
@@ -330,6 +353,16 @@ class ButtonEditor extends DefaultCellEditor
         }
       });
     }
+    
+    /**
+     * Returns cell component and handles button presses.
+     * @param table JTable
+     * @param value Object inside cell.
+     * @param isSelected boolean that is true if cell is selected.
+     * @param row row value of cell.
+     * @param column column value of cell.
+     * @return button pressed for repaint.
+     */
 
     public Component getTableCellEditorComponent(JTable table, Object value,
         boolean isSelected, int row, int column) {
@@ -468,7 +501,10 @@ class ButtonEditor extends DefaultCellEditor
       return button;
     }
     
-   
+   /**
+     * Another Decorator class regarding JLabel buttons.
+     * @return Object depending on button presses.
+     */
 
     public Object getCellEditorValue() 
     {

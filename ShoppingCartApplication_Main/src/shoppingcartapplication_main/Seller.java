@@ -1,7 +1,9 @@
 
 package shoppingcartapplication_main;
 
-
+/**
+ * Class designated to creating seller objects.
+ */
 public class Seller extends Account
 {
     /**
@@ -14,6 +16,11 @@ public class Seller extends Account
         super(aUsername, aPassword);
         inventory = new Inventory();
     }
+    
+    /**
+     * Accessor for inventory.
+     * @return sellers inventory.
+     */
     
     public Inventory getInventory()
     {

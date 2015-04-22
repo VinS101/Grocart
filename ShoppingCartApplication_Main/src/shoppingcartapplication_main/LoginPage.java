@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * GUI class for login page.
+ */
 
 public class LoginPage 
 {
-//public static void main(String[] args){
-//    LoginPage login = new LoginPage();
-//    login.display();
-//}
+
     
     /**
      * This method displays the login page on the GUI.

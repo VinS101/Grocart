@@ -9,6 +9,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Class used to handle seller inventories.
+ */
 
 public class Inventory
 {
@@ -21,22 +24,9 @@ public class Inventory
     }
        
     /**
-     * testing
-     * @param args 
+     * Returns iterator pointing to products inside inventory list.
+     * @return product iterator.
      */
-//    public static void main(String[] args)
-//    {
-//        Product milk = new Product("milk", 7.99, "good milk", 72, 4.99, "Jimmy");
-//        Product cream = new Product("cream", 7.99, "good yogurt", 72, 4.99, "Jimmy");
-//        Product yogurt = new Product("yogurt", 7.99, "good yogurt", 72, 4.99, "Jimmy");
-//        Inventory inventory = new Inventory();
-//        inventory.inventory.add(milk);
-//        inventory.inventory.add(cream);
-//        inventory.inventory.add(yogurt);
-//        inventory.overWriteInventoryFile();
-//        
-//    }
-    //Example from the book
     public Iterator<Product> getAllProducts()
    {
       return new
@@ -65,8 +55,8 @@ public class Inventory
    }
     /**
      * Find the product from the list
-     * @param aName
-     * @return 
+     * @param aName name of the product.
+     * @return product object with the same name attribute as aName.
      */
     public Product getProduct(String aName)
     {
@@ -84,20 +74,28 @@ public class Inventory
     }
     /**
      * Add the product to array list inventory
-     * @param aProduct 
+     * @param aProduct product to be added.
      */
     public void addToInventory(Product aProduct)
     {
         inventory.add(aProduct);
     }
     
+    /**
+     * Removes product from inventory.
+     * @param aProduct product to be removed.
+     */
+    
     public void removeProduct(Product aProduct)
     {
         inventory.remove(aProduct);
     }
+    
     /**
-     * File output Functionality in progress (Experimental)
+     * Overwrites sellers inventory text file for persistency.
+     * @param s Seller who's inventory has changed.
      */
+    
     public void overWriteInventoryFile(Seller s)
     {
         String result = "";
@@ -129,13 +127,23 @@ public class Inventory
         catch(Exception e){}
     }
     
+    /**
+     * Checks if there is enough stock to satisfy cart amount.
+     * @param product product that is being purchased.
+     * @return TRUE if stock >= cart quantity, FALSE otherwise.
+     */
+    
     public boolean checkStock(Product product)
     {
        Product tempInventoryProduct = getProduct(product.getName());
-        return tempInventoryProduct.getinventoryQuantity() > product.getCartQuantity();
+        return tempInventoryProduct.getinventoryQuantity() >= product.getCartQuantity();
     }
    
-    
+    /**
+     * Generates sellers financial summary.
+     * @return a string consisting of sellers financial summary.
+     * @precondtion inventory.size() > 0.
+     */
     public String getFinancialSummary()
     {
         String result;
@@ -165,10 +173,19 @@ public class Inventory
         return result;
     }
     
+    /**
+     * Accessor for inventory size.
+     * @return inventory.size().
+     */
+    
     public int getSize()
     {
         return inventory.size();
     }
+    
+    /**
+     * Clears inventory.
+     */
     
     public void clearInventory()
     {

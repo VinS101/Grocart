@@ -5,7 +5,7 @@ Beans	1.55	Beans, beans, they're good for your heart!	23	0.39	natasha	17
 Banana	0.79	You will go bananas over these bananas!	80	0.15	natasha	30
 Cucumber	0.4	Very healthy and great in salads!	55	0.05	natasha	7
 Lettuce	0.5	good Freshly grown lettuce great for salad or hamburger toppings.	30	0.07	natasha	15
-Steak	10.99	Nothing is better than a juicy steak, try ours now!	38	5.5	natasha	14
+Steak	10.99	Nothing is better than a juicy steak, try ours now!	35	5.5	natasha	17
 Jello	10.99	Deliciously sweet and jiggly!	10	4.99	natasha	0
 Beer	12.99	Drink enough and you will get drunk or we will give you your money back guaranteed! (Comes in a 12 pack)	20	4.99	natasha	1
 Chips	3.5	Salty snack that comes complete with 50% air in the bag!	15	1.99	natasha	0

@@ -1,6 +1,9 @@
 
 package shoppingcartapplication_main;
 
+/**
+ * Class designated to creating product objects.
+ */
 
 public class Product 
 {
@@ -141,6 +144,11 @@ public class Product
     {
         this.cost = aCost;
     }
+    
+    /**
+     * Mutator for changing total number of product sold.
+     * @param s number of product sold.
+     */
     
     public void setTotalNumberSold(int s)
     {

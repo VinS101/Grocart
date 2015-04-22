@@ -10,21 +10,18 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+
+/**
+ * GUI class for the description page.
+ */
+
 public class DescriptionPage 
 {
- 
-    
-//    public static void main(String[] args) throws IOException{
-//        DescriptionPage page = new DescriptionPage();
-//        Product milk = new Product("Milk", 2.99, "It's Fucking Milk... It's Fucking Delicious. Best milk you will ever have or your money back!", 10, 1.50, "Shervin", 0);
-//
-//        page.display(milk);
-//    }
-    
     /**
-    * This method displays the most of the information stored in a specific product object along with options to logout and go back to homepage.
-    */
-    
+     * Displays the description page for any given product.
+     * @param aProduct product to be displayed.
+     * @throws IOException if image file not found.
+     */
     public void display(Product aProduct) throws IOException{
         
         this.product = aProduct;
@@ -59,7 +56,7 @@ public class DescriptionPage
         leftMainPanel.setLayout(new BoxLayout(leftMainPanel, BoxLayout.Y_AXIS));
         
         try{
-        BufferedImage img = ImageIO.read(new File("C:\\Users\\Vin\\OneDrive\\Documents\\Spring 2015\\COP 4331\\Main Project\\ShoppingCartApplication_Main\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\" + product.getName()+ ".jpg"));
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\ASUS\\Desktop\\School\\Object Oriented Programming\\Shopping Cart\\ShoppingCartApplication_main\\ShoppingCartApplication_Main\\src\\shoppingcartapplication_main\\pics\\" + product.getName()+ ".jpg"));
         Image tmp = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(300, 300, BufferedImage.TYPE_INT_ARGB);
 

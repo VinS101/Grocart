@@ -39,6 +39,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+/**
+ * A GUI class for the Seller Page.
+ */
 
 public class SellerPage
 {
@@ -50,25 +53,17 @@ public class SellerPage
     ArrayList<String> productNames = new ArrayList();
     DefaultTableCellRenderer descriptionRenderer = new DefaultTableCellRenderer();
     
+    
     SellerPage()
     {
        frame = new JFrame();    //Create the main frame  
       
     }
-    /**
-     * For debugging purposes
-     * @param args 
-     */
-//    public static void main(String[] args)
-//    {
-//       BuyerPage page  = new BuyerPage();
-//        page.display();
-//        
-//    }
     
-    /**
-     * For debugging purposes
+     /**
+     * Displays seller page when active user account is of type seller.
      */
+    
     public void display()
     {
         
@@ -132,22 +127,6 @@ public class SellerPage
       
         //Create the Table
        table = new JTable();
-//       {
-//           public Component prepareRenderer(TableCellRenderer renderer, int row, int column)
-//           {
-//               Component c = super.prepareRenderer(renderer, row, column);
-//               if(column == 3 && row == 0)
-//               {
-//                   c.setForeground(Color.RED);
-//               }
-//               
-//               return c;
-//           }
-//            
-//            
-//            
-//        };
-       
                
        table.getTableHeader().setReorderingAllowed(false);
        table.setOpaque(false);
@@ -278,6 +257,11 @@ public class SellerPage
         
     }
     
+    /**
+      * Generates the table model using the sellers inventory.
+      * @return a DefaultTableModel consisting of all the products in the inventory along with "Update" and "Click for Description" buttons for each row.
+      */
+    
     public  DefaultTableModel generateAddTable()
     {
         dm = new DefaultTableModel();
@@ -319,6 +303,10 @@ public class SellerPage
         return dm;
     }
     
+    /**
+     * Decorator class for JTable buttons.
+     */
+    
     class ButtonRenderer extends JButton implements TableCellRenderer 
     {
 
@@ -342,88 +330,162 @@ public class SellerPage
         }
 }
 
-/**
- * @version 1.0 11/09/98
- */
-
-class ButtonEditor extends DefaultCellEditor 
-{
-    protected JButton button;
-
-    private String label;
-
-    private boolean isPushed;
-
-    public ButtonEditor(JCheckBox checkBox) 
+    /**
+     * Editor class for JTable buttons.
+     */
+    
+    class ButtonEditor extends DefaultCellEditor 
     {
-      super(checkBox);
-      button = new JButton();
-      button.setOpaque(true);
-      button.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          fireEditingStopped();
+        protected JButton button;
+
+        private String label;
+
+        private boolean isPushed;
+        
+        /**
+         * Constructor for button editor.
+         * @param checkBox checkbox to be added.
+         */
+        
+        public ButtonEditor(JCheckBox checkBox) 
+        {
+          super(checkBox);
+          button = new JButton();
+          button.setOpaque(true);
+          button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              fireEditingStopped();
+            }
+          });
         }
-      });
-    }
+        
+        /**
+        * Returns cell component and handles button presses.
+        * @param table JTable
+        * @param value Object inside cell.
+        * @param isSelected boolean that is true if cell is selected.
+        * @param row row value of cell.
+        * @param column column value of cell.
+        * @return button pressed for repaint.
+        */
 
-    public Component getTableCellEditorComponent(JTable table, Object value,
-        boolean isSelected, int row, int column) 
-    {
-      if (isSelected) 
-      {
-        button.setForeground(table.getSelectionForeground());
-        button.setBackground(table.getSelectionBackground());
-      } 
-      else 
-      {
-        button.setForeground(table.getForeground());
-        button.setBackground(table.getBackground());
-      }
-      label = (value == null) ? "" : value.toString();
-      System.out.println(table.getValueAt(row, column + 1).toString());
-      
-      if(column == 0)   // Update Button
-      {
-            if(table.getValueAt(row, column + 4).equals("0"))   //if quantity is 0
-            {
-               String name = table.getValueAt(row, column + 1).toString();  
-               Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
-               ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
-                //dm.removeRow(row - dm.getRowCount());
-               
-               ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
-               ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
-               //this.cancelCellEditing();
-               //removeRow(row);
-               
-            }
-            else    //Price and quantity change
-            {
-                String name = table.getValueAt(row, column + 1).toString();
-                //Get new Price
-                String price = table.getValueAt(row, column + 2).toString();
-                String quantity = table.getValueAt(row, column + 4).toString();
-                int q = Integer.parseInt(quantity);
-
-                Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
-                temp.setName(name);
-                temp.setPrice(Double.parseDouble(price));
-                temp.setInventoryQuantity(q);
-                ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
-            }
-
-
-          if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0) //if inventory has something
+        public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) 
+        {
+          if (isSelected) 
           {
+            button.setForeground(table.getSelectionForeground());
+            button.setBackground(table.getSelectionBackground());
+          } 
+          else 
+          {
+            button.setForeground(table.getForeground());
+            button.setBackground(table.getBackground());
+          }
+          label = (value == null) ? "" : value.toString();
+          System.out.println(table.getValueAt(row, column + 1).toString());
+
+          if(column == 0)   // Update Button
+          {
+                if(table.getValueAt(row, column + 4).equals("0"))   //if quantity is 0
+                {
+                   String name = table.getValueAt(row, column + 1).toString();  
+                   Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
+                   ShoppingCartSystem.getActiveSeller().getInventory().removeProduct(temp);
+                    //dm.removeRow(row - dm.getRowCount());
+
+                   ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
+                   ShoppingCartSystem.updateProductList(ShoppingCartSystem.getSellerList());
+                   //this.cancelCellEditing();
+                   //removeRow(row);
+
+                }
+                else    //Price and quantity change
+                {
+                    String name = table.getValueAt(row, column + 1).toString();
+                    //Get new Price
+                    String price = table.getValueAt(row, column + 2).toString();
+                    String quantity = table.getValueAt(row, column + 4).toString();
+                    int q = Integer.parseInt(quantity);
+
+                    Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(productNames.get(row));  //changed
+                    temp.setName(name);
+                    temp.setPrice(Double.parseDouble(price));
+                    temp.setInventoryQuantity(q);
+                    ShoppingCartSystem.getActiveSeller().getInventory().overWriteInventoryFile(ShoppingCartSystem.getActiveSeller());
+                }
+
+
+              if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0) //if inventory has something
+              {
+                    productNames.clear();
+                    dm = generateTable();
+                    table.setModel(dm);
+
+                    table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+                    table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+                    table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+                    table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+
+
+                    //table.setDefaultRenderer(String.class, centerRenderer);
+                    table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+                    table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+                    table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+                    table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+                    table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
+
+                    table.repaint();
+              }
+
+              else //No inventory empty table
+              {
                 productNames.clear();
-                dm = generateTable();
-                table.setModel(dm);
+                 dm.setDataVector(new Object[][]  {  }, new Object[] {"Button", "Product", "Price","Description", "Stock", "Cost",  "Total Sold"});
+                 table.setModel(dm);
+                  //table.setDefaultRenderer(String.class, centerRenderer);
+                table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(4).setCellRenderer( descriptionRenderer );
+                table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
+                table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+                table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
+                table.repaint();
+              }
+
+              button.setText(label);
+
+          }
+          else if(column == 3)  //Description Button
+          {
+              String name = table.getValueAt(row, column - 2).toString();
+              Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
+              frame.setVisible(false);
+              try
+              {
+                  ShoppingCartSystem.descriptionPage.display(temp);
+              } catch (IOException ex)
+              {
+                  Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+              }
+          }
+
+          else  //Anything else
+          {
+
+              if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
+              {
+                productNames.clear();
+                DefaultTableModel dm2 = generateTable();
+                table.setModel(dm2);
 
                 table.getColumn("Button").setCellRenderer(new ButtonRenderer());
                 table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
                 table.getColumn("Description").setCellRenderer(new ButtonRenderer());
                 table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
-
 
                 //table.setDefaultRenderer(String.class, centerRenderer);
                 table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
@@ -435,119 +497,66 @@ class ButtonEditor extends DefaultCellEditor
                 table.repaint();
           }
 
-          else //No inventory empty table
-          {
-            productNames.clear();
-             dm.setDataVector(new Object[][]  {  }, new Object[] {"Button", "Product", "Price","Description", "Stock", "Cost",  "Total Sold"});
-             table.setModel(dm);
-              //table.setDefaultRenderer(String.class, centerRenderer);
-            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(4).setCellRenderer( descriptionRenderer );
-            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
-            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.repaint();
-          }
+          else
+            {
+                productNames.clear();
+                 dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price","Description", "Stock", "Cost",  "Total Sold"});
+                 table.setModel(dm);
+                //table.setDefaultRenderer(String.class, centerRenderer);
+                table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+                table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
+                table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+                table.getColumn("Description").setCellRenderer(new ButtonRenderer());
+                table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
 
-          button.setText(label);
-      
-      }
-      else if(column == 3)  //Description Button
-      {
-          String name = table.getValueAt(row, column - 2).toString();
-          Product temp = ShoppingCartSystem.getActiveSeller().getInventory().getProduct(name);
-          frame.setVisible(false);
-          try
-          {
-              ShoppingCartSystem.descriptionPage.display(temp);
-          } catch (IOException ex)
-          {
-              Logger.getLogger(SellerPage.class.getName()).log(Level.SEVERE, null, ex);
+                table.repaint();
+            }
           }
-      }
-      
-      else  //Anything else
-      {
-          
-          if (ShoppingCartSystem.getActiveSeller().getInventory().getSize() > 0)
-          {
-            productNames.clear();
-            DefaultTableModel dm2 = generateTable();
-            table.setModel(dm2);
-
-            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
-        
-            //table.setDefaultRenderer(String.class, centerRenderer);
-            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
-        
-            table.repaint();
-      }
-      
-      else
-        {
-            productNames.clear();
-             dm.setDataVector(new Object[][]  {  }, new Object[] { "Button", "Product", "Price","Description", "Stock", "Cost",  "Total Sold"});
-             table.setModel(dm);
-            //table.setDefaultRenderer(String.class, centerRenderer);
-            table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-            table.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
-            table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
-            table.getColumn("Description").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Description").setCellEditor(new ButtonEditor(new JCheckBox()));
-            
-            table.repaint();
+          return button;
         }
-      }
-      return button;
-    }
+
+        /**
+        * Returns object depending on button presses
+        * @return Object depending on button presses.
+        */
+
+        public Object getCellEditorValue() 
+        {
+          if (isPushed) {
+            // 
+            // 
+            JOptionPane.showMessageDialog(button, "Product Removed From Inventory");
+            // System.out.println(label + ": Ouch!");
+          }
+          isPushed = false;
+          return new String(label);
+        }
+
+        public boolean stopCellEditing() {
+          isPushed = false;
+          return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+          super.fireEditingStopped();
+        }
+       }
+
+        
+        /**
+         * Removes a row from the table.
+         * @param row row to be removed.
+         */
     
-    
-    
-   
 
-    public Object getCellEditorValue() 
-    {
-      if (isPushed) {
-        // 
-        // 
-        JOptionPane.showMessageDialog(button, "Product Removed From Inventory");
-        // System.out.println(label + ": Ouch!");
-      }
-      isPushed = false;
-      return new String(label);
-    }
-
-    public boolean stopCellEditing() {
-      isPushed = false;
-      return super.stopCellEditing();
-    }
-
-    protected void fireEditingStopped() {
-      super.fireEditingStopped();
-    }
-   }
-
-
-  
-    public void removeRow(int row)
-    {
-        dm.removeRow(row);
-    }
+        public void removeRow(int row)
+        {
+            dm.removeRow(row);
+        }
    
    
-}
+    }

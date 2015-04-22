@@ -4,6 +4,9 @@ package shoppingcartapplication_main;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Class designated to holding all products in all of the sellers inventories.
+ */
 
 public class ProductList 
 {
@@ -64,6 +67,11 @@ public class ProductList
         }
          return product;
     }
+    
+    /**
+     * Adds a product to the product list.
+     * @param product product to be added.
+     */
     
     public static void addToProductList(Product product)
     {

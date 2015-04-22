@@ -5,15 +5,25 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+/**
+ * A class designated to creating a shoppingc cart for each buyer.
+ */
 
 public class ShoppingCart
 {
+    /**
+     * Constructor for shopping cart.
+     */
+    
     public ShoppingCart()
     {
         cart = new ArrayList<>();
     }
     
+    /**
+     * Returns iterator pointing to products inside shopping cart list.
+     * @return product iterator.
+     */
    
     public Iterator<Product> getAllProducts()
    {
@@ -42,9 +52,22 @@ public class ShoppingCart
          };
    }
     
+    /**
+     * Returns cart size.
+     * @return cart.size().
+     */    
+    
     public int getSize(){
         return cart.size();
     }
+    
+    /**
+     * Finds and returns one product.
+     * @param name name of the product.
+     * @return product that is found.
+     * @precondition a product with the name "name" must exist.
+     */
+    
     
     public Product getOneProduct(String name){
         Iterator iter = this.getAllProducts();
@@ -62,6 +85,13 @@ public class ShoppingCart
          return product;
     }
     
+    /**
+     * Adds product to cart.
+     * @param aProduct product to be added.
+     * @param quantity how many of the product to be added.
+     * @preconditon quantity > 0
+     */
+    
     public void addToCart(Product aProduct, int quantity){
         if(cart.contains(aProduct)){
             aProduct.setCartQuantity(aProduct.getCartQuantity() + quantity);
@@ -74,9 +104,18 @@ public class ShoppingCart
         System.out.println(aProduct.getName() + " was added");   //debugging
     }
     
+    
+    /**
+     * Removes product from cart.
+     * @param aProduct product to be removed.
+     */
     public void removeProduct(Product aProduct){
         cart.remove(aProduct);
     }
+    
+    /**
+     * Clears cart of all items.
+     */
     
     public void clearCart(){
         Iterator iter = getAllProducts();
@@ -86,6 +125,11 @@ public class ShoppingCart
         }
         System.out.println(cart.size());
     }
+    
+    /**
+     * Calculates total price of items in cart.
+     * @return total price.
+     */
     
     public double getTotalPrice()
     {
@@ -98,6 +142,11 @@ public class ShoppingCart
         
         return totalPrice;
     }
+    
+    /**
+     * Generates a summary for items purchased in cart.
+     * @return string consisting of the summary.
+     */
     
     public String generateSummary(){
 

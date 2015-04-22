@@ -9,9 +9,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Class designed to run the entire shopping cart system.
+ * @author ASUS
+ */
 
 public class ShoppingCartSystem 
 {
+    
+    /**
+     * Beginning of program.
+     * @param args 
+     */
+    
      public static void main(String[] args)
      {
          buyerList = new ArrayList();
@@ -26,19 +36,8 @@ public class ShoppingCartSystem
          
          initializeSellers();
          
-         
-      
-         //Populate the ProductList class
-         //Readfiles tester block
-//         Iterator iter = natasha.getInventory().getAllProducts();
-//         while(iter.hasNext())
-//         {
-//             Product tempProduct = (Product) iter.next();
-//             System.out.println(tempProduct.getName());
-//         }
-         
          updateProductList(sellerList);
-         //test productLIst
+         
          Iterator<Product> iter = ProductList.getAllProducts();
          while(iter.hasNext())
          {
@@ -50,6 +49,13 @@ public class ShoppingCartSystem
          
      }
      
+     /**
+      * Reads inventory files and creates inventories.
+      * @param seller Seller pertaining to inventory file.
+      * @param fileName file name of inventory file.
+      * @precondition file name must exist.
+      */
+     
      public static void readFromFile(Seller seller, String fileName)
     {
         try
@@ -60,26 +66,27 @@ public class ShoppingCartSystem
         ArrayList<String> tokens = new ArrayList();
         for (int i = 0; i < lines.size(); i++)  //For every line
         {
-            //String[] st = lines.get(i).split("\\t");
             StringTokenizer st = new StringTokenizer(lines.get(i), "\t"); //tokenize 1 line
             while(st.hasMoreTokens())
             {
                 tokens.add(st.nextToken());  
             }   
-            //1 line
+
             Product tempProduct = new Product(tokens.get(0), Double.parseDouble(tokens.get(1)), tokens.get(2), Integer.parseInt(tokens.get(3)),
                     Double.parseDouble(tokens.get(4)), tokens.get(5), Integer.parseInt(tokens.get(6)));
             seller.getInventory().addToInventory(tempProduct);
             tokens.clear();
         }
         
-        
-        
-        //System.out.println(result[0]);
         }
         catch(Exception e){}
        
     }
+     
+     /**
+      * Updates product list with all inventory objects.
+      * @param sellerList list containing all seller objects/inventories.
+      */
      
      public static void updateProductList(ArrayList<Seller> sellerList)
      {
@@ -93,6 +100,14 @@ public class ShoppingCartSystem
              }
          }
      }
+     
+     /**
+      * Authenticates user logins.
+      * @param username user's entered username.
+      * @param password user's entered password.
+      * @param isBuyer boolean to distinguish whether the user is a buyer or seller.
+      * @return True or False depending on whether there is a match.
+      */
      
      public static boolean authenticate(String username, String password, boolean isBuyer)
      {
@@ -137,6 +152,12 @@ public class ShoppingCartSystem
          }
      }
      
+     /**
+      * Returns seller based on username.
+      * @param username username to search for.
+      * @return seller object.
+      */
+     
      public static Seller findSeller(String username)
      {
         for(int i = 0; i < sellerList.size(); i++)
@@ -152,6 +173,12 @@ public class ShoppingCartSystem
         }
          return null;
      }
+     
+     /**
+      * Returns buyer based on username.
+      * @param username username to search for.
+      * @return buyer object.
+      */
      
      public static Buyer findBuyer (String username)
      {
@@ -169,23 +196,45 @@ public class ShoppingCartSystem
          return null;
      }
      
+     /**
+      * Returns active buyer.
+      * @return active buyer.
+      */
+     
      public static Buyer getActiveBuyer()
      {
          return activeBuyer;
      }
      
+     /**
+      * Clears active buyer.
+      */
+     
      public static void clearActiveBuyer(){
          activeBuyer = null;
      }
+     
+     /**
+      * Returns active seller.
+      * @return active seller.
+      */
      
      public static Seller getActiveSeller()
      {
          return activeSeller;
      }
      
+      /**
+      * Clears active seller.
+      */
+     
       public static void clearActiveSeller(){
          activeSeller = null;
      }
+      
+     /**
+      * Initializes all the GUI pages.
+      */
      
      private static void initializeViewPages()
      {
@@ -200,6 +249,11 @@ public class ShoppingCartSystem
          
      }
      
+     /**
+      * Hard codes buyers into system.
+      */
+     
+     
      private static void initializeBuyers()
      {
         //Make some Buyers
@@ -210,6 +264,10 @@ public class ShoppingCartSystem
          buyerList.add(Hendrix);
          buyerList.add(harold);
      }
+     
+     /**
+      * Hard codes sellers into system.
+      */
      
      private static void initializeSellers()
      {
@@ -225,6 +283,11 @@ public class ShoppingCartSystem
          readFromFile(Joe, "joeInventory.txt");
          readFromFile(natasha, "natashaInventory.txt");
      }
+     
+     /**
+      * Makes purchases and mutates products when checkout is confirmed.
+      * @param acart shopping cart that is making purchases.
+      */
      
      public static void makePurchases(ShoppingCart acart)
      {
@@ -252,6 +315,11 @@ public class ShoppingCartSystem
              }
          }
      }
+     
+     /**
+      * Updates a sellers inventory from inventory file.
+      * @param s seller who's inventory is to be updated.
+      */
      
      public static void updateInventory(Seller s)
      {

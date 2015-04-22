@@ -35,7 +35,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import static shoppingcartapplication_main.SellerPage.frame;
 
-
+/**
+ * A GUI class for the Buyer Page.
+ */
 public class BuyerPage 
 {
     JTable table;
@@ -50,12 +52,10 @@ public class BuyerPage
        viewedShoppingCart = false; 
     }
     
-//    public static void main(String[] args)
-//    {
-//       BuyerPage page  = new BuyerPage();
-//        page.display();
-//        
-//    }
+    
+    /**
+     * Displays buyer page when active user account is of type buyer.
+     */
     
     public void display()
     {
@@ -208,6 +208,10 @@ public class BuyerPage
     } );
     }
     
+      /**
+      * Repaints table with updated product list if user leaves page and then comes back with updated list info.
+      */
+    
      public void repaintTable()
     {
         frame.setVisible(true);
@@ -225,6 +229,11 @@ public class BuyerPage
         //table.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );  
         table.repaint();
     }
+     
+     /**
+      * Generates the table model using the product list created by the ShoppingCartSystem class.
+      * @return a DefaultTableModel consisting of all the products in the product list along with "Add" and "Click for Description" buttons for each row.
+      */
     
     public DefaultTableModel generateTable()
     {
@@ -255,6 +264,10 @@ public class BuyerPage
         return dm;
     }
     
+    /**
+     * Decorator class for JTable buttons.
+     */
+    
     class ButtonRenderer extends JButton implements TableCellRenderer 
     {
 
@@ -280,30 +293,45 @@ public class BuyerPage
         }
 }
 
-/**
- * @version 1.0 11/09/98
- */
+    /**
+     * Editor class for JTable buttons.
+     */
 
-class ButtonEditor extends DefaultCellEditor 
-{
-    protected JButton button;
-    
-    private String label;
+    class ButtonEditor extends DefaultCellEditor 
+    {
+        protected JButton button;
 
-    private boolean isPushed;
-    private boolean add;
+        private String label;
 
-    public ButtonEditor(JCheckBox checkBox) {
-      super(checkBox);
-      button = new JButton();
-      button.setOpaque(true);
-      
-      button.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          fireEditingStopped();
+        private boolean isPushed;
+        private boolean add;
+        
+        /**
+         * Constructor for button editor.
+         * @param checkBox checkbox to be added.
+         */
+
+        public ButtonEditor(JCheckBox checkBox) {
+          super(checkBox);
+          button = new JButton();
+          button.setOpaque(true);
+
+          button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              fireEditingStopped();
+            }
+          });
         }
-      });
-    }
+
+    /**
+     * Returns cell component and handles button presses.
+     * @param table JTable
+     * @param value Object inside cell.
+     * @param isSelected boolean that is true if cell is selected.
+     * @param row row value of cell.
+     * @param column column value of cell.
+     * @return button pressed for repaint.
+     */
 
     public Component getTableCellEditorComponent(JTable table, Object value,
         boolean isSelected, int row, int column) {
@@ -348,10 +376,13 @@ class ButtonEditor extends DefaultCellEditor
       
       button.setText(label);
       isPushed = true;
-      System.out.println(row);
-      System.out.println(column);
       return button;
     }
+    
+    /**
+     * Returns object depending on button presses
+     * @return Object depending on button presses.
+     */
 
     public Object getCellEditorValue() 
     {
