@@ -1,5 +1,5 @@
 
-package shoppingcartapplication_main;
+package ShoppingCartApplication_GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,6 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import shoppingcartapplication_main.Seller;
+import shoppingcartapplication_main.ShoppingCartSystem;
 
 /**
  * GUI class for the sellers financial summary page.

@@ -1,8 +1,8 @@
-Red Apples	2.99	Grammy Ann's apples, best red apples this side of the Mississipi!	36	0.15	joe	401
-Beans	0.99	Beans, beans, they're good for your Heart!	9	0.39	joe	339
+Red Apples	2.99	Grammy Ann's apples, best red apples this side of the Mississipi!	33	0.15	joe	404
+Beans	0.99	Beans, beans, they're good for your Heart!	6	0.39	joe	342
 Almonds	4.79	Almonds that are a great snack filled with protein!	1	2.99	joe	96
-Sugar	2.99	Sweetness in a pouch!	15	0.79	joe	37
-Milk	3.69	Got milk?	26	1.99	joe	95
+Sugar	2.99	Sweetness in a pouch!	12	0.79	joe	40
+Milk	3.69	Got milk?	100	1.99	joe	4995
 Cheese	4.99	Mozzerella cheese, great for pizza and sandwiches!	28	0.99	joe	30
 Icecream	4.59	The best icecream you can ask for when going through a break up!	43	2.36	joe	507
 Water	0.99	The most healthy thing you can drink! Stay away from corn syrup!	41	0.2	joe	24

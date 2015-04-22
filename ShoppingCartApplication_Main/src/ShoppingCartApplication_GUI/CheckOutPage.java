@@ -1,5 +1,5 @@
 
-package shoppingcartapplication_main;
+package ShoppingCartApplication_GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,7 +24,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static shoppingcartapplication_main.CartPage.cart;
+import shoppingcartapplication_main.Product;
+import shoppingcartapplication_main.Seller;
+import shoppingcartapplication_main.ShoppingCart;
+import shoppingcartapplication_main.ShoppingCartSystem;
+import static ShoppingCartApplication_GUI.CartPage.cart;
 
 /**
  * GUI class for the checkout page.
@@ -45,7 +49,7 @@ public class CheckOutPage
      * Constructor for checkout page.
      */
     
-     CheckOutPage()
+     public CheckOutPage()
     { 
        frame = new JFrame();    //Create the main frame  
       

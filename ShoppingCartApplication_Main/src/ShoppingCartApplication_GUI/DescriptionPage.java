@@ -1,5 +1,5 @@
 
-package shoppingcartapplication_main;
+package ShoppingCartApplication_GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import shoppingcartapplication_main.Product;
+import shoppingcartapplication_main.ShoppingCartSystem;
 
 
 /**

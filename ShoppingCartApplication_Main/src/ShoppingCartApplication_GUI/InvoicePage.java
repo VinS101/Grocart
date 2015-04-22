@@ -1,5 +1,5 @@
 
-package shoppingcartapplication_main;
+package ShoppingCartApplication_GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
+import shoppingcartapplication_main.ShoppingCart;
+import shoppingcartapplication_main.ShoppingCartSystem;
 
 /**
  * GUI class for invoice page.

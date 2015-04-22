@@ -1,5 +1,5 @@
 
-package shoppingcartapplication_main;
+package ShoppingCartApplication_GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,7 +33,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
-import static shoppingcartapplication_main.SellerPage.frame;
+import shoppingcartapplication_main.Product;
+import shoppingcartapplication_main.ProductList;
+import shoppingcartapplication_main.ShoppingCartSystem;
+
 
 /**
  * A GUI class for the Buyer Page.
